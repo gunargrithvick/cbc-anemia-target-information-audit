@@ -1,5 +1,5 @@
-# The eight NHANES XPT files (four cycles) are public domain but large;
-# regenerate with download_data.py
+# The eight NHANES XPT files (four cycles) are public-use files and are large;
+# regenerate them with download_data.py rather than committing them.
 data/*.XPT
 data/*.xpt
 
