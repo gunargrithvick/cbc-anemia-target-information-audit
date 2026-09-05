@@ -1,0 +1,37 @@
+{
+ "rung": "L6_identity_free_demo",
+ "scoring": "average_precision",
+ "n_repeats": 30,
+ "features": {
+  "LBXRBCSI": {
+   "mdi": 0.39767474071639175,
+   "permutation_mean": 0.5870420854333945,
+   "permutation_sd": 0.01968095340968994
+  },
+  "LBXMCVSI": {
+   "mdi": 0.23245773721454988,
+   "permutation_mean": 0.4154729746475755,
+   "permutation_sd": 0.01953951367889731
+  },
+  "LBXRDW": {
+   "mdi": 0.24234818996910365,
+   "permutation_mean": 0.08708345520340896,
+   "permutation_sd": 0.011624983836094442
+  },
+  "RIDAGEYR": {
+   "mdi": 0.1005248291865576,
+   "permutation_mean": 0.16654587769951862,
+   "permutation_sd": 0.01574063003190869
+  },
+  "RIAGENDR": {
+   "mdi": 0.024540297807296572,
+   "permutation_mean": 0.08652748896003915,
+   "permutation_sd": 0.012137607264836078
+  },
+  "PREGNANT": {
+   "mdi": 0.0024542051061004926,
+   "permutation_mean": 0.006131076888376234,
+   "permutation_sd": 0.0003982980747548664
+  }
+ }
+}

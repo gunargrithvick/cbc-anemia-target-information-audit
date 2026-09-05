@@ -1,0 +1,366 @@
+{
+ "generated": "2026-09-05T16:26:48",
+ "complete_run": true,
+ "seed": 42,
+ "python": "3.14.7",
+ "platform": "Windows-11-10.0.26200-SP0",
+ "libraries": {
+  "numpy": {
+   "installed": "2.5.2",
+   "pinned": "2.5.2",
+   "matches_pin": true
+  },
+  "pandas": {
+   "installed": "3.0.5",
+   "pinned": "3.0.5",
+   "matches_pin": true
+  },
+  "scikit-learn": {
+   "installed": "1.9.0",
+   "pinned": "1.9.0",
+   "matches_pin": true
+  },
+  "scipy": {
+   "installed": "1.18.0",
+   "pinned": "1.18.0",
+   "matches_pin": true
+  },
+  "xgboost": {
+   "installed": "3.4.1",
+   "pinned": "3.4.1",
+   "matches_pin": true
+  },
+  "joblib": {
+   "installed": "1.5.3",
+   "pinned": "1.5.3",
+   "matches_pin": true
+  },
+  "matplotlib": {
+   "installed": "3.11.1",
+   "pinned": "3.11.1",
+   "matches_pin": true
+  },
+  "statsmodels": {
+   "installed": "0.15.0",
+   "pinned": "0.15.0",
+   "matches_pin": true
+  },
+  "pytest": {
+   "installed": "9.1.1",
+   "pinned": "9.1.1",
+   "matches_pin": true
+  },
+  "coverage": {
+   "installed": "7.16.0",
+   "pinned": "7.16.0",
+   "matches_pin": true
+  },
+  "pytest-cov": {
+   "installed": "7.1.0",
+   "pinned": "7.1.0",
+   "matches_pin": true
+  },
+  "pyflakes": {
+   "installed": "3.4.0",
+   "pinned": "3.4.0",
+   "matches_pin": true
+  }
+ },
+ "stages": [
+  {
+   "name": "download",
+   "status": "skipped",
+   "ok": true,
+   "seconds": 0.0,
+   "missing": []
+  },
+  {
+   "name": "dataprep",
+   "status": "ok",
+   "ok": true,
+   "returncode": 0,
+   "seconds": 2.58,
+   "missing": []
+  },
+  {
+   "name": "identity_audit",
+   "status": "ok",
+   "ok": true,
+   "returncode": 0,
+   "seconds": 3.05,
+   "missing": []
+  },
+  {
+   "name": "ablation",
+   "status": "ok",
+   "ok": true,
+   "returncode": 0,
+   "seconds": 186.18,
+   "missing": []
+  },
+  {
+   "name": "benchmark",
+   "status": "ok",
+   "ok": true,
+   "returncode": 0,
+   "seconds": 484.49,
+   "missing": []
+  },
+  {
+   "name": "weighted",
+   "status": "ok",
+   "ok": true,
+   "returncode": 0,
+   "seconds": 50.81,
+   "missing": []
+  },
+  {
+   "name": "figures",
+   "status": "ok",
+   "ok": true,
+   "returncode": 0,
+   "seconds": 46.27,
+   "missing": []
+  },
+  {
+   "name": "app_models",
+   "status": "ok",
+   "ok": true,
+   "returncode": 0,
+   "seconds": 22.94,
+   "missing": []
+  }
+ ],
+ "total_seconds": 796.32,
+ "sources": {
+  "src/ablation.py": {
+   "bytes": 95447,
+   "sha256": "6a9f9ec73f912b419765a69f96faabdec5d1fc2faea3eeaa00001842ecd9edda"
+  },
+  "src/anemia_app.py": {
+   "bytes": 31900,
+   "sha256": "9f2833cc5e1f901544b29f9fdc6894d3290bdddf979fb225ba4a94c407ca59be"
+  },
+  "src/benchmark.py": {
+   "bytes": 53165,
+   "sha256": "acaa5a5323dce82aba13ae2c4f12188b6d27953cdbca852b8e98ead049838649"
+  },
+  "src/dataprep.py": {
+   "bytes": 62721,
+   "sha256": "9a9b074c173fbbb71cdeee4dc31b97da5b35fef675c72a71027e90c2e00ce1b7"
+  },
+  "src/download_data.py": {
+   "bytes": 17706,
+   "sha256": "d8a6ae2e034690539597976bafdefd64c88da1846e6f154191eea8928a21fc1d"
+  },
+  "src/figures.py": {
+   "bytes": 55508,
+   "sha256": "4b58d56c6e3cd282a07e84b7666f10e128e97c0d136b9779c5ee92f4f40e4361"
+  },
+  "src/identity_audit.py": {
+   "bytes": 41319,
+   "sha256": "f8bdd1a66c4ae84239dd54f0514b2aebd024691c326ab4027b26edd7eae98b2c"
+  },
+  "src/paths.py": {
+   "bytes": 2224,
+   "sha256": "dbcf44d80c86164941cf3450d33466adb858b048883a840cca7e2ea3f34effba"
+  },
+  "src/run_all.py": {
+   "bytes": 30283,
+   "sha256": "35e840c237a0f6e201a6f017cc8048fa233389b800e9b7a12c726adffffa9636"
+  },
+  "src/weighted.py": {
+   "bytes": 49848,
+   "sha256": "bba0bc9d0511d870e37dc2fc4fd885fc01ca5eeba4ff740ec37665c439842470"
+  },
+  "requirements.txt": {
+   "bytes": 527,
+   "sha256": "8607ee755f20891f8231d954c44047581121f7845898046ad3c874d65120aa31"
+  }
+ },
+ "sources_unchanged_during_run": true,
+ "sources_edited_during_run": [],
+ "inputs": {
+  "data/CBC_G.XPT": {
+   "bytes": 1508320,
+   "sha256": "f5fd08c8f7564d73429579620f3dab4aec48cfdb0a908e450c0ea849d80589c0"
+  },
+  "data/DEMO_G.XPT": {
+   "bytes": 3753760,
+   "sha256": "eaf0525d1952626885af3e935415a1f66ad62c18698080e7354789c125af252d"
+  },
+  "data/CBC_H.XPT": {
+   "bytes": 1586640,
+   "sha256": "08f6fca4aacebacafb2b311c2edfc6897ad92f2c8f8dab14e18bf41acdc4ddee"
+  },
+  "data/DEMO_H.XPT": {
+   "bytes": 3833200,
+   "sha256": "f8f0cbb3085a323d4cde22349b164878fea1e64dbc404e65b5815c7816b547d7"
+  },
+  "data/CBC_I.XPT": {
+   "bytes": 1543440,
+   "sha256": "d2605788819fb3507d1a002379d69eba1ed6d3edc2b5413a947f2c2481b21278"
+  },
+  "data/DEMO_I.XPT": {
+   "bytes": 3756480,
+   "sha256": "c9297c6c37ae8f78f29be9568fa2a03cf3b112616a39afee04030fc775a66a0d"
+  },
+  "data/P_CBC.XPT": {
+   "bytes": 2427760,
+   "sha256": "8a910eacc0fad8d3b817bb01699c5d90761c60be3b2daaaf025396b58de96ef8"
+  },
+  "data/P_DEMO.XPT": {
+   "bytes": 3614720,
+   "sha256": "2e46c6c26bf77cd8989f64011ace12cbf42c0f3e03414eb59acc5328c8f87913"
+  }
+ },
+ "artefacts": {
+  "results/ablation.json": {
+   "bytes": 118926,
+   "sha256": "2cb96b742a4ef70eb939a85b879ee2a9e023200c7d1fd64c34d61ef0d9128eae",
+   "written_by_this_run": true
+  },
+  "results/benchmark.json": {
+   "bytes": 133448,
+   "sha256": "058771d15df65acc894e11346b5f71d3f5de18dc001fc054594fcb303ac4e708",
+   "written_by_this_run": true
+  },
+  "results/identity_audit.json": {
+   "bytes": 34419,
+   "sha256": "3a5dd724e94e81c3e589bac85e31579dc15a808a0674a9d99d25104c48ffbde2",
+   "written_by_this_run": true
+  },
+  "results/importance.json": {
+   "bytes": 966,
+   "sha256": "3119bc69d1a12df94501fc519f97109632f0ab6bf03b14f9e2a07d13c70a2cb9",
+   "written_by_this_run": true
+  },
+  "results/weighted.json": {
+   "bytes": 66207,
+   "sha256": "3c2f676c3d0cc40c927ff8aab0cc2b629f2de782cf1a530eb6b22132b3165efb",
+   "written_by_this_run": true
+  },
+  "figures/fig10_out_of_cycle.png": {
+   "bytes": 147972,
+   "sha256": "1ff6b88fb72d78c67215ae0f7dfcbc90fddc4eb82d346f22eb61e4d1aec7027c",
+   "written_by_this_run": true
+  },
+  "figures/fig1_flowchart.png": {
+   "bytes": 359136,
+   "sha256": "1e3254e24f3c3ce3e5c1aa6f9417e8ade4ccbfb6b12281f9a23725f3fbe08923",
+   "written_by_this_run": true
+  },
+  "figures/fig2_ladder.png": {
+   "bytes": 286593,
+   "sha256": "2fbd39a5bab2c17e01a6193d9d80f44b25c6de9e155679cfb292e3b42167be09",
+   "written_by_this_run": true
+  },
+  "figures/fig3_decomposition.png": {
+   "bytes": 192307,
+   "sha256": "b5103a2ae22fd0ca83bc4af14505f7afc6838ffbbe7341f9fe9146f579f5a37d",
+   "written_by_this_run": true
+  },
+  "figures/fig4_pr_curves.png": {
+   "bytes": 214502,
+   "sha256": "57c7dffcb799813013afb7360c654bc1fedf15619f06cf28b0470d9c9c1c3d30",
+   "written_by_this_run": true
+  },
+  "figures/fig5_calibration.png": {
+   "bytes": 222358,
+   "sha256": "42c2d1071ebf7774d7b974194597db3e506fc8d5e4c4ce98d5e9b6bc6940eaae",
+   "written_by_this_run": true
+  },
+  "figures/fig6_confusion.png": {
+   "bytes": 277216,
+   "sha256": "0dba38da3af15d0907513066e47afe2d9a27b90ff71558a0586325946ac1ade6",
+   "written_by_this_run": true
+  },
+  "figures/fig7_importance.png": {
+   "bytes": 101930,
+   "sha256": "234d1978aa99972fb5b18e8d5177dd75d2c0d424dd5ad356124ab98b4ccaec12",
+   "written_by_this_run": true
+  },
+  "figures/fig8_prevalence.png": {
+   "bytes": 183254,
+   "sha256": "b93735c5c50392f8610c7cf583a58fc7ea655662205ff4cf956518c64422e3ee",
+   "written_by_this_run": true
+  },
+  "figures/fig9_contrasts.png": {
+   "bytes": 175224,
+   "sha256": "04c4990a4b3a48d6561ce0d329891259fb16577bb1edcfe17ad616873f999b69",
+   "written_by_this_run": true
+  },
+  "figures/fig10_out_of_cycle.pdf": {
+   "bytes": 21808,
+   "sha256": "a154cc882bddb70ebbe35c3a2852acad0394f96fe1c9eaa92549262fce1cd44a",
+   "written_by_this_run": true
+  },
+  "figures/fig1_flowchart.pdf": {
+   "bytes": 40769,
+   "sha256": "c9236153e91261008ef96d73d1c9d661f4ae8bb66ca3ee60c41ea94f5d92d024",
+   "written_by_this_run": true
+  },
+  "figures/fig2_ladder.pdf": {
+   "bytes": 32080,
+   "sha256": "cdb8c6758e8ded0523e8e7937b567a6d1c7065a975ff21370933d39658c1430b",
+   "written_by_this_run": true
+  },
+  "figures/fig3_decomposition.pdf": {
+   "bytes": 26104,
+   "sha256": "00985d5ee8e3021c8fbc49683fb8130845a0754532d22238decc38feb57e59ec",
+   "written_by_this_run": true
+  },
+  "figures/fig4_pr_curves.pdf": {
+   "bytes": 27290,
+   "sha256": "a8c00755b7d48f68e374cee27d8177debfec8ce299e04953cb29f7005f41eb4e",
+   "written_by_this_run": true
+  },
+  "figures/fig5_calibration.pdf": {
+   "bytes": 24903,
+   "sha256": "c41e5ef3a90da0c89fdb49ff7134cab50ec4fc1ac9aeb04114c3568a5054a876",
+   "written_by_this_run": true
+  },
+  "figures/fig6_confusion.pdf": {
+   "bytes": 26723,
+   "sha256": "370fa777da3d1fbd4beb1752d33e0b51cd4e76218fc10899fcffaace6097ef57",
+   "written_by_this_run": true
+  },
+  "figures/fig7_importance.pdf": {
+   "bytes": 19985,
+   "sha256": "062f24ddc25b48b9a481426ea4d78caa22c505cf6f84aac6e01adf370e4cf4e1",
+   "written_by_this_run": true
+  },
+  "figures/fig8_prevalence.pdf": {
+   "bytes": 28778,
+   "sha256": "9df6f6222e4af35001ae1965f94703413a472baa65468f3f723bdd69606156ed",
+   "written_by_this_run": true
+  },
+  "figures/fig9_contrasts.pdf": {
+   "bytes": 26163,
+   "sha256": "c7e5f464b8a8ed1b1d00f9977662c5361e27854f9b8167f9dae782d202fa3667",
+   "written_by_this_run": true
+  },
+  "models/anemia_binary.pkl": {
+   "bytes": 17652489,
+   "sha256": "1e63ce77286a194dcc1b5dca4d0c8a18569f994b12de8776e7d8be59cd5defb9",
+   "written_by_this_run": true
+  },
+  "models/anemia_severity.pkl": {
+   "bytes": 22934081,
+   "sha256": "590022e10aff22d106d293c302257461ee31bf91b4ac430e044f75e5b90a3ac2",
+   "written_by_this_run": true
+  }
+ },
+ "artefacts_not_hashed": {
+  "model_info.json": "records its own training time by design",
+  "rejections.json": "an interactive-app tally, appended outside the pipeline; hashing it makes the manifest go stale the first time anyone runs anemia_app.py",
+  "app_overview.png": "written by anemia_app.show_graphs(), not by any pipeline stage; it is an interactive-session byproduct that happens to live in figures/",
+  "fig1_flowchart_paper.png": "manuscript-only flowchart export; it is prepared outside figures.py and is not a numerical pipeline artefact",
+  "fig1_flowchart_paper.pdf": "manuscript-only flowchart export; it is prepared outside figures.py and is not a numerical pipeline artefact",
+  "run_all.log": "this run's own transcript, still open for writing when the manifest is built, and it records wall clocks and timings rather than results",
+  "run_all.prev.log": "the previous run's transcript, kept so a failure can be diffed against the last run that worked; not a result of this one"
+ },
+ "artefacts_undeclared": [],
+ "artefacts_carried_from_an_earlier_run": [],
+ "selection_was_the_full_pipeline": true
+}

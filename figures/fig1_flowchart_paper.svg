@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1320" viewBox="0 0 1200 1320">
+  <defs>
+    <marker id="arrow" markerWidth="18" markerHeight="18" refX="15" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L0,10 L15,5 z" fill="#355c7d"/>
+    </marker>
+    <style>
+      .shape { stroke:#355c7d; stroke-width:3; }
+      .text { font-family:Arial,Helvetica,sans-serif; fill:#16232e; text-anchor:middle; }
+      .body { font-size:23px; }
+      .heading { font-size:22px; font-weight:700; }
+      .arrow { stroke:#355c7d; stroke-width:3.2; fill:none; marker-end:url(#arrow); }
+      .line { stroke:#355c7d; stroke-width:3.2; fill:none; }
+    </style>
+  </defs>
+  <rect width="1200" height="1320" fill="#ffffff"/>
+
+  <!-- Data inputs: parallelograms -->
+  <polygon points="125,45 450,45 480,115 95,115" class="shape" fill="#e6f0f8"/>
+  <text x="287" y="88" class="text body">CBC file</text>
+  <polygon points="750,45 1075,45 1105,115 720,115" class="shape" fill="#e6f0f8"/>
+  <text x="912" y="88" class="text body">Demographic file</text>
+
+  <!-- Common processing: rectangles -->
+  <rect x="360" y="165" width="480" height="65" class="shape" fill="#ffffff"/>
+  <text x="600" y="205" class="text body">Merge participant records</text>
+  <rect x="360" y="265" width="480" height="65" class="shape" fill="#ffffff"/>
+  <text x="600" y="305" class="text body">Complete-case preparation</text>
+  <rect x="360" y="365" width="480" height="65" class="shape" fill="#ffffff"/>
+  <text x="600" y="405" class="text body">Anemia and severity labels</text>
+  <rect x="360" y="465" width="480" height="65" class="shape" fill="#ffffff"/>
+  <text x="600" y="505" class="text body">Stratified data split</text>
+
+  <!-- Main arrows, each path has its own arrowhead -->
+  <path d="M287 115 L287 140 L510 140 L510 165" class="arrow"/>
+  <path d="M912 115 L912 140 L690 140 L690 165" class="arrow"/>
+  <path d="M600 230 L600 265" class="arrow"/>
+  <path d="M600 330 L600 365" class="arrow"/>
+  <path d="M600 430 L600 465" class="arrow"/>
+
+  <!-- Fork junction: no extra symbol, only aligned lines and arrows -->
+  <path d="M600 530 L600 570" class="line"/>
+  <path d="M600 570 L287 570 L287 625" class="arrow"/>
+  <path d="M600 570 L912 570 L912 625" class="arrow"/>
+
+  <!-- Analysis branches -->
+  <rect x="80" y="625" width="415" height="58" class="shape" fill="#eadcf4"/>
+  <text x="287" y="662" class="text heading">Target-information audit</text>
+  <rect x="80" y="710" width="415" height="62" class="shape" fill="#faf5fd"/>
+  <text x="287" y="749" class="text body">Analyzer relationships</text>
+  <rect x="80" y="800" width="415" height="62" class="shape" fill="#faf5fd"/>
+  <text x="287" y="839" class="text body">HGB recoverability</text>
+
+  <rect x="705" y="625" width="415" height="58" class="shape" fill="#dff1e4"/>
+  <text x="912" y="662" class="text heading">Predictive evaluation</text>
+  <rect x="705" y="710" width="415" height="62" class="shape" fill="#f4fbf6"/>
+  <text x="912" y="749" class="text body">Feature ladder</text>
+  <rect x="705" y="800" width="415" height="62" class="shape" fill="#f4fbf6"/>
+  <text x="912" y="839" class="text body">Classifier comparison</text>
+
+  <path d="M287 683 L287 710" class="arrow"/>
+  <path d="M287 772 L287 800" class="arrow"/>
+  <path d="M912 683 L912 710" class="arrow"/>
+  <path d="M912 772 L912 800" class="arrow"/>
+
+  <!-- Join: incoming lines have no arrowheads; one arrow enters the next process -->
+  <path d="M287 862 L287 900 L600 900" class="line"/>
+  <path d="M912 862 L912 900 L600 900" class="line"/>
+  <rect x="360" y="930" width="480" height="65" class="shape" fill="#fff8dc" stroke="#b7791f"/>
+  <text x="600" y="970" class="text body">Combine analysis outputs</text>
+  <path d="M600 900 L600 930" class="arrow"/>
+
+  <rect x="360" y="1030" width="480" height="65" class="shape" fill="#ffffff"/>
+  <text x="600" y="1070" class="text body">Statistical and sensitivity analysis</text>
+  <path d="M600 995 L600 1030" class="arrow"/>
+
+  <ellipse cx="600" cy="1180" rx="185" ry="42" fill="#fde8e8" stroke="#b53b3b" stroke-width="3"/>
+  <text x="600" y="1188" class="text heading">Interpretation</text>
+  <path d="M600 1095 L600 1138" class="arrow"/>
+</svg>

@@ -1,0 +1,19 @@
+numpy==2.5.2
+pandas==3.0.5
+scikit-learn==1.9.0
+scipy==1.18.0
+xgboost==3.4.1
+joblib==1.5.3
+matplotlib==3.11.1
+statsmodels==0.15.0
+
+# Test-only. The pipeline runs without it; `python -m pytest tests -q` does not.
+pytest==9.1.1
+coverage==7.16.0
+pytest-cov==7.1.0
+pyflakes==3.4.0
+
+# NOT pyreadstat. The NHANES files are SAS XPORT, and pandas reads those with
+# its own pure-Python reader: pd.read_sas(path, format="xport"). pyreadstat is
+# only needed for .sas7bdat. Verified by blocking the import and reading
+# P_CBC.XPT anyway.

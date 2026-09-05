@@ -1,0 +1,3644 @@
+{
+ "cohort": {
+  "cycle": "2017-2020",
+  "weight_column": "WTMECPRP",
+  "cbc_records": 13772,
+  "demo_records": 15560,
+  "after_demo_merge": 13772,
+  "complete_on_all_features": 12156,
+  "with_who_threshold": 12156,
+  "excluded_at_demo_merge": 0,
+  "excluded_incomplete_features": 1616,
+  "excluded_no_who_band": 0,
+  "excluded_total": 1616,
+  "excluded_pct": 11.73,
+  "n_analysis": 12156,
+  "attrition_profile": {
+   "n_dropped": 1616,
+   "dropped": {
+    "n": 1616,
+    "mean_age": 17.68,
+    "sd_age": 21.01,
+    "median_age": 9.0,
+    "pct_under_2": 9.22,
+    "pct_under_18": 71.84,
+    "pct_65_plus": 6.37,
+    "pct_female": 49.88
+   },
+   "retained": {
+    "n": 12156,
+    "mean_age": 37.48,
+    "sd_age": 24.26,
+    "median_age": 36.0,
+    "pct_under_2": 1.71,
+    "pct_under_18": 29.99,
+    "pct_65_plus": 17.14,
+    "pct_female": 50.58
+   },
+   "age_gap_years": -19.8,
+   "age_standardised_difference": -0.873,
+   "smd_convention": "|d| 0.1 small, 0.2 notable, 0.5 large",
+   "weighted_loss": {
+    "population_in_merged_frame": 318804841.487105,
+    "population_dropped": 25953385.186626002,
+    "population_dropped_pct": 8.14,
+    "note": "every population total in weighted.json is a complete-case total over the kept rows; this is what the excluded rows would have added. They carry no CBC, so their anemia burden can be bounded but not measured."
+   },
+   "mcar_contradicted_on_age": true,
+   "mcar_note": "a difference here rules MCAR out; the absence of one does not rule it in",
+   "note": "age sets the WHO cut-off, so non-random loss in age is non-random loss in the label"
+  },
+  "who_thresholds": {
+   "thresholds_gdl": [
+    11.0,
+    11.5,
+    12.0,
+    13.0
+   ],
+   "rows_per_threshold": {
+    "11.0": 888,
+    "11.5": 1556,
+    "12.0": 5261,
+    "13.0": 4451
+   },
+   "n_rows": 12156,
+   "rows_whose_cutoff_is_not_12": 6895,
+   "pct_whose_cutoff_is_not_12": 56.72,
+   "binary_labels_that_flip_under_a_flat_12_cut": 540,
+   "pct_binary_labels_that_flip": 4.44,
+   "note": "the flat cut is wrong about the THRESHOLD for far more people than it is wrong about the LABEL: most people are nowhere near either cut-off. Both counts are reported because quoting only the first overstates the damage and quoting only the second understates the error."
+  },
+  "pregnancy": {
+   "recorded_pregnant": 76,
+   "recorded_not_pregnant": 1543,
+   "could_not_ascertain_code3": 35,
+   "women_12_49": 2776,
+   "women_12_49_not_ascertained": 1157,
+   "labels_that_could_flip_off": 74,
+   "flip_pct_of_all_positives": 6.34,
+   "guessed_rows_with_no_pregnant_band": 300,
+   "flip_definition": "guessed, currently anemic, and with hemoglobin at or above the cut-off who_thresholds would assign the same row if it were coded pregnant",
+   "no_pregnant_band_note": "rows where coding the flag on would not move the cut-off at all, so no flip is possible: girls 12-14, for whom this implementation keeps the 12.0 band. WHO sets no lower age bound on the pregnancy cut-off, so that is an implementation choice, and it is inert here because RIDEXPRG is collected only at ages 20-44.",
+   "direction": "reported prevalence is an upper bound for this group"
+  },
+  "integrity": {
+   "n_rows": 12156,
+   "n_values_screened": 109404,
+   "values_outside_containment_bounds": 3,
+   "outlying_values": [
+    {
+     "seqn": 120083,
+     "column": "LBXMCVSI",
+     "value": 35.4,
+     "containment_bounds": [
+      40.0,
+      140.0
+     ]
+    },
+    {
+     "seqn": 121932,
+     "column": "LBXMCVSI",
+     "value": 35.4,
+     "containment_bounds": [
+      40.0,
+      140.0
+     ]
+    },
+    {
+     "seqn": 120096,
+     "column": "LBXWBCSI",
+     "value": 400.0,
+     "containment_bounds": [
+      0.5,
+      100.0
+     ]
+    }
+   ],
+   "non_positive_values": 0,
+   "non_finite_values": 0,
+   "duplicate_seqn": 0,
+   "rows_dropped_by_this_screen": 0,
+   "policy": "report, do not clean. A plausibility filter would move the denominator of every number in the paper on the basis of the analyst's idea of a normal patient, and in the primary cycle the values it would remove are real extreme phenotypes - two MCVs at 35.4 fL and one WBC at 400 x10^3/uL. The complete-case filter is the only exclusion in this study, and its bias is quantified in attrition_profile.",
+   "adjudication": "being outside these bounds does not make a value real, and being inside them does not make it right. The primary cycle's three were checked one at a time; outlying_values names every flagged value with its SEQN so the same can be done for any cycle. 2013-2014's SEQN 77520 (MCHC 69.6 g/dL, RBC 1.67, MCH 74.5) is not a phenotype - it is internally consistent across all three analyser identities and still physically impossible, which is what a unit error looks like. It is retained, because this screen drops nothing, and disclosed here.",
+   "by_column": {
+    "LBXHGB": {
+     "min": 5.4,
+     "max": 19.9,
+     "containment_bounds": [
+      3.0,
+      25.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXRBCSI": {
+     "min": 2.32,
+     "max": 7.97,
+     "containment_bounds": [
+      1.0,
+      8.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXHCT": {
+     "min": 21.1,
+     "max": 58.8,
+     "containment_bounds": [
+      10.0,
+      70.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXMCVSI": {
+     "min": 35.4,
+     "max": 114.6,
+     "containment_bounds": [
+      40.0,
+      140.0
+     ],
+     "outside_bounds": 2,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXMCHSI": {
+     "min": 10.2,
+     "max": 39.8,
+     "containment_bounds": [
+      10.0,
+      50.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXMC": {
+     "min": 25.2,
+     "max": 38.4,
+     "containment_bounds": [
+      20.0,
+      45.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXRDW": {
+     "min": 11.3,
+     "max": 36.5,
+     "containment_bounds": [
+      8.0,
+      40.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXPLTSI": {
+     "min": 8.0,
+     "max": 1021.0,
+     "containment_bounds": [
+      5.0,
+      1500.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXWBCSI": {
+     "min": 1.9,
+     "max": 400.0,
+     "containment_bounds": [
+      0.5,
+      100.0
+     ],
+     "outside_bounds": 1,
+     "non_positive": 0,
+     "non_finite": 0
+    }
+   }
+  }
+ },
+ "n_train": 7293,
+ "n_val": 2431,
+ "n_test": 2432,
+ "fit_rule": "every model in this file is fitted on the 60% training split only, so that benchmark.py's validation split stays unused and every number in the paper is comparable; see train_size_sensitivity for the contrast under an 80% fit",
+ "n_test_clusters": 49,
+ "majority_baseline_binary": 0.9041940789473684,
+ "majority_baseline_severity": 0.9041940789473685,
+ "pr_auc_no_skill": 0.09580592105263158,
+ "variance_estimator": "Rao-Wu rescaled bootstrap, 1000 replicates, 25 df",
+ "estimand": "UNWEIGHTED within-sample accuracy contrasts, with stratum- and PSU-aware uncertainty. The Rao-Wu replicate weights are built on unit base weights (dataprep.rao_wu_weights(base=None)), so every interval and p-value in this file answers 'does rung A beat rung B on these rows, once clustering is accounted for', NOT 'what would either score in the US population'. Weighting these contrasts would change the question. The population estimates are in results/weighted.json, which passes MECWT as the base weight. See variance_scales below for the measured cost of the design on these differences: 0.90x the i.i.d.-row STANDARD ERROR. The design effect of 4.00 that belongs to the weighted prevalence is a VARIANCE ratio, so on the standard-error scale it is 2.00 - this sentence used to compare 0.90 against 4.00 directly, which overstates the difference between the two by a factor of two.",
+ "rungs": {
+  "L0_hgb_direct": {
+   "features": [
+    "LBXHGB",
+    "LBXRBCSI",
+    "LBXMCVSI",
+    "LBXMCHSI"
+   ],
+   "recoverability": {
+    "exact_routes": [
+     {
+      "estimator": "HGB present verbatim",
+      "mae_gdl": 0.0,
+      "rmse_gdl": 0.0,
+      "pearson_r": 1.0,
+      "label_agreement": 1.0,
+      "route": "HGB present verbatim",
+      "mae_gdl_val": 0.0
+     },
+     {
+      "estimator": "MCH*RBC/10",
+      "mae_gdl": 0.03029,
+      "rmse_gdl": 0.037205,
+      "pearson_r": 0.999705,
+      "label_agreement": 0.99301,
+      "route": "MCH*RBC/10",
+      "mae_gdl_val": 0.03094
+     }
+    ],
+    "exact": {
+     "estimator": "HGB present verbatim",
+     "mae_gdl": 0.0,
+     "rmse_gdl": 0.0,
+     "pearson_r": 1.0,
+     "label_agreement": 1.0,
+     "route": "HGB present verbatim",
+     "mae_gdl_val": 0.0
+    },
+    "family": [
+     {
+      "estimator": "random forest",
+      "mae_gdl": 0.00036,
+      "rmse_gdl": 0.009368,
+      "pearson_r": 0.999981,
+      "label_agreement": 1.0,
+      "mae_gdl_val": 0.000529,
+      "r2": 0.999962
+     },
+     {
+      "estimator": "ols",
+      "mae_gdl": 0.0,
+      "rmse_gdl": 0.0,
+      "pearson_r": 1.0,
+      "label_agreement": 0.988487,
+      "mae_gdl_val": 0.0,
+      "r2": 1.0
+     },
+     {
+      "estimator": "ols in logs",
+      "mae_gdl": 0.0,
+      "rmse_gdl": 0.0,
+      "pearson_r": 1.0,
+      "label_agreement": 0.988487,
+      "mae_gdl_val": 0.0,
+      "logged_columns": [
+       "LBXHGB",
+       "LBXRBCSI",
+       "LBXMCVSI",
+       "LBXMCHSI"
+      ],
+      "untransformed_columns": [],
+      "coefficients": [
+       {
+        "column": "LBXHGB",
+        "value": 1.0,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXRBCSI",
+        "value": 0.0,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCVSI",
+        "value": -0.0,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCHSI",
+        "value": 0.0,
+        "is_exponent": true
+       }
+      ],
+      "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+     }
+    ],
+    "learned": {
+     "estimator": "ols",
+     "mae_gdl": 0.0,
+     "rmse_gdl": 0.0,
+     "pearson_r": 1.0,
+     "label_agreement": 0.988487,
+     "mae_gdl_val": 0.0,
+     "r2": 1.0
+    },
+    "selected": {
+     "estimator": "HGB present verbatim",
+     "mae_gdl": 0.0,
+     "rmse_gdl": 0.0,
+     "pearson_r": 1.0,
+     "label_agreement": 1.0,
+     "route": "HGB present verbatim",
+     "mae_gdl_val": 0.0
+    },
+    "best_on_test": {
+     "estimator": "HGB present verbatim",
+     "mae_gdl": 0.0,
+     "rmse_gdl": 0.0,
+     "pearson_r": 1.0,
+     "label_agreement": 1.0,
+     "route": "HGB present verbatim",
+     "mae_gdl_val": 0.0
+    },
+    "selection_optimism_gdl": 0.0,
+    "selection_rule": "fitted on the train block, ranked by validation MAE, reported on the test block. Test rows choose nothing. best_on_test is what selecting on test would have returned and is not the reported figure; selection_optimism_gdl is how much that shortcut would have added."
+   },
+   "binary": {
+    "cv_accuracy_mean": 0.9547496218072208,
+    "cv_accuracy_sd": 0.005668955972779991,
+    "cv_folds": [
+     0.9588759424263193,
+     0.9616175462645647,
+     0.9547635366689513,
+     0.9478737997256516,
+     0.9506172839506173
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9547697368421053,
+    "test_balanced_accuracy": 0.904002404526443,
+    "test_accuracy_ci95": [
+     0.9428131811453541,
+     0.9667262925388566
+    ],
+    "test_accuracy_design_se": 0.00580545369289986,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "roc_auc": 0.9793966043870899,
+    "pr_auc": 0.8750149280501285,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "precision": 0.7286245353159851,
+    "recall": 0.8412017167381974,
+    "f1": 0.7808764940239044,
+    "recall_ci95": [
+     0.7779664412654343,
+     0.9044369922109605
+    ],
+    "recall_ci_degenerate": null,
+    "n_test_positives": 233,
+    "feature_importance_mdi": {
+     "LBXHGB": 0.5893583152133751,
+     "LBXRBCSI": 0.18647936861609646,
+     "LBXMCVSI": 0.10129393441273155,
+     "LBXMCHSI": 0.12286838175779691
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   },
+   "severity": {
+    "cv_accuracy_mean": 0.9443291767384882,
+    "cv_accuracy_sd": 0.004650100129236011,
+    "cv_folds": [
+     0.9506511309115833,
+     0.9451679232350926,
+     0.9444825222755312,
+     0.9375857338820301,
+     0.943758573388203
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9469572368421053,
+    "test_balanced_accuracy": 0.9039998617420174,
+    "test_accuracy_ci95": [
+     0.9339312230172407,
+     0.9599832506669699
+    ],
+    "test_accuracy_design_se": 0.006324724442497453,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "macro_f1": 0.8668425206663066,
+    "per_class_recall": [
+     0.9595270577535243,
+     0.7678571428571429,
+     0.9846153846153847
+    ],
+    "feature_importance_mdi": {
+     "LBXHGB": 0.6477161672592129,
+     "LBXRBCSI": 0.1455459644228901,
+     "LBXMCVSI": 0.08990004409532248,
+     "LBXMCHSI": 0.11683782422257435
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   }
+  },
+  "L1_paper_leaky": {
+   "features": [
+    "LBXRBCSI",
+    "LBXMCVSI",
+    "LBXMCHSI"
+   ],
+   "recoverability": {
+    "exact_routes": [
+     {
+      "estimator": "MCH*RBC/10",
+      "mae_gdl": 0.03029,
+      "rmse_gdl": 0.037205,
+      "pearson_r": 0.999705,
+      "label_agreement": 0.99301,
+      "route": "MCH*RBC/10",
+      "mae_gdl_val": 0.03094
+     }
+    ],
+    "exact": {
+     "estimator": "MCH*RBC/10",
+     "mae_gdl": 0.03029,
+     "rmse_gdl": 0.037205,
+     "pearson_r": 0.999705,
+     "label_agreement": 0.99301,
+     "route": "MCH*RBC/10",
+     "mae_gdl_val": 0.03094
+    },
+    "family": [
+     {
+      "estimator": "random forest",
+      "mae_gdl": 0.045363,
+      "rmse_gdl": 0.086958,
+      "pearson_r": 0.998413,
+      "label_agreement": 0.993421,
+      "mae_gdl_val": 0.048585,
+      "r2": 0.996735
+     },
+     {
+      "estimator": "ols",
+      "mae_gdl": 0.093216,
+      "rmse_gdl": 0.161218,
+      "pearson_r": 0.99438,
+      "label_agreement": 0.984786,
+      "mae_gdl_val": 0.096453,
+      "r2": 0.988779
+     },
+     {
+      "estimator": "ols in logs",
+      "mae_gdl": 0.030055,
+      "rmse_gdl": 0.036945,
+      "pearson_r": 0.999705,
+      "label_agreement": 0.994243,
+      "mae_gdl_val": 0.03087,
+      "logged_columns": [
+       "LBXRBCSI",
+       "LBXMCVSI",
+       "LBXMCHSI"
+      ],
+      "untransformed_columns": [],
+      "coefficients": [
+       {
+        "column": "LBXRBCSI",
+        "value": 0.9995,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCVSI",
+        "value": 0.0008,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCHSI",
+        "value": 0.9996,
+        "is_exponent": true
+       }
+      ],
+      "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+     }
+    ],
+    "learned": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.030055,
+     "rmse_gdl": 0.036945,
+     "pearson_r": 0.999705,
+     "label_agreement": 0.994243,
+     "mae_gdl_val": 0.03087,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXMCHSI"
+     ],
+     "untransformed_columns": [],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9995,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 0.0008,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCHSI",
+       "value": 0.9996,
+       "is_exponent": true
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selected": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.030055,
+     "rmse_gdl": 0.036945,
+     "pearson_r": 0.999705,
+     "label_agreement": 0.994243,
+     "mae_gdl_val": 0.03087,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXMCHSI"
+     ],
+     "untransformed_columns": [],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9995,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 0.0008,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCHSI",
+       "value": 0.9996,
+       "is_exponent": true
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "best_on_test": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.030055,
+     "rmse_gdl": 0.036945,
+     "pearson_r": 0.999705,
+     "label_agreement": 0.994243,
+     "mae_gdl_val": 0.03087,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXMCHSI"
+     ],
+     "untransformed_columns": [],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9995,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 0.0008,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCHSI",
+       "value": 0.9996,
+       "is_exponent": true
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selection_optimism_gdl": 0.0,
+    "selection_rule": "fitted on the train block, ranked by validation MAE, reported on the test block. Test rows choose nothing. best_on_test is what selecting on test would have returned and is not the reported figure; selection_optimism_gdl is how much that shortcut would have added."
+   },
+   "binary": {
+    "cv_accuracy_mean": 0.9494016139359222,
+    "cv_accuracy_sd": 0.006846856943968077,
+    "cv_folds": [
+     0.9575051405071967,
+     0.9513365318711446,
+     0.9533927347498287,
+     0.9410150891632373,
+     0.943758573388203
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9502467105263158,
+    "test_balanced_accuracy": 0.8938270809790638,
+    "test_accuracy_ci95": [
+     0.9386300306588129,
+     0.9618633903938187
+    ],
+    "test_accuracy_design_se": 0.005640428460041736,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "roc_auc": 0.9747192930067706,
+    "pr_auc": 0.8396850371607824,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "precision": 0.7058823529411765,
+    "recall": 0.8240343347639485,
+    "f1": 0.7603960396039604,
+    "recall_ci95": [
+     0.757542908882259,
+     0.890525760645638
+    ],
+    "recall_ci_degenerate": null,
+    "n_test_positives": 233,
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.5222268918823953,
+     "LBXMCVSI": 0.2210898556302126,
+     "LBXMCHSI": 0.25668325248739216
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   },
+   "severity": {
+    "cv_accuracy_mean": 0.9339068512830349,
+    "cv_accuracy_sd": 0.008649662476953639,
+    "cv_folds": [
+     0.9417409184372858,
+     0.9355723098012337,
+     0.9417409184372858,
+     0.9286694101508917,
+     0.9218106995884774
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.936266447368421,
+    "test_balanced_accuracy": 0.850561985384632,
+    "test_accuracy_ci95": [
+     0.9243722702559509,
+     0.9481606244808911
+    ],
+    "test_accuracy_design_se": 0.005775166042203632,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "macro_f1": 0.8181483537747285,
+    "per_class_recall": [
+     0.954524783992724,
+     0.7202380952380952,
+     0.8769230769230769
+    ],
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.4800790981382813,
+     "LBXMCVSI": 0.2433834190595762,
+     "LBXMCHSI": 0.27653748280214246
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   }
+  },
+  "L1_paper_leaky_demo": {
+   "features": [
+    "LBXRBCSI",
+    "LBXMCVSI",
+    "LBXMCHSI",
+    "RIDAGEYR",
+    "RIAGENDR",
+    "PREGNANT"
+   ],
+   "recoverability": {
+    "exact_routes": [
+     {
+      "estimator": "MCH*RBC/10",
+      "mae_gdl": 0.03029,
+      "rmse_gdl": 0.037205,
+      "pearson_r": 0.999705,
+      "label_agreement": 0.99301,
+      "route": "MCH*RBC/10",
+      "mae_gdl_val": 0.03094
+     }
+    ],
+    "exact": {
+     "estimator": "MCH*RBC/10",
+     "mae_gdl": 0.03029,
+     "rmse_gdl": 0.037205,
+     "pearson_r": 0.999705,
+     "label_agreement": 0.99301,
+     "route": "MCH*RBC/10",
+     "mae_gdl_val": 0.03094
+    },
+    "family": [
+     {
+      "estimator": "random forest",
+      "mae_gdl": 0.047209,
+      "rmse_gdl": 0.090163,
+      "pearson_r": 0.998292,
+      "label_agreement": 0.99301,
+      "mae_gdl_val": 0.050089,
+      "r2": 0.99649
+     },
+     {
+      "estimator": "ols",
+      "mae_gdl": 0.092226,
+      "rmse_gdl": 0.160455,
+      "pearson_r": 0.994433,
+      "label_agreement": 0.984786,
+      "mae_gdl_val": 0.096212,
+      "r2": 0.988885
+     },
+     {
+      "estimator": "ols in logs",
+      "mae_gdl": 0.030058,
+      "rmse_gdl": 0.036945,
+      "pearson_r": 0.999705,
+      "label_agreement": 0.993832,
+      "mae_gdl_val": 0.03087,
+      "logged_columns": [
+       "LBXRBCSI",
+       "LBXMCVSI",
+       "LBXMCHSI",
+       "RIDAGEYR"
+      ],
+      "untransformed_columns": [
+       "RIAGENDR",
+       "PREGNANT"
+      ],
+      "coefficients": [
+       {
+        "column": "LBXRBCSI",
+        "value": 0.9996,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCVSI",
+        "value": 0.0018,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCHSI",
+        "value": 0.9991,
+        "is_exponent": true
+       },
+       {
+        "column": "RIDAGEYR",
+        "value": -0.0001,
+        "is_exponent": true
+       },
+       {
+        "column": "RIAGENDR",
+        "value": 0.0,
+        "is_exponent": false
+       },
+       {
+        "column": "PREGNANT",
+        "value": -0.0002,
+        "is_exponent": false
+       }
+      ],
+      "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+     }
+    ],
+    "learned": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.030058,
+     "rmse_gdl": 0.036945,
+     "pearson_r": 0.999705,
+     "label_agreement": 0.993832,
+     "mae_gdl_val": 0.03087,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXMCHSI",
+      "RIDAGEYR"
+     ],
+     "untransformed_columns": [
+      "RIAGENDR",
+      "PREGNANT"
+     ],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9996,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 0.0018,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCHSI",
+       "value": 0.9991,
+       "is_exponent": true
+      },
+      {
+       "column": "RIDAGEYR",
+       "value": -0.0001,
+       "is_exponent": true
+      },
+      {
+       "column": "RIAGENDR",
+       "value": 0.0,
+       "is_exponent": false
+      },
+      {
+       "column": "PREGNANT",
+       "value": -0.0002,
+       "is_exponent": false
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selected": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.030058,
+     "rmse_gdl": 0.036945,
+     "pearson_r": 0.999705,
+     "label_agreement": 0.993832,
+     "mae_gdl_val": 0.03087,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXMCHSI",
+      "RIDAGEYR"
+     ],
+     "untransformed_columns": [
+      "RIAGENDR",
+      "PREGNANT"
+     ],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9996,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 0.0018,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCHSI",
+       "value": 0.9991,
+       "is_exponent": true
+      },
+      {
+       "column": "RIDAGEYR",
+       "value": -0.0001,
+       "is_exponent": true
+      },
+      {
+       "column": "RIAGENDR",
+       "value": 0.0,
+       "is_exponent": false
+      },
+      {
+       "column": "PREGNANT",
+       "value": -0.0002,
+       "is_exponent": false
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "best_on_test": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.030058,
+     "rmse_gdl": 0.036945,
+     "pearson_r": 0.999705,
+     "label_agreement": 0.993832,
+     "mae_gdl_val": 0.03087,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXMCHSI",
+      "RIDAGEYR"
+     ],
+     "untransformed_columns": [
+      "RIAGENDR",
+      "PREGNANT"
+     ],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9996,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 0.0018,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCHSI",
+       "value": 0.9991,
+       "is_exponent": true
+      },
+      {
+       "column": "RIDAGEYR",
+       "value": -0.0001,
+       "is_exponent": true
+      },
+      {
+       "column": "RIAGENDR",
+       "value": 0.0,
+       "is_exponent": false
+      },
+      {
+       "column": "PREGNANT",
+       "value": -0.0002,
+       "is_exponent": false
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selection_optimism_gdl": 0.0,
+    "selection_rule": "fitted on the train block, ranked by validation MAE, reported on the test block. Test rows choose nothing. best_on_test is what selecting on test would have returned and is not the reported figure; selection_optimism_gdl is how much that shortcut would have added."
+   },
+   "binary": {
+    "cv_accuracy_mean": 0.9784721105742606,
+    "cv_accuracy_sd": 0.0038070736550850554,
+    "cv_folds": [
+     0.9849211788896505,
+     0.9766963673749143,
+     0.9766963673749143,
+     0.9787379972565158,
+     0.9753086419753086
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9819078947368421,
+    "test_balanced_accuracy": 0.9573801591437388,
+    "test_accuracy_ci95": [
+     0.976079059358017,
+     0.9877367301156673
+    ],
+    "test_accuracy_design_se": 0.0028301657043675443,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "roc_auc": 0.9973856630110839,
+    "pr_auc": 0.9775030810332641,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "precision": 0.8888888888888888,
+    "recall": 0.927038626609442,
+    "f1": 0.907563025210084,
+    "recall_ci95": [
+     0.8825323734897359,
+     0.9715448797291482
+    ],
+    "recall_ci_degenerate": null,
+    "n_test_positives": 233,
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.464303893578839,
+     "LBXMCVSI": 0.14044037312363178,
+     "LBXMCHSI": 0.2573933211705453,
+     "RIDAGEYR": 0.10223046867651747,
+     "RIAGENDR": 0.033661330490177686,
+     "PREGNANT": 0.0019706129602886572
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   },
+   "severity": {
+    "cv_accuracy_mean": 0.9694225614439865,
+    "cv_accuracy_sd": 0.003450010742469744,
+    "cv_folds": [
+     0.9746401644962303,
+     0.9671007539410555,
+     0.9677861549006168,
+     0.9711934156378601,
+     0.96639231824417
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9736842105263158,
+    "test_balanced_accuracy": 0.8989049301464035,
+    "test_accuracy_ci95": [
+     0.9669656226998541,
+     0.9804027983527775
+    ],
+    "test_accuracy_design_se": 0.0032621811412464107,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "macro_f1": 0.8963621138912446,
+    "per_class_recall": [
+     0.984993178717599,
+     0.8809523809523809,
+     0.8307692307692308
+    ],
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.43646906948150144,
+     "LBXMCVSI": 0.17933657596961397,
+     "LBXMCHSI": 0.2516728675407681,
+     "RIDAGEYR": 0.1033426133573701,
+     "RIAGENDR": 0.0255401831237733,
+     "PREGNANT": 0.0036386905269731704
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   }
+  },
+  "L2_mchc_hct": {
+   "features": [
+    "LBXRBCSI",
+    "LBXMCVSI",
+    "LBXMC",
+    "LBXHCT"
+   ],
+   "recoverability": {
+    "exact_routes": [
+     {
+      "estimator": "MCHC*MCV*RBC/1000",
+      "mae_gdl": 0.029323,
+      "rmse_gdl": 0.036107,
+      "pearson_r": 0.99972,
+      "label_agreement": 0.993421,
+      "route": "MCHC*MCV*RBC/1000",
+      "mae_gdl_val": 0.029939
+     },
+     {
+      "estimator": "MCHC*HCT/100",
+      "mae_gdl": 0.030293,
+      "rmse_gdl": 0.037202,
+      "pearson_r": 0.999707,
+      "label_agreement": 0.99301,
+      "route": "MCHC*HCT/100",
+      "mae_gdl_val": 0.0302
+     }
+    ],
+    "exact": {
+     "estimator": "MCHC*MCV*RBC/1000",
+     "mae_gdl": 0.029323,
+     "rmse_gdl": 0.036107,
+     "pearson_r": 0.99972,
+     "label_agreement": 0.993421,
+     "route": "MCHC*MCV*RBC/1000",
+     "mae_gdl_val": 0.029939
+    },
+    "family": [
+     {
+      "estimator": "random forest",
+      "mae_gdl": 0.036644,
+      "rmse_gdl": 0.058365,
+      "pearson_r": 0.99927,
+      "label_agreement": 0.994243,
+      "mae_gdl_val": 0.036555,
+      "r2": 0.998529
+     },
+     {
+      "estimator": "ols",
+      "mae_gdl": 0.044118,
+      "rmse_gdl": 0.060315,
+      "pearson_r": 0.999215,
+      "label_agreement": 0.993832,
+      "mae_gdl_val": 0.045557,
+      "r2": 0.998429
+     },
+     {
+      "estimator": "ols in logs",
+      "mae_gdl": 0.029871,
+      "rmse_gdl": 0.036732,
+      "pearson_r": 0.999709,
+      "label_agreement": 0.993832,
+      "mae_gdl_val": 0.030007,
+      "logged_columns": [
+       "LBXRBCSI",
+       "LBXMCVSI",
+       "LBXMC",
+       "LBXHCT"
+      ],
+      "untransformed_columns": [],
+      "coefficients": [
+       {
+        "column": "LBXRBCSI",
+        "value": 0.0276,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCVSI",
+        "value": 0.0284,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMC",
+        "value": 0.998,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXHCT",
+        "value": 0.9718,
+        "is_exponent": true
+       }
+      ],
+      "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+     }
+    ],
+    "learned": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.029871,
+     "rmse_gdl": 0.036732,
+     "pearson_r": 0.999709,
+     "label_agreement": 0.993832,
+     "mae_gdl_val": 0.030007,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXMC",
+      "LBXHCT"
+     ],
+     "untransformed_columns": [],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.0276,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 0.0284,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMC",
+       "value": 0.998,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXHCT",
+       "value": 0.9718,
+       "is_exponent": true
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selected": {
+     "estimator": "MCHC*MCV*RBC/1000",
+     "mae_gdl": 0.029323,
+     "rmse_gdl": 0.036107,
+     "pearson_r": 0.99972,
+     "label_agreement": 0.993421,
+     "route": "MCHC*MCV*RBC/1000",
+     "mae_gdl_val": 0.029939
+    },
+    "best_on_test": {
+     "estimator": "MCHC*MCV*RBC/1000",
+     "mae_gdl": 0.029323,
+     "rmse_gdl": 0.036107,
+     "pearson_r": 0.99972,
+     "label_agreement": 0.993421,
+     "route": "MCHC*MCV*RBC/1000",
+     "mae_gdl_val": 0.029939
+    },
+    "selection_optimism_gdl": 0.0,
+    "selection_rule": "fitted on the train block, ranked by validation MAE, reported on the test block. Test rows choose nothing. best_on_test is what selecting on test would have returned and is not the reported figure; selection_optimism_gdl is how much that shortcut would have added."
+   },
+   "binary": {
+    "cv_accuracy_mean": 0.9547484935751888,
+    "cv_accuracy_sd": 0.00965159861456624,
+    "cv_folds": [
+     0.9643591501028101,
+     0.9623029472241261,
+     0.9568197395476353,
+     0.9410150891632373,
+     0.9492455418381345
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9514802631578947,
+    "test_balanced_accuracy": 0.8964277558859177,
+    "test_accuracy_ci95": [
+     0.9414148862915435,
+     0.9615456400242459
+    ],
+    "test_accuracy_design_se": 0.004887200024925613,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "roc_auc": 0.9737043954821446,
+    "pr_auc": 0.843896725537901,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "precision": 0.7121771217712177,
+    "recall": 0.8283261802575107,
+    "f1": 0.7658730158730159,
+    "recall_ci95": [
+     0.7675465258220888,
+     0.8891058346929326
+    ],
+    "recall_ci_degenerate": null,
+    "n_test_positives": 233,
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.21039554169254243,
+     "LBXMCVSI": 0.1039267598466442,
+     "LBXMC": 0.22162724564622596,
+     "LBXHCT": 0.4640504528145874
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   },
+   "severity": {
+    "cv_accuracy_mean": 0.9435051912776382,
+    "cv_accuracy_sd": 0.010075773499588802,
+    "cv_folds": [
+     0.9588759424263193,
+     0.9451679232350926,
+     0.9431117203564084,
+     0.9314128943758574,
+     0.9389574759945131
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.946546052631579,
+    "test_balanced_accuracy": 0.8970391136830428,
+    "test_accuracy_ci95": [
+     0.9355936726589463,
+     0.9574984326042116
+    ],
+    "test_accuracy_design_se": 0.005317880531049518,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "macro_f1": 0.8584754093823482,
+    "per_class_recall": [
+     0.959981809913597,
+     0.7619047619047619,
+     0.9692307692307692
+    ],
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.1486276551479297,
+     "LBXMCVSI": 0.09312610864174511,
+     "LBXMC": 0.22804194389063961,
+     "LBXHCT": 0.5302042923196855
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   }
+  },
+  "L3_hct_only": {
+   "features": [
+    "LBXRBCSI",
+    "LBXMCVSI",
+    "LBXHCT"
+   ],
+   "recoverability": {
+    "exact_routes": [],
+    "exact": null,
+    "family": [
+     {
+      "estimator": "random forest",
+      "mae_gdl": 0.303573,
+      "rmse_gdl": 0.381478,
+      "pearson_r": 0.968306,
+      "label_agreement": 0.969984,
+      "mae_gdl_val": 0.30717,
+      "r2": 0.937172
+     },
+     {
+      "estimator": "ols",
+      "mae_gdl": 0.274481,
+      "rmse_gdl": 0.346063,
+      "pearson_r": 0.973888,
+      "label_agreement": 0.974918,
+      "mae_gdl_val": 0.272017,
+      "r2": 0.948296
+     },
+     {
+      "estimator": "ols in logs",
+      "mae_gdl": 0.279242,
+      "rmse_gdl": 0.350638,
+      "pearson_r": 0.973236,
+      "label_agreement": 0.972451,
+      "mae_gdl_val": 0.275708,
+      "logged_columns": [
+       "LBXRBCSI",
+       "LBXMCVSI",
+       "LBXHCT"
+      ],
+      "untransformed_columns": [],
+      "coefficients": [
+       {
+        "column": "LBXRBCSI",
+        "value": 0.5544,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCVSI",
+        "value": 0.6777,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXHCT",
+        "value": 0.4714,
+        "is_exponent": true
+       }
+      ],
+      "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+     }
+    ],
+    "learned": {
+     "estimator": "ols",
+     "mae_gdl": 0.274481,
+     "rmse_gdl": 0.346063,
+     "pearson_r": 0.973888,
+     "label_agreement": 0.974918,
+     "mae_gdl_val": 0.272017,
+     "r2": 0.948296
+    },
+    "selected": {
+     "estimator": "ols",
+     "mae_gdl": 0.274481,
+     "rmse_gdl": 0.346063,
+     "pearson_r": 0.973888,
+     "label_agreement": 0.974918,
+     "mae_gdl_val": 0.272017,
+     "r2": 0.948296
+    },
+    "best_on_test": {
+     "estimator": "ols",
+     "mae_gdl": 0.274481,
+     "rmse_gdl": 0.346063,
+     "pearson_r": 0.973888,
+     "label_agreement": 0.974918,
+     "mae_gdl_val": 0.272017,
+     "r2": 0.948296
+    },
+    "selection_optimism_gdl": 0.0,
+    "selection_rule": "fitted on the train block, ranked by validation MAE, reported on the test block. Test rows choose nothing. best_on_test is what selecting on test would have returned and is not the reported figure; selection_optimism_gdl is how much that shortcut would have added."
+   },
+   "binary": {
+    "cv_accuracy_mean": 0.9088132785388643,
+    "cv_accuracy_sd": 0.012829406405856432,
+    "cv_folds": [
+     0.9177518848526388,
+     0.90815627141878,
+     0.9252912954078135,
+     0.8964334705075446,
+     0.8964334705075446
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9140625,
+    "test_balanced_accuracy": 0.8200986792670097,
+    "test_accuracy_ci95": [
+     0.8979509539906851,
+     0.9301740460093149
+    ],
+    "test_accuracy_design_se": 0.007822891194620344,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "roc_auc": 0.9271723198410513,
+    "pr_auc": 0.6368437252146033,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "precision": 0.5394736842105263,
+    "recall": 0.703862660944206,
+    "f1": 0.6108007448789572,
+    "recall_ci95": [
+     0.6281730189407302,
+     0.7795523029476819
+    ],
+    "recall_ci_degenerate": null,
+    "n_test_positives": 233,
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.28203801452316324,
+     "LBXMCVSI": 0.2380061229431403,
+     "LBXHCT": 0.47995586253369643
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   },
+   "severity": {
+    "cv_accuracy_mean": 0.8867388547128602,
+    "cv_accuracy_sd": 0.009357250319404478,
+    "cv_folds": [
+     0.8985606579849211,
+     0.8800548320767649,
+     0.8951336531871145,
+     0.8786008230452675,
+     0.8813443072702332
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.8885690789473685,
+    "test_balanced_accuracy": 0.7418540645348285,
+    "test_accuracy_ci95": [
+     0.8720559829411779,
+     0.905082174953559
+    ],
+    "test_accuracy_design_se": 0.008017862051727555,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "macro_f1": 0.6778378831570321,
+    "per_class_recall": [
+     0.9181446111869032,
+     0.5535714285714286,
+     0.7538461538461538
+    ],
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.26309971205832766,
+     "LBXMCVSI": 0.26303375331587764,
+     "LBXHCT": 0.4738665346257948
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   }
+  },
+  "L4_identity_free": {
+   "features": [
+    "LBXRBCSI",
+    "LBXMCVSI",
+    "LBXRDW"
+   ],
+   "recoverability": {
+    "exact_routes": [],
+    "exact": null,
+    "family": [
+     {
+      "estimator": "random forest",
+      "mae_gdl": 0.275388,
+      "rmse_gdl": 0.355678,
+      "pearson_r": 0.972374,
+      "label_agreement": 0.972039,
+      "mae_gdl_val": 0.26993,
+      "r2": 0.945383
+     },
+     {
+      "estimator": "ols",
+      "mae_gdl": 0.278178,
+      "rmse_gdl": 0.364477,
+      "pearson_r": 0.970962,
+      "label_agreement": 0.967928,
+      "mae_gdl_val": 0.279255,
+      "r2": 0.942647
+     },
+     {
+      "estimator": "ols in logs",
+      "mae_gdl": 0.249427,
+      "rmse_gdl": 0.31823,
+      "pearson_r": 0.977948,
+      "label_agreement": 0.974095,
+      "mae_gdl_val": 0.247385,
+      "logged_columns": [
+       "LBXRBCSI",
+       "LBXMCVSI",
+       "LBXRDW"
+      ],
+      "untransformed_columns": [],
+      "coefficients": [
+       {
+        "column": "LBXRBCSI",
+        "value": 1.0015,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCVSI",
+        "value": 1.0632,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXRDW",
+        "value": -0.1581,
+        "is_exponent": true
+       }
+      ],
+      "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+     }
+    ],
+    "learned": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.249427,
+     "rmse_gdl": 0.31823,
+     "pearson_r": 0.977948,
+     "label_agreement": 0.974095,
+     "mae_gdl_val": 0.247385,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXRDW"
+     ],
+     "untransformed_columns": [],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 1.0015,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 1.0632,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXRDW",
+       "value": -0.1581,
+       "is_exponent": true
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selected": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.249427,
+     "rmse_gdl": 0.31823,
+     "pearson_r": 0.977948,
+     "label_agreement": 0.974095,
+     "mae_gdl_val": 0.247385,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXRDW"
+     ],
+     "untransformed_columns": [],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 1.0015,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 1.0632,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXRDW",
+       "value": -0.1581,
+       "is_exponent": true
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "best_on_test": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.249427,
+     "rmse_gdl": 0.31823,
+     "pearson_r": 0.977948,
+     "label_agreement": 0.974095,
+     "mae_gdl_val": 0.247385,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXRDW"
+     ],
+     "untransformed_columns": [],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 1.0015,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 1.0632,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXRDW",
+       "value": -0.1581,
+       "is_exponent": true
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selection_optimism_gdl": 0.0,
+    "selection_rule": "fitted on the train block, ranked by validation MAE, reported on the test block. Test rows choose nothing. best_on_test is what selecting on test would have returned and is not the reported figure; selection_optimism_gdl is how much that shortcut would have added."
+   },
+   "binary": {
+    "cv_accuracy_mean": 0.9324007555393843,
+    "cv_accuracy_sd": 0.0037148928387090514,
+    "cv_folds": [
+     0.9376285126799178,
+     0.9307745030843043,
+     0.9300891021247429,
+     0.9286694101508917,
+     0.9348422496570644
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9354440789473685,
+    "test_balanced_accuracy": 0.8530262487630936,
+    "test_accuracy_ci95": [
+     0.9247040061121355,
+     0.9461841517826014
+    ],
+    "test_accuracy_design_se": 0.005214795722505452,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "roc_auc": 0.9590849918125095,
+    "pr_auc": 0.7596851252780971,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "precision": 0.6386861313868614,
+    "recall": 0.7510729613733905,
+    "f1": 0.6903353057199211,
+    "recall_ci95": [
+     0.6819654324185818,
+     0.8201804903281993
+    ],
+    "recall_ci_degenerate": null,
+    "n_test_positives": 233,
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.45734199509318274,
+     "LBXMCVSI": 0.2677592258814757,
+     "LBXRDW": 0.2748987790253415
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   },
+   "severity": {
+    "cv_accuracy_mean": 0.9141632608162193,
+    "cv_accuracy_sd": 0.006509168862003671,
+    "cv_folds": [
+     0.9232350925291295,
+     0.9177518848526388,
+     0.9088416723783413,
+     0.9074074074074074,
+     0.9135802469135802
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9157072368421053,
+    "test_balanced_accuracy": 0.7688725061508145,
+    "test_accuracy_ci95": [
+     0.9034868018540284,
+     0.9279276718301822
+    ],
+    "test_accuracy_design_se": 0.005933579136811956,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "macro_f1": 0.7313208682545941,
+    "per_class_recall": [
+     0.943155979990905,
+     0.625,
+     0.7384615384615385
+    ],
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.4108877060646867,
+     "LBXMCVSI": 0.32160999544780733,
+     "LBXRDW": 0.26750229848750595
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   }
+  },
+  "L5_identity_free_plus": {
+   "features": [
+    "LBXRBCSI",
+    "LBXMCVSI",
+    "LBXRDW",
+    "LBXPLTSI",
+    "LBXWBCSI"
+   ],
+   "recoverability": {
+    "exact_routes": [],
+    "exact": null,
+    "family": [
+     {
+      "estimator": "random forest",
+      "mae_gdl": 0.265147,
+      "rmse_gdl": 0.344539,
+      "pearson_r": 0.974117,
+      "label_agreement": 0.972862,
+      "mae_gdl_val": 0.264271,
+      "r2": 0.94875
+     },
+     {
+      "estimator": "ols",
+      "mae_gdl": 0.280027,
+      "rmse_gdl": 0.388253,
+      "pearson_r": 0.966998,
+      "label_agreement": 0.968339,
+      "mae_gdl_val": 0.278921,
+      "r2": 0.934921
+     },
+     {
+      "estimator": "ols in logs",
+      "mae_gdl": 0.248532,
+      "rmse_gdl": 0.317449,
+      "pearson_r": 0.978054,
+      "label_agreement": 0.973684,
+      "mae_gdl_val": 0.24714,
+      "logged_columns": [
+       "LBXRBCSI",
+       "LBXMCVSI",
+       "LBXRDW",
+       "LBXPLTSI",
+       "LBXWBCSI"
+      ],
+      "untransformed_columns": [],
+      "coefficients": [
+       {
+        "column": "LBXRBCSI",
+        "value": 0.9983,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCVSI",
+        "value": 1.0616,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXRDW",
+        "value": -0.1597,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXPLTSI",
+        "value": -0.0025,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXWBCSI",
+        "value": 0.0089,
+        "is_exponent": true
+       }
+      ],
+      "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+     }
+    ],
+    "learned": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.248532,
+     "rmse_gdl": 0.317449,
+     "pearson_r": 0.978054,
+     "label_agreement": 0.973684,
+     "mae_gdl_val": 0.24714,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXRDW",
+      "LBXPLTSI",
+      "LBXWBCSI"
+     ],
+     "untransformed_columns": [],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9983,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 1.0616,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXRDW",
+       "value": -0.1597,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXPLTSI",
+       "value": -0.0025,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXWBCSI",
+       "value": 0.0089,
+       "is_exponent": true
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selected": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.248532,
+     "rmse_gdl": 0.317449,
+     "pearson_r": 0.978054,
+     "label_agreement": 0.973684,
+     "mae_gdl_val": 0.24714,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXRDW",
+      "LBXPLTSI",
+      "LBXWBCSI"
+     ],
+     "untransformed_columns": [],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9983,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 1.0616,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXRDW",
+       "value": -0.1597,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXPLTSI",
+       "value": -0.0025,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXWBCSI",
+       "value": 0.0089,
+       "is_exponent": true
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "best_on_test": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.248532,
+     "rmse_gdl": 0.317449,
+     "pearson_r": 0.978054,
+     "label_agreement": 0.973684,
+     "mae_gdl_val": 0.24714,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXRDW",
+      "LBXPLTSI",
+      "LBXWBCSI"
+     ],
+     "untransformed_columns": [],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9983,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 1.0616,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXRDW",
+       "value": -0.1597,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXPLTSI",
+       "value": -0.0025,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXWBCSI",
+       "value": 0.0089,
+       "is_exponent": true
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selection_optimism_gdl": 0.0,
+    "selection_rule": "fitted on the train block, ranked by validation MAE, reported on the test block. Test rows choose nothing. best_on_test is what selecting on test would have returned and is not the reported figure; selection_optimism_gdl is how much that shortcut would have added."
+   },
+   "binary": {
+    "cv_accuracy_mean": 0.935280285743566,
+    "cv_accuracy_sd": 0.004640542530077446,
+    "cv_folds": [
+     0.9417409184372858,
+     0.9287183002056203,
+     0.9362577107607951,
+     0.9348422496570644,
+     0.9348422496570644
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9399671052631579,
+    "test_balanced_accuracy": 0.8478531989765148,
+    "test_accuracy_ci95": [
+     0.9284691178100862,
+     0.9514650927162295
+    ],
+    "test_accuracy_design_se": 0.00558279787367926,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "roc_auc": 0.9637066790015751,
+    "pr_auc": 0.779424304387427,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "precision": 0.6705882352941176,
+    "recall": 0.7339055793991416,
+    "f1": 0.7008196721311475,
+    "recall_ci95": [
+     0.6623888669154092,
+     0.805422291882874
+    ],
+    "recall_ci_degenerate": null,
+    "n_test_positives": 233,
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.3945989483439522,
+     "LBXMCVSI": 0.20713904931476565,
+     "LBXRDW": 0.26063283578190444,
+     "LBXPLTSI": 0.07185296061002323,
+     "LBXWBCSI": 0.06577620594935449
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   },
+   "severity": {
+    "cv_accuracy_mean": 0.9185518953828045,
+    "cv_accuracy_sd": 0.006457369459798192,
+    "cv_folds": [
+     0.9287183002056203,
+     0.9108978752570254,
+     0.9170664838930774,
+     0.9170096021947873,
+     0.9190672153635117
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9222861842105263,
+    "test_balanced_accuracy": 0.7762744720793834,
+    "test_accuracy_ci95": [
+     0.9081399299208913,
+     0.9364324385001613
+    ],
+    "test_accuracy_design_se": 0.00686865233511828,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "macro_f1": 0.7422573378417652,
+    "per_class_recall": [
+     0.9499772623919963,
+     0.625,
+     0.7538461538461538
+    ],
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.3580155534383554,
+     "LBXMCVSI": 0.24198047148653606,
+     "LBXRDW": 0.23690764394512367,
+     "LBXPLTSI": 0.08769309675481432,
+     "LBXWBCSI": 0.07540323437517041
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   }
+  },
+  "L6_identity_free_demo": {
+   "features": [
+    "LBXRBCSI",
+    "LBXMCVSI",
+    "LBXRDW",
+    "RIDAGEYR",
+    "RIAGENDR",
+    "PREGNANT"
+   ],
+   "recoverability": {
+    "exact_routes": [],
+    "exact": null,
+    "family": [
+     {
+      "estimator": "random forest",
+      "mae_gdl": 0.263996,
+      "rmse_gdl": 0.342932,
+      "pearson_r": 0.974358,
+      "label_agreement": 0.973273,
+      "mae_gdl_val": 0.264132,
+      "r2": 0.949228
+     },
+     {
+      "estimator": "ols",
+      "mae_gdl": 0.273206,
+      "rmse_gdl": 0.357697,
+      "pearson_r": 0.972064,
+      "label_agreement": 0.971217,
+      "mae_gdl_val": 0.273708,
+      "r2": 0.944761
+     },
+     {
+      "estimator": "ols in logs",
+      "mae_gdl": 0.246224,
+      "rmse_gdl": 0.312866,
+      "pearson_r": 0.978732,
+      "label_agreement": 0.976974,
+      "mae_gdl_val": 0.242378,
+      "logged_columns": [
+       "LBXRBCSI",
+       "LBXMCVSI",
+       "LBXRDW",
+       "RIDAGEYR"
+      ],
+      "untransformed_columns": [
+       "RIAGENDR",
+       "PREGNANT"
+      ],
+      "coefficients": [
+       {
+        "column": "LBXRBCSI",
+        "value": 0.9952,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXMCVSI",
+        "value": 1.0988,
+        "is_exponent": true
+       },
+       {
+        "column": "LBXRDW",
+        "value": -0.133,
+        "is_exponent": true
+       },
+       {
+        "column": "RIDAGEYR",
+        "value": -0.005,
+        "is_exponent": true
+       },
+       {
+        "column": "RIAGENDR",
+        "value": -0.0084,
+        "is_exponent": false
+       },
+       {
+        "column": "PREGNANT",
+        "value": 0.0076,
+        "is_exponent": false
+       }
+      ],
+      "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+     }
+    ],
+    "learned": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.246224,
+     "rmse_gdl": 0.312866,
+     "pearson_r": 0.978732,
+     "label_agreement": 0.976974,
+     "mae_gdl_val": 0.242378,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXRDW",
+      "RIDAGEYR"
+     ],
+     "untransformed_columns": [
+      "RIAGENDR",
+      "PREGNANT"
+     ],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9952,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 1.0988,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXRDW",
+       "value": -0.133,
+       "is_exponent": true
+      },
+      {
+       "column": "RIDAGEYR",
+       "value": -0.005,
+       "is_exponent": true
+      },
+      {
+       "column": "RIAGENDR",
+       "value": -0.0084,
+       "is_exponent": false
+      },
+      {
+       "column": "PREGNANT",
+       "value": 0.0076,
+       "is_exponent": false
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selected": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.246224,
+     "rmse_gdl": 0.312866,
+     "pearson_r": 0.978732,
+     "label_agreement": 0.976974,
+     "mae_gdl_val": 0.242378,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXRDW",
+      "RIDAGEYR"
+     ],
+     "untransformed_columns": [
+      "RIAGENDR",
+      "PREGNANT"
+     ],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9952,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 1.0988,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXRDW",
+       "value": -0.133,
+       "is_exponent": true
+      },
+      {
+       "column": "RIDAGEYR",
+       "value": -0.005,
+       "is_exponent": true
+      },
+      {
+       "column": "RIAGENDR",
+       "value": -0.0084,
+       "is_exponent": false
+      },
+      {
+       "column": "PREGNANT",
+       "value": 0.0076,
+       "is_exponent": false
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "best_on_test": {
+     "estimator": "ols in logs",
+     "mae_gdl": 0.246224,
+     "rmse_gdl": 0.312866,
+     "pearson_r": 0.978732,
+     "label_agreement": 0.976974,
+     "mae_gdl_val": 0.242378,
+     "logged_columns": [
+      "LBXRBCSI",
+      "LBXMCVSI",
+      "LBXRDW",
+      "RIDAGEYR"
+     ],
+     "untransformed_columns": [
+      "RIAGENDR",
+      "PREGNANT"
+     ],
+     "coefficients": [
+      {
+       "column": "LBXRBCSI",
+       "value": 0.9952,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXMCVSI",
+       "value": 1.0988,
+       "is_exponent": true
+      },
+      {
+       "column": "LBXRDW",
+       "value": -0.133,
+       "is_exponent": true
+      },
+      {
+       "column": "RIDAGEYR",
+       "value": -0.005,
+       "is_exponent": true
+      },
+      {
+       "column": "RIAGENDR",
+       "value": -0.0084,
+       "is_exponent": false
+      },
+      {
+       "column": "PREGNANT",
+       "value": 0.0076,
+       "is_exponent": false
+      }
+     ],
+     "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+    },
+    "selection_optimism_gdl": 0.0,
+    "selection_rule": "fitted on the train block, ranked by validation MAE, reported on the test block. Test rows choose nothing. best_on_test is what selecting on test would have returned and is not the reported figure; selection_optimism_gdl is how much that shortcut would have added."
+   },
+   "binary": {
+    "cv_accuracy_mean": 0.957766796319331,
+    "cv_accuracy_sd": 0.003878767473771188,
+    "cv_folds": [
+     0.9636737491432488,
+     0.9581905414667581,
+     0.9581905414667581,
+     0.9554183813443072,
+     0.953360768175583
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9666940789473685,
+    "test_balanced_accuracy": 0.9201890441812217,
+    "test_accuracy_ci95": [
+     0.9582990136985275,
+     0.9750891441962094
+    ],
+    "test_accuracy_design_se": 0.0040761874729744385,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "roc_auc": 0.9848624130750029,
+    "pr_auc": 0.911270197059089,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "precision": 0.804,
+    "recall": 0.8626609442060086,
+    "f1": 0.8322981366459627,
+    "recall_ci95": [
+     0.805126753186168,
+     0.9201951352258492
+    ],
+    "recall_ci_degenerate": null,
+    "n_test_positives": 233,
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.39767474071639175,
+     "LBXMCVSI": 0.23245773721454988,
+     "LBXRDW": 0.24234818996910365,
+     "RIDAGEYR": 0.1005248291865576,
+     "RIAGENDR": 0.024540297807296572,
+     "PREGNANT": 0.0024542051061004926
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   },
+   "severity": {
+    "cv_accuracy_mean": 0.9429582808000294,
+    "cv_accuracy_sd": 0.005932997998802809,
+    "cv_folds": [
+     0.9533927347498287,
+     0.9410555174777244,
+     0.9396847155586018,
+     0.9417009602194787,
+     0.9389574759945131
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9514802631578947,
+    "test_balanced_accuracy": 0.8187111774083125,
+    "test_accuracy_ci95": [
+     0.9435255795807715,
+     0.9594349467350178
+    ],
+    "test_accuracy_design_se": 0.00386236206478822,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "macro_f1": 0.8056557073738668,
+    "per_class_recall": [
+     0.9736243747157799,
+     0.7440476190476191,
+     0.7384615384615385
+    ],
+    "feature_importance_mdi": {
+     "LBXRBCSI": 0.36085056730424736,
+     "LBXMCVSI": 0.26343978869685714,
+     "LBXRDW": 0.2320606741425868,
+     "RIDAGEYR": 0.1161169621240241,
+     "RIAGENDR": 0.024468542125142444,
+     "PREGNANT": 0.0030634656071421903
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   }
+  },
+  "L7_hgb_demo": {
+   "features": [
+    "LBXHGB",
+    "RIDAGEYR",
+    "RIAGENDR",
+    "PREGNANT"
+   ],
+   "recoverability": {
+    "exact_routes": [
+     {
+      "estimator": "HGB present verbatim",
+      "mae_gdl": 0.0,
+      "rmse_gdl": 0.0,
+      "pearson_r": 1.0,
+      "label_agreement": 1.0,
+      "route": "HGB present verbatim",
+      "mae_gdl_val": 0.0
+     }
+    ],
+    "exact": {
+     "estimator": "HGB present verbatim",
+     "mae_gdl": 0.0,
+     "rmse_gdl": 0.0,
+     "pearson_r": 1.0,
+     "label_agreement": 1.0,
+     "route": "HGB present verbatim",
+     "mae_gdl_val": 0.0
+    },
+    "family": [
+     {
+      "estimator": "random forest",
+      "mae_gdl": 0.000401,
+      "rmse_gdl": 0.010632,
+      "pearson_r": 0.999976,
+      "label_agreement": 1.0,
+      "mae_gdl_val": 0.000415,
+      "r2": 0.999951
+     },
+     {
+      "estimator": "ols",
+      "mae_gdl": 0.0,
+      "rmse_gdl": 0.0,
+      "pearson_r": 1.0,
+      "label_agreement": 0.988487,
+      "mae_gdl_val": 0.0,
+      "r2": 1.0
+     },
+     {
+      "estimator": "ols in logs",
+      "mae_gdl": 0.0,
+      "rmse_gdl": 0.0,
+      "pearson_r": 1.0,
+      "label_agreement": 0.988487,
+      "mae_gdl_val": 0.0,
+      "logged_columns": [
+       "LBXHGB",
+       "RIDAGEYR"
+      ],
+      "untransformed_columns": [
+       "RIAGENDR",
+       "PREGNANT"
+      ],
+      "coefficients": [
+       {
+        "column": "LBXHGB",
+        "value": 1.0,
+        "is_exponent": true
+       },
+       {
+        "column": "RIDAGEYR",
+        "value": 0.0,
+        "is_exponent": true
+       },
+       {
+        "column": "RIAGENDR",
+        "value": -0.0,
+        "is_exponent": false
+       },
+       {
+        "column": "PREGNANT",
+        "value": 0.0,
+        "is_exponent": false
+       }
+      ],
+      "coefficient_note": "A coefficient on a logged column is an exponent in the recovered product; a coefficient on an untransformed column is not."
+     }
+    ],
+    "learned": {
+     "estimator": "ols",
+     "mae_gdl": 0.0,
+     "rmse_gdl": 0.0,
+     "pearson_r": 1.0,
+     "label_agreement": 0.988487,
+     "mae_gdl_val": 0.0,
+     "r2": 1.0
+    },
+    "selected": {
+     "estimator": "HGB present verbatim",
+     "mae_gdl": 0.0,
+     "rmse_gdl": 0.0,
+     "pearson_r": 1.0,
+     "label_agreement": 1.0,
+     "route": "HGB present verbatim",
+     "mae_gdl_val": 0.0
+    },
+    "best_on_test": {
+     "estimator": "HGB present verbatim",
+     "mae_gdl": 0.0,
+     "rmse_gdl": 0.0,
+     "pearson_r": 1.0,
+     "label_agreement": 1.0,
+     "route": "HGB present verbatim",
+     "mae_gdl_val": 0.0
+    },
+    "selection_optimism_gdl": 0.0,
+    "selection_rule": "fitted on the train block, ranked by validation MAE, reported on the test block. Test rows choose nothing. best_on_test is what selecting on test would have returned and is not the reported figure; selection_optimism_gdl is how much that shortcut would have added."
+   },
+   "binary": {
+    "cv_accuracy_mean": 0.9993144110017667,
+    "cv_accuracy_sd": 0.0008394413495585478,
+    "cv_folds": [
+     1.0,
+     0.997943797121316,
+     1.0,
+     0.9993141289437586,
+     0.9993141289437586
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 1.0,
+    "test_balanced_accuracy": 1.0,
+    "test_accuracy_ci95": [
+     1.0,
+     1.0
+    ],
+    "test_accuracy_design_se": 0.0,
+    "test_accuracy_ci_degenerate": "every one of the 1000 replicates returned 1, so the replicate spread is exactly zero and this interval is a point, not a measurement of uncertainty. It happens when the statistic is at a boundary the design cannot move it off - a rung that is right on every row, or a baseline that is wrong on every positive.",
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "recall_ci95": [
+     1.0,
+     1.0
+    ],
+    "recall_ci_degenerate": "every one of the 1000 replicates returned 1, so the replicate spread is exactly zero and this interval is a point, not a measurement of uncertainty. It happens when the statistic is at a boundary the design cannot move it off - a rung that is right on every row, or a baseline that is wrong on every positive.",
+    "n_test_positives": 233,
+    "feature_importance_mdi": {
+     "LBXHGB": 0.8291602512880851,
+     "RIDAGEYR": 0.10123829010506759,
+     "RIAGENDR": 0.06809024562879198,
+     "PREGNANT": 0.0015112129780552913
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   },
+   "severity": {
+    "cv_accuracy_mean": 0.9989029823873578,
+    "cv_accuracy_sd": 0.0012457138750607707,
+    "cv_folds": [
+     0.9993145990404386,
+     0.997943797121316,
+     1.0,
+     0.9972565157750343,
+     1.0
+    ],
+    "cv_note": "5-fold accuracy on the TRAINING block only, as a seed- and partition-sensitivity check on this rung. It is not the reported performance - that is test_accuracy below, with a design-based interval. benchmark.py repeats the same check 4 times over for three of these rungs.",
+    "test_accuracy": 0.9995888157894737,
+    "test_balanced_accuracy": 0.9998484159466424,
+    "test_accuracy_ci95": [
+     0.9987324263418935,
+     1.0004452052370538
+    ],
+    "test_accuracy_design_se": 0.0004158161770923364,
+    "test_accuracy_ci_degenerate": null,
+    "test_accuracy_ci_method": "Rao-Wu rescaled bootstrap replicate weights, t interval on 25 df",
+    "macro_f1": 0.9989350710526262,
+    "per_class_recall": [
+     0.9995452478399273,
+     1.0,
+     1.0
+    ],
+    "feature_importance_mdi": {
+     "LBXHGB": 0.867765024288251,
+     "RIDAGEYR": 0.08874368728178338,
+     "RIAGENDR": 0.03644152288052016,
+     "PREGNANT": 0.007049765549445435
+    },
+    "feature_importance_note": "MDI. Counts splits, so it inflates continuous high-cardinality features and flattens binary ones; see results/importance.json for the permutation ranking, which disagrees with this one."
+   }
+  }
+ },
+ "contrasts": [
+  {
+   "delta_accuracy": -0.004523026315789491,
+   "se": 0.0033106833070870464,
+   "df": 25,
+   "t": -1.3661911745249782,
+   "degenerate": null,
+   "ci95": [
+    -0.011341506222692048,
+    0.002295453591113066
+   ],
+   "p_value": 0.18404318330931393,
+   "contrast": "L0_hgb_direct vs L1_paper_leaky",
+   "meaning": "hemoglobin verbatim -> identity route",
+   "p_holm": 0.18404318330931393,
+   "significant_holm_05": false,
+   "naive_cluster_bootstrap": {
+    "se": 0.0024398771320878225,
+    "ci95": [
+     -0.009102664514964753,
+     9.940357852874345e-06
+    ],
+    "p_value": 0.084
+   },
+   "iid_row_bootstrap": {
+    "se": 0.002796304298982706,
+    "ci95": [
+     -0.009878700657894791,
+     0.0004111842105263275
+    ],
+    "p_value": 0.112
+   },
+   "se_ratio_design_over_row": 1.18,
+   "se_ratio_naive_over_row": 0.87
+  },
+  {
+   "delta_accuracy": -0.014802631578947345,
+   "se": 0.004324728899706365,
+   "df": 25,
+   "t": -3.4227883232062006,
+   "degenerate": null,
+   "ci95": [
+    -0.023709577478098952,
+    -0.0058956856797957365
+   ],
+   "p_value": 0.0021416381236684305,
+   "contrast": "L1_paper_leaky vs L4_identity_free",
+   "meaning": "remove the identity, no demographics",
+   "p_holm": 0.004283276247336861,
+   "significant_holm_05": true,
+   "naive_cluster_bootstrap": {
+    "se": 0.0030192468520993825,
+    "ci95": [
+     -0.020592876630824167,
+     -0.008956359665481434
+    ],
+    "p_value": 0.001
+   },
+   "iid_row_bootstrap": {
+    "se": 0.004988204590133081,
+    "ci95": [
+     -0.024671052631578875,
+     -0.004934210526315819
+    ],
+    "p_value": 0.002
+   },
+   "se_ratio_design_over_row": 0.87,
+   "se_ratio_naive_over_row": 0.61
+  },
+  {
+   "delta_accuracy": -0.015213815789473673,
+   "se": 0.0029319677672666423,
+   "df": 25,
+   "t": -5.188943739192915,
+   "degenerate": null,
+   "ci95": [
+    -0.02125231644158933,
+    -0.009175315137358014
+   ],
+   "p_value": 2.2875289765496096e-05,
+   "contrast": "L1_paper_leaky_demo vs L6_identity_free_demo",
+   "meaning": "remove the identity, with demographics",
+   "p_holm": 6.862586929648828e-05,
+   "significant_holm_05": true,
+   "naive_cluster_bootstrap": {
+    "se": 0.002116754077155672,
+    "ci95": [
+     -0.019146861530474495,
+     -0.011044795334459376
+    ],
+    "p_value": 0.001
+   },
+   "iid_row_bootstrap": {
+    "se": 0.0032895447866176267,
+    "ci95": [
+     -0.022203947368421018,
+     -0.009046052631578871
+    ],
+    "p_value": 0.001
+   },
+   "se_ratio_design_over_row": 0.89,
+   "se_ratio_naive_over_row": 0.64
+  },
+  {
+   "delta_accuracy": 0.03166118421052633,
+   "se": 0.0037865713613764733,
+   "df": 25,
+   "t": 8.36143867073907,
+   "degenerate": null,
+   "ci95": [
+    0.02386259450901994,
+    0.03945977391203272
+   ],
+   "p_value": 1.0400800049994284e-08,
+   "contrast": "L1_paper_leaky vs L1_paper_leaky_demo",
+   "meaning": "add demographics, identity present",
+   "p_holm": 5.200400024997142e-08,
+   "significant_holm_05": true,
+   "naive_cluster_bootstrap": {
+    "se": 0.0027077629879099442,
+    "ci95": [
+     0.026145707612809745,
+     0.03658608603802577
+    ],
+    "p_value": 0.001
+   },
+   "iid_row_bootstrap": {
+    "se": 0.004161932710710864,
+    "ci95": [
+     0.023848684210526327,
+     0.039483963815789475
+    ],
+    "p_value": 0.001
+   },
+   "se_ratio_design_over_row": 0.91,
+   "se_ratio_naive_over_row": 0.65
+  },
+  {
+   "delta_accuracy": 0.03125,
+   "se": 0.003554487364735086,
+   "df": 25,
+   "t": 8.791703779858294,
+   "degenerate": null,
+   "ci95": [
+    0.02392939623705362,
+    0.03857060376294638
+   ],
+   "p_value": 4.0321267716421674e-09,
+   "contrast": "L4_identity_free vs L6_identity_free_demo",
+   "meaning": "add demographics, identity gone",
+   "p_holm": 2.4192760629853005e-08,
+   "significant_holm_05": true,
+   "naive_cluster_bootstrap": {
+    "se": 0.0025316355150839976,
+    "ci95": [
+     0.026173505449417246,
+     0.036452163072093986
+    ],
+    "p_value": 0.001
+   },
+   "iid_row_bootstrap": {
+    "se": 0.0044138853439420695,
+    "ci95": [
+     0.022615131578947453,
+     0.04029605263157898
+    ],
+    "p_value": 0.001
+   },
+   "se_ratio_design_over_row": 0.81,
+   "se_ratio_naive_over_row": 0.57
+  },
+  {
+   "delta_accuracy": 0.033305921052631526,
+   "se": 0.0040761874729744385,
+   "df": 25,
+   "t": 8.170851138092486,
+   "degenerate": null,
+   "ci95": [
+    0.02491085580379063,
+    0.041700986301472426
+   ],
+   "p_value": 1.595029337296582e-08,
+   "contrast": "L6_identity_free_demo vs L7_hgb_demo",
+   "meaning": "defensible model -> the complete leak",
+   "p_holm": 6.380117349186328e-08,
+   "significant_holm_05": true,
+   "naive_cluster_bootstrap": {
+    "se": 0.0029465793119091885,
+    "ci95": [
+     0.027812544572814155,
+     0.0389743186026834
+    ],
+    "p_value": 0.001
+   },
+   "iid_row_bootstrap": {
+    "se": 0.003538025957162138,
+    "ci95": [
+     0.02672697368421051,
+     0.04070723684210531
+    ],
+    "p_value": 0.001
+   },
+   "se_ratio_design_over_row": 1.15,
+   "se_ratio_naive_over_row": 0.83
+  }
+ ],
+ "contrasts_sign_convention": "accuracy(after) - accuracy(before), where 'before' and 'after' are the two rungs named in each contrast string, in that order. A negative delta therefore means the second rung scores lower - e.g. 'L1_paper_leaky vs L4_identity_free' at -0.0148 means removing the identity costs 1.48 accuracy points. NOTE the decomposition block signs the SAME quantities the other way round (positive means the leaky choice scores higher, because there the numbers are named as costs and benefits rather than as transitions), so identity_effect_WHO is +0.0148 there and -0.0148 here. Magnitudes, SEs and p-values are identical; only the sign convention differs, and each block states its own.",
+ "variance_scales": {
+  "replicates": 1000,
+  "design_df": 25,
+  "median_se_ratio_raowu_over_row": 0.9,
+  "median_se_ratio_naive_cluster_over_row": 0.645,
+  "se_ratio_raowu_over_row_range": [
+   0.81,
+   1.18
+  ],
+  "scale_note": "These are ratios of STANDARD ERRORS. weighted.json's design effect of 4.00 is a ratio of VARIANCES, so the two are not on one scale: 4.00 on the variance scale is 2.00 on this one. The comparison to make is 0.90x against 2.00x, not against 4.00x, and stating it the other way overstated the contrast by a factor of two - in the direction that flatters the file's own point. The per-contrast range is also reported, because the median hides it: across the six contrasts the Rao-Wu SE runs from below to slightly above the i.i.d.-row SE, so 'the design penalty is modest' is a statement about the middle of a spread that crosses 1.0, not about a constant factor.",
+  "note": "Three variance scales for the same six contrasts. Rao-Wu is the one the paper reports. The naive n_h-of-n_h cluster bootstrap has variance expectation (n_h-1)/n_h of the truth, which at 2 PSUs per stratum is half, so it comes out NARROWER than the i.i.d. row bootstrap and would be the wrong correction to apply."
+ },
+ "surviving_contrasts": [
+  "L1_paper_leaky vs L4_identity_free",
+  "L1_paper_leaky_demo vs L6_identity_free_demo",
+  "L1_paper_leaky vs L1_paper_leaky_demo",
+  "L4_identity_free vs L6_identity_free_demo",
+  "L6_identity_free_demo vs L7_hgb_demo"
+ ],
+ "null_contrasts": [
+  "L0_hgb_direct vs L1_paper_leaky"
+ ],
+ "train_size_sensitivity": {
+  "train_60pct": {
+   "n_fit": 7293,
+   "contrasts": {
+    "L1_paper_leaky vs L4_identity_free": {
+     "delta_accuracy": -0.014802631578947345,
+     "se": 0.004324728899706365,
+     "df": 25,
+     "t": -3.4227883232062006,
+     "degenerate": null,
+     "ci95": [
+      -0.023709577478098952,
+      -0.0058956856797957365
+     ],
+     "p_value": 0.0021416381236684305,
+     "meaning": "remove the identity, no demographics",
+     "duplicate_of": "L1_paper_leaky vs L4_identity_free",
+     "p_holm_from_declared_family": 0.004283276247336861,
+     "note": "Identical to the pre-declared contrast of the same name - same fit, same rows. Kept only as the baseline arm of this sensitivity check; it is not a second test."
+    },
+    "L1_paper_leaky_demo vs L6_identity_free_demo": {
+     "delta_accuracy": -0.015213815789473673,
+     "se": 0.0029319677672666423,
+     "df": 25,
+     "t": -5.188943739192915,
+     "degenerate": null,
+     "ci95": [
+      -0.02125231644158933,
+      -0.009175315137358014
+     ],
+     "p_value": 2.2875289765496096e-05,
+     "meaning": "remove the identity, with demographics",
+     "duplicate_of": "L1_paper_leaky_demo vs L6_identity_free_demo",
+     "p_holm_from_declared_family": 6.862586929648828e-05,
+     "note": "Identical to the pre-declared contrast of the same name - same fit, same rows. Kept only as the baseline arm of this sensitivity check; it is not a second test."
+    }
+   }
+  },
+  "train_plus_val_80pct": {
+   "n_fit": 9724,
+   "contrasts": {
+    "L1_paper_leaky vs L4_identity_free": {
+     "delta_accuracy": -0.008634868421052544,
+     "se": 0.005794126705850773,
+     "df": 25,
+     "t": -1.490279529498942,
+     "degenerate": null,
+     "ci95": [
+      -0.020568095751289678,
+      0.0032983589091845882
+     ],
+     "p_value": 0.1486605520011465,
+     "meaning": "remove the identity, no demographics"
+    },
+    "L1_paper_leaky_demo vs L6_identity_free_demo": {
+     "delta_accuracy": -0.016447368421052655,
+     "se": 0.003497357743264581,
+     "df": 25,
+     "t": -4.702798406233383,
+     "degenerate": null,
+     "ci95": [
+      -0.02365031152607633,
+      -0.009244425316028981
+     ],
+     "p_value": 8.049682504454307e-05,
+     "meaning": "remove the identity, with demographics"
+    }
+   }
+  },
+  "conclusions_that_flip_at_05": [
+   "L1_paper_leaky vs L4_identity_free"
+  ],
+  "flip_criterion": "Uncorrected p < 0.05 in both arms. The 80% arm is outside the pre-declared family, so it has no Holm-adjusted p to compare against; an uncorrected-vs-uncorrected comparison is the only like-for-like one. The reported significance of the contrasts themselves is Holm-corrected and is a stricter bar than this.",
+  "flips_if_60pct_arm_uses_holm": [
+   "L1_paper_leaky vs L4_identity_free"
+  ]
+ },
+ "contrast_verdict": "5 of 6 pre-declared contrasts survive Holm under a design-based variance. Surviving: L1_paper_leaky vs L4_identity_free; L1_paper_leaky_demo vs L6_identity_free_demo; L1_paper_leaky vs L1_paper_leaky_demo; L4_identity_free vs L6_identity_free_demo; L6_identity_free_demo vs L7_hgb_demo. Reported as null: L0_hgb_direct vs L1_paper_leaky. Removing the identity costs accuracy in both feature scopes, and the split-sensitive result is L1_paper_leaky vs L4_identity_free -- see train_size_sensitivity, which reports it both ways instead of choosing.",
+ "complete_case_sensitivity": {
+  "question": "does requiring completeness on the union of all ladder features cost any rung rows it could have used?",
+  "answer_primary_cycle": "no: every rung's own complete-case cohort is the shared cohort",
+  "merged_records": 13772,
+  "shared_cohort_n": 12156,
+  "missing_columns_per_row": {
+   "0": 12156,
+   "9": 1616
+  },
+  "missingness_pattern": "all-or-nothing at the person level: every row is complete on all 9 CBC columns or missing all 9",
+  "rows_with_no_panel": 1616,
+  "cbc_columns_in_file": 21,
+  "rows_with_no_panel_having_any_cbc_value": 0,
+  "mechanism": "a missing CBC is a blood draw that did not happen, not an analyte that failed, so no narrower feature set recovers any of it",
+  "rungs": {
+   "L0_hgb_direct": {
+    "required_columns": [
+     "LBXHGB",
+     "LBXMCHSI",
+     "LBXMCVSI",
+     "LBXRBCSI"
+    ],
+    "n_complete_on_own_columns": 12156,
+    "rows_forgone_to_shared_cohort": 0,
+    "shared_cohort_is_maximal": true,
+    "extended_fit_test": null,
+    "why_no_test": "nothing to add: this rung's own complete-case cohort is the shared cohort"
+   },
+   "L1_paper_leaky": {
+    "required_columns": [
+     "LBXHGB",
+     "LBXMCHSI",
+     "LBXMCVSI",
+     "LBXRBCSI"
+    ],
+    "n_complete_on_own_columns": 12156,
+    "rows_forgone_to_shared_cohort": 0,
+    "shared_cohort_is_maximal": true,
+    "extended_fit_test": null,
+    "why_no_test": "nothing to add: this rung's own complete-case cohort is the shared cohort"
+   },
+   "L1_paper_leaky_demo": {
+    "required_columns": [
+     "LBXHGB",
+     "LBXMCHSI",
+     "LBXMCVSI",
+     "LBXRBCSI"
+    ],
+    "n_complete_on_own_columns": 12156,
+    "rows_forgone_to_shared_cohort": 0,
+    "shared_cohort_is_maximal": true,
+    "extended_fit_test": null,
+    "why_no_test": "nothing to add: this rung's own complete-case cohort is the shared cohort"
+   },
+   "L2_mchc_hct": {
+    "required_columns": [
+     "LBXHCT",
+     "LBXHGB",
+     "LBXMC",
+     "LBXMCVSI",
+     "LBXRBCSI"
+    ],
+    "n_complete_on_own_columns": 12156,
+    "rows_forgone_to_shared_cohort": 0,
+    "shared_cohort_is_maximal": true,
+    "extended_fit_test": null,
+    "why_no_test": "nothing to add: this rung's own complete-case cohort is the shared cohort"
+   },
+   "L3_hct_only": {
+    "required_columns": [
+     "LBXHCT",
+     "LBXHGB",
+     "LBXMCVSI",
+     "LBXRBCSI"
+    ],
+    "n_complete_on_own_columns": 12156,
+    "rows_forgone_to_shared_cohort": 0,
+    "shared_cohort_is_maximal": true,
+    "extended_fit_test": null,
+    "why_no_test": "nothing to add: this rung's own complete-case cohort is the shared cohort"
+   },
+   "L4_identity_free": {
+    "required_columns": [
+     "LBXHGB",
+     "LBXMCVSI",
+     "LBXRBCSI",
+     "LBXRDW"
+    ],
+    "n_complete_on_own_columns": 12156,
+    "rows_forgone_to_shared_cohort": 0,
+    "shared_cohort_is_maximal": true,
+    "extended_fit_test": null,
+    "why_no_test": "nothing to add: this rung's own complete-case cohort is the shared cohort"
+   },
+   "L5_identity_free_plus": {
+    "required_columns": [
+     "LBXHGB",
+     "LBXMCVSI",
+     "LBXPLTSI",
+     "LBXRBCSI",
+     "LBXRDW",
+     "LBXWBCSI"
+    ],
+    "n_complete_on_own_columns": 12156,
+    "rows_forgone_to_shared_cohort": 0,
+    "shared_cohort_is_maximal": true,
+    "extended_fit_test": null,
+    "why_no_test": "nothing to add: this rung's own complete-case cohort is the shared cohort"
+   },
+   "L6_identity_free_demo": {
+    "required_columns": [
+     "LBXHGB",
+     "LBXMCVSI",
+     "LBXRBCSI",
+     "LBXRDW"
+    ],
+    "n_complete_on_own_columns": 12156,
+    "rows_forgone_to_shared_cohort": 0,
+    "shared_cohort_is_maximal": true,
+    "extended_fit_test": null,
+    "why_no_test": "nothing to add: this rung's own complete-case cohort is the shared cohort"
+   },
+   "L7_hgb_demo": {
+    "required_columns": [
+     "LBXHGB"
+    ],
+    "n_complete_on_own_columns": 12156,
+    "rows_forgone_to_shared_cohort": 0,
+    "shared_cohort_is_maximal": true,
+    "extended_fit_test": null,
+    "why_no_test": "nothing to add: this rung's own complete-case cohort is the shared cohort"
+   }
+  },
+  "max_rows_forgone_by_any_rung": 0,
+  "rungs_with_extended_fit": [],
+  "replication_cycles": {
+   "2011-2012": {
+    "merged_records": 8956,
+    "shared_cohort_n": 7952,
+    "missing_columns_per_row": {
+     "0": 7952,
+     "1": 1,
+     "9": 1003
+    },
+    "rows_forgone_by_rung": {
+     "L0_hgb_direct": 1,
+     "L1_paper_leaky": 1,
+     "L1_paper_leaky_demo": 1,
+     "L2_mchc_hct": 1,
+     "L3_hct_only": 1,
+     "L4_identity_free": 1,
+     "L5_identity_free_plus": 0,
+     "L6_identity_free_demo": 1,
+     "L7_hgb_demo": 1
+    },
+    "max_rows_forgone": 1
+   },
+   "2013-2014": {
+    "merged_records": 9422,
+    "shared_cohort_n": 8544,
+    "missing_columns_per_row": {
+     "0": 8544,
+     "9": 878
+    },
+    "rows_forgone_by_rung": {
+     "L0_hgb_direct": 0,
+     "L1_paper_leaky": 0,
+     "L1_paper_leaky_demo": 0,
+     "L2_mchc_hct": 0,
+     "L3_hct_only": 0,
+     "L4_identity_free": 0,
+     "L5_identity_free_plus": 0,
+     "L6_identity_free_demo": 0,
+     "L7_hgb_demo": 0
+    },
+    "max_rows_forgone": 0
+   },
+   "2015-2016": {
+    "merged_records": 9165,
+    "shared_cohort_n": 8117,
+    "missing_columns_per_row": {
+     "0": 8117,
+     "8": 30,
+     "9": 1018
+    },
+    "rows_forgone_by_rung": {
+     "L0_hgb_direct": 0,
+     "L1_paper_leaky": 0,
+     "L1_paper_leaky_demo": 0,
+     "L2_mchc_hct": 0,
+     "L3_hct_only": 0,
+     "L4_identity_free": 0,
+     "L5_identity_free_plus": 0,
+     "L6_identity_free_demo": 0,
+     "L7_hgb_demo": 0
+    },
+    "max_rows_forgone": 0
+   }
+  },
+  "replication_note": "2015-2016 has 30 records carrying MCHC and nothing else. They are unusable at every rung, not just the wide ones, because they have no hemoglobin and therefore no label. 2011-2012 has one record complete except for platelets, which is the only row in four cycles that the union requirement actually costs anyone."
+ },
+ "cluster_holdout": {
+  "scheme": "PSUs dealt alternately within stratum into 2 folds; train and test share no PSU",
+  "seed": 42,
+  "folds": [
+   {
+    "fold": 0,
+    "n_train": 6083,
+    "n_test": 6073,
+    "n_train_psu": 24,
+    "n_test_psu": 25,
+    "n_psu_total": 49,
+    "psu_overlap_with_train": 0,
+    "psu_identity": "the (SDMVSTRA, SDMVPSU) pair; SDMVPSU is numbered within stratum and is not unique on its own",
+    "test_prevalence": 0.098798,
+    "accuracy_by_rung": {
+     "L0_hgb_direct": 0.956035,
+     "L1_paper_leaky": 0.95093,
+     "L1_paper_leaky_demo": 0.980076,
+     "L4_identity_free": 0.929524,
+     "L6_identity_free_demo": 0.954882,
+     "L7_hgb_demo": 0.999506
+    },
+    "contrasts": {
+     "L0_hgb_direct vs L1_paper_leaky": {
+      "meaning": "hemoglobin verbatim -> identity route",
+      "delta_accuracy": -0.005105,
+      "iid_row_bootstrap_se": 0.001875,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     },
+     "L1_paper_leaky vs L4_identity_free": {
+      "meaning": "remove the identity, no demographics",
+      "delta_accuracy": -0.021406,
+      "iid_row_bootstrap_se": 0.003248,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     },
+     "L1_paper_leaky_demo vs L6_identity_free_demo": {
+      "meaning": "remove the identity, with demographics",
+      "delta_accuracy": -0.025193,
+      "iid_row_bootstrap_se": 0.002478,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     },
+     "L1_paper_leaky vs L1_paper_leaky_demo": {
+      "meaning": "add demographics, identity present",
+      "delta_accuracy": 0.029145,
+      "iid_row_bootstrap_se": 0.002702,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     },
+     "L4_identity_free vs L6_identity_free_demo": {
+      "meaning": "add demographics, identity gone",
+      "delta_accuracy": 0.025358,
+      "iid_row_bootstrap_se": 0.002974,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     },
+     "L6_identity_free_demo vs L7_hgb_demo": {
+      "meaning": "defensible model -> the complete leak",
+      "delta_accuracy": 0.044624,
+      "iid_row_bootstrap_se": 0.002723,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     }
+    }
+   },
+   {
+    "fold": 1,
+    "n_train": 6073,
+    "n_test": 6083,
+    "n_train_psu": 25,
+    "n_test_psu": 24,
+    "n_psu_total": 49,
+    "psu_overlap_with_train": 0,
+    "psu_identity": "the (SDMVSTRA, SDMVPSU) pair; SDMVPSU is numbered within stratum and is not unique on its own",
+    "test_prevalence": 0.093211,
+    "accuracy_by_rung": {
+     "L0_hgb_direct": 0.951175,
+     "L1_paper_leaky": 0.947559,
+     "L1_paper_leaky_demo": 0.979287,
+     "L4_identity_free": 0.942627,
+     "L6_identity_free_demo": 0.966793,
+     "L7_hgb_demo": 0.999014
+    },
+    "contrasts": {
+     "L0_hgb_direct vs L1_paper_leaky": {
+      "meaning": "hemoglobin verbatim -> identity route",
+      "delta_accuracy": -0.003617,
+      "iid_row_bootstrap_se": 0.002066,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     },
+     "L1_paper_leaky vs L4_identity_free": {
+      "meaning": "remove the identity, no demographics",
+      "delta_accuracy": -0.004932,
+      "iid_row_bootstrap_se": 0.003125,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     },
+     "L1_paper_leaky_demo vs L6_identity_free_demo": {
+      "meaning": "remove the identity, with demographics",
+      "delta_accuracy": -0.012494,
+      "iid_row_bootstrap_se": 0.002209,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     },
+     "L1_paper_leaky vs L1_paper_leaky_demo": {
+      "meaning": "add demographics, identity present",
+      "delta_accuracy": 0.031728,
+      "iid_row_bootstrap_se": 0.002702,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     },
+     "L4_identity_free vs L6_identity_free_demo": {
+      "meaning": "add demographics, identity gone",
+      "delta_accuracy": 0.024166,
+      "iid_row_bootstrap_se": 0.002642,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     },
+     "L6_identity_free_demo vs L7_hgb_demo": {
+      "meaning": "defensible model -> the complete leak",
+      "delta_accuracy": 0.032221,
+      "iid_row_bootstrap_se": 0.002338,
+      "se_note": "i.i.d. over rows. The design-based estimator has no within-stratum replication left in a held-out fold of one PSU per stratum, so it cannot be used here."
+     }
+    }
+   }
+  ],
+  "mean_accuracy_by_rung": {
+   "L0_hgb_direct": 0.953605,
+   "L1_paper_leaky": 0.949245,
+   "L1_paper_leaky_demo": 0.979681,
+   "L4_identity_free": 0.936076,
+   "L6_identity_free_demo": 0.960838,
+   "L7_hgb_demo": 0.99926
+  },
+  "mean_contrasts": {
+   "L0_hgb_direct vs L1_paper_leaky": {
+    "meaning": "hemoglobin verbatim -> identity route",
+    "delta_accuracy_mean": -0.004361,
+    "delta_accuracy_by_fold": [
+     -0.005105,
+     -0.003617
+    ],
+    "fold_spread": 0.001488,
+    "delta_accuracy_row_split": -0.004523,
+    "difference_from_row_split": 0.000162,
+    "sign_preserved": true
+   },
+   "L1_paper_leaky vs L4_identity_free": {
+    "meaning": "remove the identity, no demographics",
+    "delta_accuracy_mean": -0.013169,
+    "delta_accuracy_by_fold": [
+     -0.021406,
+     -0.004932
+    ],
+    "fold_spread": 0.016474,
+    "delta_accuracy_row_split": -0.014803,
+    "difference_from_row_split": 0.001634,
+    "sign_preserved": true
+   },
+   "L1_paper_leaky_demo vs L6_identity_free_demo": {
+    "meaning": "remove the identity, with demographics",
+    "delta_accuracy_mean": -0.018843,
+    "delta_accuracy_by_fold": [
+     -0.025193,
+     -0.012494
+    ],
+    "fold_spread": 0.012699,
+    "delta_accuracy_row_split": -0.015214,
+    "difference_from_row_split": -0.003629,
+    "sign_preserved": true
+   },
+   "L1_paper_leaky vs L1_paper_leaky_demo": {
+    "meaning": "add demographics, identity present",
+    "delta_accuracy_mean": 0.030436,
+    "delta_accuracy_by_fold": [
+     0.029145,
+     0.031728
+    ],
+    "fold_spread": 0.002583,
+    "delta_accuracy_row_split": 0.031661,
+    "difference_from_row_split": -0.001225,
+    "sign_preserved": true
+   },
+   "L4_identity_free vs L6_identity_free_demo": {
+    "meaning": "add demographics, identity gone",
+    "delta_accuracy_mean": 0.024762,
+    "delta_accuracy_by_fold": [
+     0.025358,
+     0.024166
+    ],
+    "fold_spread": 0.001192,
+    "delta_accuracy_row_split": 0.03125,
+    "difference_from_row_split": -0.006488,
+    "sign_preserved": true
+   },
+   "L6_identity_free_demo vs L7_hgb_demo": {
+    "meaning": "defensible model -> the complete leak",
+    "delta_accuracy_mean": 0.038422,
+    "delta_accuracy_by_fold": [
+     0.044624,
+     0.032221
+    ],
+    "fold_spread": 0.012403,
+    "delta_accuracy_row_split": 0.033306,
+    "difference_from_row_split": 0.005116,
+    "sign_preserved": true
+   }
+  },
+  "absolute_optimism_mean": 0.001726,
+  "absolute_optimism_max": 0.005856,
+  "all_signs_preserved": true,
+  "max_abs_difference": 0.006488,
+  "mean_abs_difference": 0.003042,
+  "optimism_by_rung": {
+   "L0_hgb_direct": 0.001165,
+   "L1_paper_leaky": 0.001002,
+   "L1_paper_leaky_demo": 0.002227,
+   "L4_identity_free": -0.000632,
+   "L6_identity_free_demo": 0.005856,
+   "L7_hgb_demo": 0.00074
+  },
+  "optimism_vs_own_ci_half_width": {
+   "L0_hgb_direct": 0.097,
+   "L1_paper_leaky": 0.086,
+   "L1_paper_leaky_demo": 0.382,
+   "L4_identity_free": -0.059,
+   "L6_identity_free_demo": 0.698,
+   "L7_hgb_demo": null
+  },
+  "rungs_where_optimism_exceeds_own_ci": [],
+  "rungs_with_negative_optimism": [
+   "L4_identity_free"
+  ],
+  "verdict": "Absolute accuracy falls by +0.0017 on average (+0.0059 at worst) when the test clusters are genuinely unseen. That is small against the design-based intervals on the same rungs: the gap exceeds a rung's own 95% half-width for none of the 6 rungs, and it is negative for L4_identity_free, which scores HIGHER on unseen clusters. So the direction is toward optimism on average and it is not a uniform property of the rungs; the earlier version of this string asserted flatly that the row-wise split IS optimistic, from a mean of +0.0017. A fold also trains on fewer rows than dp.split3 does, so even the mean is an upper bound on cluster optimism rather than a measurement of it. The six paired contrasts move by 0.0030 on average and 0.0065 at worst, and every sign is preserved. That is the measured version of the claim in dp.split3's docstring: cluster optimism is common to both arms of a contrast and largely cancels, while it does not cancel in an absolute accuracy."
+ },
+ "tracking": {
+  "all_rungs": {
+   "rungs": [
+    "L0_hgb_direct",
+    "L1_paper_leaky",
+    "L1_paper_leaky_demo",
+    "L2_mchc_hct",
+    "L3_hct_only",
+    "L4_identity_free",
+    "L5_identity_free_plus",
+    "L6_identity_free_demo",
+    "L7_hgb_demo"
+   ],
+   "spearman_rho": -0.728039845617479,
+   "p_value": 0.02615362075316227,
+   "p_method": "t approximation on n-2 df",
+   "n": 9
+  },
+  "fixed_scope_no_demographics": {
+   "rungs": [
+    "L0_hgb_direct",
+    "L1_paper_leaky",
+    "L2_mchc_hct",
+    "L3_hct_only",
+    "L4_identity_free",
+    "L5_identity_free_plus"
+   ],
+   "spearman_rho": -1.0,
+   "p_value": 0.002777777777777778,
+   "p_method": "exact, 2 of 720 permutations at least as extreme",
+   "n": 6
+  },
+  "monotonicity_violations": [],
+  "monotonicity_tolerance_gdl": 0.001,
+  "monotonicity_note": "Checked over every nested pair of rungs, tolerance 0.001 g/dL - none. Every rung recovers hemoglobin at least as well as the rung its feature set contains, as it must. The tolerance absorbs estimation variance from extra near-useless regressors, which is why it is not zero.",
+  "claim": "accuracy tracks recoverability when the feature scope is held fixed; across scopes it does not, because demographics buy accuracy without buying recoverability"
+ },
+ "decomposition": {
+  "cells": [
+   {
+    "features": "L1_paper_leaky",
+    "label": "sex-blind Hb<12",
+    "accuracy": 0.9913651315789473,
+    "no_information_rate": 0.8922697368421053,
+    "lift_points": 9.91,
+    "pr_auc": 0.9952646800051734,
+    "pr_auc_no_skill": 0.10773026315789473,
+    "recall": 0.9923664122137404
+   },
+   {
+    "features": "L4_identity_free",
+    "label": "sex-blind Hb<12",
+    "accuracy": 0.9584703947368421,
+    "no_information_rate": 0.8922697368421053,
+    "lift_points": 6.62,
+    "pr_auc": 0.896667586638529,
+    "pr_auc_no_skill": 0.10773026315789473,
+    "recall": 0.8931297709923665
+   },
+   {
+    "features": "L1_paper_leaky",
+    "label": "WHO age/sex/pregnancy",
+    "accuracy": 0.9502467105263158,
+    "no_information_rate": 0.9041940789473684,
+    "lift_points": 4.61,
+    "pr_auc": 0.8396850371607824,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "recall": 0.8240343347639485
+   },
+   {
+    "features": "L4_identity_free",
+    "label": "WHO age/sex/pregnancy",
+    "accuracy": 0.9354440789473685,
+    "no_information_rate": 0.9041940789473684,
+    "lift_points": 3.13,
+    "pr_auc": 0.7596851252780971,
+    "pr_auc_no_skill": 0.09580592105263158,
+    "recall": 0.7510729613733905
+   }
+  ],
+  "effects_on_lift_scale": {
+   "identity_removal_under_old_label": 3.29,
+   "identity_removal_under_who_label": 1.48,
+   "label_correction_with_identity": 5.3,
+   "label_correction_without_identity": 3.49,
+   "interaction": 1.81,
+   "total_leaky_old_vs_clean_who": 6.78
+  },
+  "tests": {
+   "identity_effect_sex-blind Hb<12": {
+    "delta_accuracy": 0.0328947368421052,
+    "se": 0.003813932114528775,
+    "df": 25,
+    "t": 8.624887872753725,
+    "degenerate": null,
+    "ci95": [
+     0.025039796614649282,
+     0.04074967706956112
+    ],
+    "p_value": 5.80526785270225e-09,
+    "p_holm": 1.16105357054045e-08,
+    "significant_holm_05": true
+   },
+   "identity_effect_WHO": {
+    "delta_accuracy": 0.014802631578947345,
+    "se": 0.004324728899706365,
+    "df": 25,
+    "t": 3.4227883232062006,
+    "degenerate": null,
+    "ci95": [
+     0.0058956856797957365,
+     0.023709577478098952
+    ],
+    "p_value": 0.0021416381236684305,
+    "p_holm": 0.0021416381236684305,
+    "significant_holm_05": true
+   }
+  },
+  "significance": {
+   "family": [
+    "identity_effect_sex-blind Hb<12",
+    "identity_effect_WHO"
+   ],
+   "correction": "Holm, over these two only",
+   "note": "these two tests are NOT members of the pre-declared six-contrast family in `contrasts`; they are their own family of two, declared as the two label levels of one factor. p_holm is the value to read. They were previously published with raw p-values and no such statement."
+  },
+  "sign_convention": "Positive means the leaky choice scores higher. So identity_removal_* is what removing the identity costs, and label_correction_* is what correcting the label costs. The two main effects are each measured at the other factor's leaky level, so they do NOT sum to total_leaky_old_vs_clean_who: that would count the interaction twice. The two additive paths are identity_removal_under_old_label + label_correction_without_identity, and label_correction_with_identity + identity_removal_under_who_label. Both equal the total exactly (3.29 + 3.49 = 5.30 + 1.48 = 6.78), which is what makes the decomposition a decomposition. What differs by the interaction is not the paths but the two estimates of each main effect: identity removal is 3.29 points under the old label and 1.48 under the WHO one, and 1.81 of the 3.29 is the interaction. This paragraph used to say the two paths differ by the interaction, which would require the interaction to be zero and it is not.",
+  "note": "lift = accuracy - that cell's own no-information rate, because the label change also moves the class balance"
+ },
+ "out_of_cycle": {
+  "2011-2012": {
+   "n": 7952,
+   "prevalence": 0.10160965794768612,
+   "excluded_pct": 11.21,
+   "integrity": {
+    "values_outside_containment_bounds": 0,
+    "outlying_values": [],
+    "duplicate_seqn": 0,
+    "note": "nothing is dropped on the basis of this screen in any cycle; the accuracy above is computed on every row, flagged ones included"
+   },
+   "rungs": {
+    "L0_hgb_direct": {
+     "accuracy": 0.9442907444668008,
+     "no_information_rate": 0.8983903420523138,
+     "lift_points": 4.59,
+     "pr_auc": 0.8143734054639377,
+     "pr_auc_no_skill": 0.10160965794768612,
+     "recall": 0.7995049504950495
+    },
+    "L1_paper_leaky": {
+     "accuracy": 0.9353621730382293,
+     "no_information_rate": 0.8983903420523138,
+     "lift_points": 3.7,
+     "pr_auc": 0.7569560015970108,
+     "pr_auc_no_skill": 0.10160965794768612,
+     "recall": 0.8044554455445545
+    },
+    "L1_paper_leaky_demo": {
+     "accuracy": 0.9757293762575453,
+     "no_information_rate": 0.8983903420523138,
+     "lift_points": 7.73,
+     "pr_auc": 0.960611734701921,
+     "pr_auc_no_skill": 0.10160965794768612,
+     "recall": 0.9146039603960396
+    },
+    "L2_mchc_hct": {
+     "accuracy": 0.9377515090543259,
+     "no_information_rate": 0.8983903420523138,
+     "lift_points": 3.94,
+     "pr_auc": 0.7983763419756125,
+     "pr_auc_no_skill": 0.10160965794768612,
+     "recall": 0.7599009900990099
+    },
+    "L3_hct_only": {
+     "accuracy": 0.8645623742454729,
+     "no_information_rate": 0.8983903420523138,
+     "lift_points": -3.38,
+     "pr_auc": 0.5657728889993732,
+     "pr_auc_no_skill": 0.10160965794768612,
+     "recall": 0.7636138613861386
+    },
+    "L4_identity_free": {
+     "accuracy": 0.920020120724346,
+     "no_information_rate": 0.8983903420523138,
+     "lift_points": 2.16,
+     "pr_auc": 0.6716813792742475,
+     "pr_auc_no_skill": 0.10160965794768612,
+     "recall": 0.6571782178217822
+    },
+    "L5_identity_free_plus": {
+     "accuracy": 0.9254275653923542,
+     "no_information_rate": 0.8983903420523138,
+     "lift_points": 2.7,
+     "pr_auc": 0.7071106358715504,
+     "pr_auc_no_skill": 0.10160965794768612,
+     "recall": 0.6373762376237624
+    },
+    "L6_identity_free_demo": {
+     "accuracy": 0.9425301810865191,
+     "no_information_rate": 0.8983903420523138,
+     "lift_points": 4.41,
+     "pr_auc": 0.8062379588468592,
+     "pr_auc_no_skill": 0.10160965794768612,
+     "recall": 0.7227722772277227
+    },
+    "L7_hgb_demo": {
+     "accuracy": 1.0,
+     "no_information_rate": 0.8983903420523138,
+     "lift_points": 10.16,
+     "pr_auc": 1.0,
+     "pr_auc_no_skill": 0.10160965794768612,
+     "recall": 1.0
+    }
+   }
+  },
+  "2013-2014": {
+   "n": 8544,
+   "prevalence": 0.08836610486891386,
+   "excluded_pct": 9.32,
+   "integrity": {
+    "values_outside_containment_bounds": 3,
+    "outlying_values": [
+     {
+      "seqn": 79648,
+      "column": "LBXRBCSI",
+      "value": 8.3,
+      "containment_bounds": [
+       1.0,
+       8.0
+      ]
+     },
+     {
+      "seqn": 77520,
+      "column": "LBXMCHSI",
+      "value": 74.5,
+      "containment_bounds": [
+       10.0,
+       50.0
+      ]
+     },
+     {
+      "seqn": 77520,
+      "column": "LBXMC",
+      "value": 69.6,
+      "containment_bounds": [
+       20.0,
+       45.0
+      ]
+     }
+    ],
+    "duplicate_seqn": 0,
+    "note": "nothing is dropped on the basis of this screen in any cycle; the accuracy above is computed on every row, flagged ones included"
+   },
+   "rungs": {
+    "L0_hgb_direct": {
+     "accuracy": 0.9496722846441947,
+     "no_information_rate": 0.9116338951310862,
+     "lift_points": 3.8,
+     "pr_auc": 0.8282058154059415,
+     "pr_auc_no_skill": 0.08836610486891386,
+     "recall": 0.8198675496688742
+    },
+    "L1_paper_leaky": {
+     "accuracy": 0.9458099250936329,
+     "no_information_rate": 0.9116338951310862,
+     "lift_points": 3.42,
+     "pr_auc": 0.7991327596434528,
+     "pr_auc_no_skill": 0.08836610486891386,
+     "recall": 0.8052980132450331
+    },
+    "L1_paper_leaky_demo": {
+     "accuracy": 0.9796348314606742,
+     "no_information_rate": 0.9116338951310862,
+     "lift_points": 6.8,
+     "pr_auc": 0.9641337489915368,
+     "pr_auc_no_skill": 0.08836610486891386,
+     "recall": 0.919205298013245
+    },
+    "L2_mchc_hct": {
+     "accuracy": 0.9482677902621723,
+     "no_information_rate": 0.9116338951310862,
+     "lift_points": 3.66,
+     "pr_auc": 0.8088713820425298,
+     "pr_auc_no_skill": 0.08836610486891386,
+     "recall": 0.7947019867549668
+    },
+    "L3_hct_only": {
+     "accuracy": 0.8947799625468165,
+     "no_information_rate": 0.9116338951310862,
+     "lift_points": -1.69,
+     "pr_auc": 0.5522928951264603,
+     "pr_auc_no_skill": 0.08836610486891386,
+     "recall": 0.6966887417218544
+    },
+    "L4_identity_free": {
+     "accuracy": 0.9281367041198502,
+     "no_information_rate": 0.9116338951310862,
+     "lift_points": 1.65,
+     "pr_auc": 0.7011363841328484,
+     "pr_auc_no_skill": 0.08836610486891386,
+     "recall": 0.7403973509933774
+    },
+    "L5_identity_free_plus": {
+     "accuracy": 0.9341058052434457,
+     "no_information_rate": 0.9116338951310862,
+     "lift_points": 2.25,
+     "pr_auc": 0.7339620123984815,
+     "pr_auc_no_skill": 0.08836610486891386,
+     "recall": 0.7417218543046358
+    },
+    "L6_identity_free_demo": {
+     "accuracy": 0.9527153558052435,
+     "no_information_rate": 0.9116338951310862,
+     "lift_points": 4.11,
+     "pr_auc": 0.85666274909462,
+     "pr_auc_no_skill": 0.08836610486891386,
+     "recall": 0.8
+    },
+    "L7_hgb_demo": {
+     "accuracy": 0.9998829588014981,
+     "no_information_rate": 0.9116338951310862,
+     "lift_points": 8.82,
+     "pr_auc": 1.0,
+     "pr_auc_no_skill": 0.08836610486891386,
+     "recall": 1.0
+    }
+   }
+  },
+  "2015-2016": {
+   "n": 8117,
+   "prevalence": 0.09215227300726869,
+   "excluded_pct": 11.43,
+   "integrity": {
+    "values_outside_containment_bounds": 1,
+    "outlying_values": [
+     {
+      "seqn": 85808,
+      "column": "LBXWBCSI",
+      "value": 117.2,
+      "containment_bounds": [
+       0.5,
+       100.0
+      ]
+     }
+    ],
+    "duplicate_seqn": 0,
+    "note": "nothing is dropped on the basis of this screen in any cycle; the accuracy above is computed on every row, flagged ones included"
+   },
+   "rungs": {
+    "L0_hgb_direct": {
+     "accuracy": 0.9469015646174695,
+     "no_information_rate": 0.9078477269927313,
+     "lift_points": 3.91,
+     "pr_auc": 0.8267859099697615,
+     "pr_auc_no_skill": 0.09215227300726869,
+     "recall": 0.8342245989304813
+    },
+    "L1_paper_leaky": {
+     "accuracy": 0.942959221387212,
+     "no_information_rate": 0.9078477269927313,
+     "lift_points": 3.51,
+     "pr_auc": 0.8038050242468667,
+     "pr_auc_no_skill": 0.09215227300726869,
+     "recall": 0.8114973262032086
+    },
+    "L1_paper_leaky_demo": {
+     "accuracy": 0.9809042749784403,
+     "no_information_rate": 0.9078477269927313,
+     "lift_points": 7.31,
+     "pr_auc": 0.9687986243557885,
+     "pr_auc_no_skill": 0.09215227300726869,
+     "recall": 0.9171122994652406
+    },
+    "L2_mchc_hct": {
+     "accuracy": 0.9445607983245041,
+     "no_information_rate": 0.9078477269927313,
+     "lift_points": 3.67,
+     "pr_auc": 0.8107817800037442,
+     "pr_auc_no_skill": 0.09215227300726869,
+     "recall": 0.8061497326203209
+    },
+    "L3_hct_only": {
+     "accuracy": 0.912282863126771,
+     "no_information_rate": 0.9078477269927313,
+     "lift_points": 0.44,
+     "pr_auc": 0.5942434242769452,
+     "pr_auc_no_skill": 0.09215227300726869,
+     "recall": 0.6283422459893048
+    },
+    "L4_identity_free": {
+     "accuracy": 0.9406184550942467,
+     "no_information_rate": 0.9078477269927313,
+     "lift_points": 3.28,
+     "pr_auc": 0.742635306526872,
+     "pr_auc_no_skill": 0.09215227300726869,
+     "recall": 0.7272727272727273
+    },
+    "L5_identity_free_plus": {
+     "accuracy": 0.9478871504250339,
+     "no_information_rate": 0.9078477269927313,
+     "lift_points": 4.0,
+     "pr_auc": 0.7833479744110518,
+     "pr_auc_no_skill": 0.09215227300726869,
+     "recall": 0.7286096256684492
+    },
+    "L6_identity_free_demo": {
+     "accuracy": 0.9664900825428114,
+     "no_information_rate": 0.9078477269927313,
+     "lift_points": 5.86,
+     "pr_auc": 0.8981564243328803,
+     "pr_auc_no_skill": 0.09215227300726869,
+     "recall": 0.7847593582887701
+    },
+    "L7_hgb_demo": {
+     "accuracy": 0.9998768017740545,
+     "no_information_rate": 0.9078477269927313,
+     "lift_points": 9.2,
+     "pr_auc": 1.0,
+     "pr_auc_no_skill": 0.09215227300726869,
+     "recall": 1.0
+    }
+   }
+  }
+ },
+ "out_of_cycle_ordering": {
+  "L1_paper_leaky > L4_identity_free": {
+   "gap_by_cycle": {
+    "2011-2012": 0.015342,
+    "2013-2014": 0.017673,
+    "2015-2016": 0.002341,
+    "2017-2020": 0.014803
+   },
+   "holds_in_all_cycles": true,
+   "cycles_where_it_holds": [
+    "2011-2012",
+    "2013-2014",
+    "2015-2016",
+    "2017-2020"
+   ],
+   "smallest_margin": 0.002341,
+   "smallest_margin_cycle": "2015-2016"
+  },
+  "L6_identity_free_demo > L4_identity_free": {
+   "gap_by_cycle": {
+    "2011-2012": 0.02251,
+    "2013-2014": 0.024579,
+    "2015-2016": 0.025872,
+    "2017-2020": 0.03125
+   },
+   "holds_in_all_cycles": true,
+   "cycles_where_it_holds": [
+    "2011-2012",
+    "2013-2014",
+    "2015-2016",
+    "2017-2020"
+   ],
+   "smallest_margin": 0.02251,
+   "smallest_margin_cycle": "2011-2012"
+  }
+ }
+}

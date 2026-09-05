@@ -1,0 +1,1224 @@
+{
+ "cohort": {
+  "cycle": "2017-2020",
+  "weight_column": "WTMECPRP",
+  "cbc_records": 13772,
+  "demo_records": 15560,
+  "after_demo_merge": 13772,
+  "complete_on_all_features": 12156,
+  "with_who_threshold": 12156,
+  "excluded_at_demo_merge": 0,
+  "excluded_incomplete_features": 1616,
+  "excluded_no_who_band": 0,
+  "excluded_total": 1616,
+  "excluded_pct": 11.73,
+  "n_analysis": 12156,
+  "attrition_profile": {
+   "n_dropped": 1616,
+   "dropped": {
+    "n": 1616,
+    "mean_age": 17.68,
+    "sd_age": 21.01,
+    "median_age": 9.0,
+    "pct_under_2": 9.22,
+    "pct_under_18": 71.84,
+    "pct_65_plus": 6.37,
+    "pct_female": 49.88
+   },
+   "retained": {
+    "n": 12156,
+    "mean_age": 37.48,
+    "sd_age": 24.26,
+    "median_age": 36.0,
+    "pct_under_2": 1.71,
+    "pct_under_18": 29.99,
+    "pct_65_plus": 17.14,
+    "pct_female": 50.58
+   },
+   "age_gap_years": -19.8,
+   "age_standardised_difference": -0.873,
+   "smd_convention": "|d| 0.1 small, 0.2 notable, 0.5 large",
+   "weighted_loss": {
+    "population_in_merged_frame": 318804841.487105,
+    "population_dropped": 25953385.186626002,
+    "population_dropped_pct": 8.14,
+    "note": "every population total in weighted.json is a complete-case total over the kept rows; this is what the excluded rows would have added. They carry no CBC, so their anemia burden can be bounded but not measured."
+   },
+   "mcar_contradicted_on_age": true,
+   "mcar_note": "a difference here rules MCAR out; the absence of one does not rule it in",
+   "note": "age sets the WHO cut-off, so non-random loss in age is non-random loss in the label"
+  },
+  "who_thresholds": {
+   "thresholds_gdl": [
+    11.0,
+    11.5,
+    12.0,
+    13.0
+   ],
+   "rows_per_threshold": {
+    "11.0": 888,
+    "11.5": 1556,
+    "12.0": 5261,
+    "13.0": 4451
+   },
+   "n_rows": 12156,
+   "rows_whose_cutoff_is_not_12": 6895,
+   "pct_whose_cutoff_is_not_12": 56.72,
+   "binary_labels_that_flip_under_a_flat_12_cut": 540,
+   "pct_binary_labels_that_flip": 4.44,
+   "note": "the flat cut is wrong about the THRESHOLD for far more people than it is wrong about the LABEL: most people are nowhere near either cut-off. Both counts are reported because quoting only the first overstates the damage and quoting only the second understates the error."
+  },
+  "pregnancy": {
+   "recorded_pregnant": 76,
+   "recorded_not_pregnant": 1543,
+   "could_not_ascertain_code3": 35,
+   "women_12_49": 2776,
+   "women_12_49_not_ascertained": 1157,
+   "labels_that_could_flip_off": 74,
+   "flip_pct_of_all_positives": 6.34,
+   "guessed_rows_with_no_pregnant_band": 300,
+   "flip_definition": "guessed, currently anemic, and with hemoglobin at or above the cut-off who_thresholds would assign the same row if it were coded pregnant",
+   "no_pregnant_band_note": "rows where coding the flag on would not move the cut-off at all, so no flip is possible: girls 12-14, for whom this implementation keeps the 12.0 band. WHO sets no lower age bound on the pregnancy cut-off, so that is an implementation choice, and it is inert here because RIDEXPRG is collected only at ages 20-44.",
+   "direction": "reported prevalence is an upper bound for this group"
+  },
+  "integrity": {
+   "n_rows": 12156,
+   "n_values_screened": 109404,
+   "values_outside_containment_bounds": 3,
+   "outlying_values": [
+    {
+     "seqn": 120083,
+     "column": "LBXMCVSI",
+     "value": 35.4,
+     "containment_bounds": [
+      40.0,
+      140.0
+     ]
+    },
+    {
+     "seqn": 121932,
+     "column": "LBXMCVSI",
+     "value": 35.4,
+     "containment_bounds": [
+      40.0,
+      140.0
+     ]
+    },
+    {
+     "seqn": 120096,
+     "column": "LBXWBCSI",
+     "value": 400.0,
+     "containment_bounds": [
+      0.5,
+      100.0
+     ]
+    }
+   ],
+   "non_positive_values": 0,
+   "non_finite_values": 0,
+   "duplicate_seqn": 0,
+   "rows_dropped_by_this_screen": 0,
+   "policy": "report, do not clean. A plausibility filter would move the denominator of every number in the paper on the basis of the analyst's idea of a normal patient, and in the primary cycle the values it would remove are real extreme phenotypes - two MCVs at 35.4 fL and one WBC at 400 x10^3/uL. The complete-case filter is the only exclusion in this study, and its bias is quantified in attrition_profile.",
+   "adjudication": "being outside these bounds does not make a value real, and being inside them does not make it right. The primary cycle's three were checked one at a time; outlying_values names every flagged value with its SEQN so the same can be done for any cycle. 2013-2014's SEQN 77520 (MCHC 69.6 g/dL, RBC 1.67, MCH 74.5) is not a phenotype - it is internally consistent across all three analyser identities and still physically impossible, which is what a unit error looks like. It is retained, because this screen drops nothing, and disclosed here.",
+   "by_column": {
+    "LBXHGB": {
+     "min": 5.4,
+     "max": 19.9,
+     "containment_bounds": [
+      3.0,
+      25.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXRBCSI": {
+     "min": 2.32,
+     "max": 7.97,
+     "containment_bounds": [
+      1.0,
+      8.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXHCT": {
+     "min": 21.1,
+     "max": 58.8,
+     "containment_bounds": [
+      10.0,
+      70.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXMCVSI": {
+     "min": 35.4,
+     "max": 114.6,
+     "containment_bounds": [
+      40.0,
+      140.0
+     ],
+     "outside_bounds": 2,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXMCHSI": {
+     "min": 10.2,
+     "max": 39.8,
+     "containment_bounds": [
+      10.0,
+      50.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXMC": {
+     "min": 25.2,
+     "max": 38.4,
+     "containment_bounds": [
+      20.0,
+      45.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXRDW": {
+     "min": 11.3,
+     "max": 36.5,
+     "containment_bounds": [
+      8.0,
+      40.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXPLTSI": {
+     "min": 8.0,
+     "max": 1021.0,
+     "containment_bounds": [
+      5.0,
+      1500.0
+     ],
+     "outside_bounds": 0,
+     "non_positive": 0,
+     "non_finite": 0
+    },
+    "LBXWBCSI": {
+     "min": 1.9,
+     "max": 400.0,
+     "containment_bounds": [
+      0.5,
+      100.0
+     ],
+     "outside_bounds": 1,
+     "non_positive": 0,
+     "non_finite": 0
+    }
+   }
+  }
+ },
+ "weight_variable": "MECWT",
+ "weight_source_column": "WTMECPRP",
+ "seed": 42,
+ "n_folds": 5,
+ "n_replicates": 1000,
+ "provenance_note": "seed is dp.SEED, used for the StratifiedKFold shuffle, both forests and the Rao-Wu replicate generator. n_replicates applies to PR-AUC and to the three fit-weight contrasts; every other metric here is a linearised ratio estimate with no resampling.",
+ "design": {
+  "n_strata": 24,
+  "psus_per_stratum": {
+   "149": 2,
+   "150": 2,
+   "151": 2,
+   "152": 2,
+   "153": 2,
+   "154": 2,
+   "155": 2,
+   "156": 3,
+   "157": 2,
+   "158": 2,
+   "159": 2,
+   "160": 2,
+   "161": 2,
+   "162": 2,
+   "163": 2,
+   "164": 2,
+   "165": 2,
+   "166": 2,
+   "167": 2,
+   "168": 2,
+   "169": 2,
+   "170": 2,
+   "171": 2,
+   "172": 2
+  },
+  "total_psus": 49,
+  "df": 25,
+  "weight_min": 1371.440366,
+  "weight_max": 367555.742979,
+  "weight_mean": 24091.103677235857,
+  "weight_cv": 1.1903601601667895,
+  "population_represented": 292851456.30047905,
+  "complete_case_population_excluded": 25953385.186626002,
+  "complete_case_population_excluded_pct": 8.14,
+  "population_represented_note": "population_represented is the total for the 12,156 analysed rows only. The 1,616 rows dropped for an incomplete CBC represent a further 26.0 million (8.14% of the merged frame), whose anemia burden is unmeasurable because they have no CBC. Every population count in this file is therefore a lower bound on the frame."
+ },
+ "prevalence": {
+  "Anemia": {
+   "label_definition": "WHO age/sex/pregnancy",
+   "n_obs": 12156,
+   "prop_weighted": 0.06631605284222461,
+   "prop_unweighted": 0.0960019743336624,
+   "se": 0.004513135265067068,
+   "df": 25,
+   "ci95_wald": [
+    0.05702107677002851,
+    0.0756110289144207
+   ],
+   "ci95_logit": [
+    0.057604576088554335,
+    0.07623837877785707
+   ],
+   "se_srs_naive": 0.0022569084095445785,
+   "se_srs_naive_at_unweighted_p": 0.0026719509268178137,
+   "se_ratio_vs_conventional_binomial": 1.6890786502737274,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 3.9987921484729845,
+   "deff_unequal_weighting": 2.4169573109123044,
+   "deff_clustering_residual": 1.6544736352681384,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 1.1903601601667895,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.42x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 3039.917942382177,
+   "n_effective_design_uncapped": 3039.917942382177,
+   "n_effective_kish": 5029.4640890498795,
+   "population_total": 292851456.30047905,
+   "population_with_outcome": 19420752.650945,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "Anemia_hb12": {
+   "label_definition": "manuscript's single 12.0 g/dL cut",
+   "n_obs": 12156,
+   "prop_weighted": 0.06873952475947127,
+   "prop_unweighted": 0.10686080947680159,
+   "se": 0.004631691701883541,
+   "df": 25,
+   "ci95_wald": [
+    0.059200377134974586,
+    0.07827867238396796
+   ],
+   "ci95_logit": [
+    0.059791940799579606,
+    0.07891369062071663
+   ],
+   "se_srs_naive": 0.0022947929256998682,
+   "se_srs_naive_at_unweighted_p": 0.0028020343652375244,
+   "se_ratio_vs_conventional_binomial": 1.6529746242034113,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 4.07373039037546,
+   "deff_unequal_weighting": 2.4169573109123044,
+   "deff_clustering_residual": 1.6854788340625637,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 1.1903601601667895,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.42x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 2983.9971807460797,
+   "n_effective_design_uncapped": 2983.9971807460797,
+   "n_effective_kish": 5029.4640890498795,
+   "population_total": 292851456.30047905,
+   "population_with_outcome": 20130469.931214,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  }
+ },
+ "subgroups": {
+  "all": {
+   "n_obs": 12156,
+   "prop_weighted": 0.06631605284222461,
+   "prop_unweighted": 0.0960019743336624,
+   "se": 0.004513135265067068,
+   "df": 25,
+   "ci95_wald": [
+    0.05702107677002851,
+    0.0756110289144207
+   ],
+   "ci95_logit": [
+    0.057604576088554335,
+    0.07623837877785707
+   ],
+   "se_srs_naive": 0.0022569084095445785,
+   "se_srs_naive_at_unweighted_p": 0.0026719509268178137,
+   "se_ratio_vs_conventional_binomial": 1.6890786502737274,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 3.9987921484729845,
+   "deff_unequal_weighting": 2.4169573109123044,
+   "deff_clustering_residual": 1.6544736352681384,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 1.1903601601667895,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.42x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 3039.917942382177,
+   "n_effective_design_uncapped": 3039.917942382177,
+   "n_effective_kish": 5029.4640890498795,
+   "population_total": 292851456.30047905,
+   "population_with_outcome": 19420752.650945,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "men 15+": {
+   "n_obs": 4451,
+   "prop_weighted": 0.044093542450301,
+   "prop_unweighted": 0.07751067175915524,
+   "se": 0.003932337877796036,
+   "df": 25,
+   "ci95_wald": [
+    0.03599474098852798,
+    0.052192343912074016
+   ],
+   "ci95_logit": [
+    0.03666804889708565,
+    0.052940105257536084
+   ],
+   "se_srs_naive": 0.0030772756205405087,
+   "se_srs_naive_at_unweighted_p": 0.0040080453667322435,
+   "se_ratio_vs_conventional_binomial": 0.9811111197581248,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 1.6329348612485828,
+   "deff_unequal_weighting": 2.4921543116212455,
+   "deff_clustering_residual": 0.6552302374030338,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 1.221537683258787,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.49x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 2725.767025756713,
+   "n_effective_design_uncapped": 2725.767025756713,
+   "n_effective_kish": 1786.0049753919322,
+   "population_total": 120285359.44430101,
+   "population_with_outcome": 5303807.602807,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "women 15+ non-pregnant": {
+   "n_obs": 4622,
+   "prop_weighted": 0.09668518946828564,
+   "prop_unweighted": 0.13976633491994808,
+   "se": 0.006833232815541756,
+   "df": 25,
+   "ci95_wald": [
+    0.08261188304473843,
+    0.11075849589183284
+   ],
+   "ci95_logit": [
+    0.08349746571656486,
+    0.11170194395914804
+   ],
+   "se_srs_naive": 0.004346949262866425,
+   "se_srs_naive_at_unweighted_p": 0.005100286060799822,
+   "se_ratio_vs_conventional_binomial": 1.3397744232546391,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 2.471060015210113,
+   "deff_unequal_weighting": 2.2057295915896553,
+   "deff_clustering_residual": 1.1202914557759711,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 1.0980571895806044,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.21x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 1870.4523449654027,
+   "n_effective_design_uncapped": 1870.4523449654027,
+   "n_effective_kish": 2095.45178050087,
+   "population_total": 127283092.878974,
+   "population_with_outcome": 12306389.951113,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "pregnant": {
+   "n_obs": 76,
+   "prop_weighted": 0.11661851230238174,
+   "prop_unweighted": 0.17105263157894737,
+   "se": 0.034950781834426424,
+   "df": 25,
+   "ci95_wald": [
+    0.04463602966551089,
+    0.1886009949392526
+   ],
+   "ci95_logit": [
+    0.061596108270214237,
+    0.20980247132913057
+   ],
+   "se_srs_naive": 0.03681722903513791,
+   "se_srs_naive_at_unweighted_p": 0.04319381486071702,
+   "se_ratio_vs_conventional_binomial": 0.8091617271391489,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 0.901180097776554,
+   "deff_unequal_weighting": 1.6704977656250997,
+   "deff_clustering_residual": 0.5394680054775964,
+   "deff_below_1": true,
+   "deff_below_1_note": "the design SE came out BELOW the naive binomial SE for this domain, so the design 'penalty' is a gain here. Small domains whose outcome varies little within PSUs do this; it is not an arithmetic error, and it is why n_effective_design is capped at n_obs.",
+   "weight_cv": 0.8188392794835259,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 1.67x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 76.0,
+   "n_effective_design_uncapped": 84.33386421594507,
+   "n_effective_kish": 45.49542152279433,
+   "population_total": 2118513.7702099998,
+   "population_with_outcome": 247057.92417399999,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "children 1-4": {
+   "n_obs": 812,
+   "prop_weighted": 0.030366379191613467,
+   "prop_unweighted": 0.05295566502463054,
+   "se": 0.006459364032633346,
+   "df": 25,
+   "ci95_wald": [
+    0.01706306994013708,
+    0.043669688443089855
+   ],
+   "ci95_logit": [
+    0.019543116563205024,
+    0.04689701467906679
+   ],
+   "se_srs_naive": 0.006021744486287488,
+   "se_srs_naive_at_unweighted_p": 0.007858928793500888,
+   "se_ratio_vs_conventional_binomial": 0.8219140550013709,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 1.1506278313866347,
+   "deff_unequal_weighting": 1.499659822378737,
+   "deff_clustering_residual": 0.7672592238695352,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 0.7068661983563347,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 1.50x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 705.701685506294,
+   "n_effective_design_uncapped": 705.701685506294,
+   "n_effective_kish": 541.456127504982,
+   "population_total": 10427511.705196999,
+   "population_with_outcome": 316645.774465,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "children 5-11": {
+   "n_obs": 1556,
+   "prop_weighted": 0.030641054906430824,
+   "prop_unweighted": 0.043059125964010285,
+   "se": 0.006526726912729261,
+   "df": 25,
+   "ci95_wald": [
+    0.017199009206372403,
+    0.04408310060648925
+   ],
+   "ci95_logit": [
+    0.019707434725891974,
+    0.04734763007992106
+   ],
+   "se_srs_naive": 0.004369073706385926,
+   "se_srs_naive_at_unweighted_p": 0.005146006865039088,
+   "se_ratio_vs_conventional_binomial": 1.2683090178271041,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 2.231578355883219,
+   "deff_unequal_weighting": 1.815793793270612,
+   "deff_clustering_residual": 1.228982257871746,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 0.9032130386960827,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 1.82x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 697.2643357549338,
+   "n_effective_design_uncapped": 697.2643357549338,
+   "n_effective_kish": 856.9254976895417,
+   "population_total": 21021636.662934,
+   "population_with_outcome": 644125.123212,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "children 12-14": {
+   "n_obs": 639,
+   "prop_weighted": 0.05144760464219591,
+   "prop_unweighted": 0.08294209702660407,
+   "se": 0.010910309466121555,
+   "df": 25,
+   "ci95_wald": [
+    0.02897740167424932,
+    0.0739178076101425
+   ],
+   "ci95_logit": [
+    0.03309170405469175,
+    0.07915197970750355
+   ],
+   "se_srs_naive": 0.008739021605473523,
+   "se_srs_naive_at_unweighted_p": 0.010910268925381836,
+   "se_ratio_vs_conventional_binomial": 1.0000037158332207,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 1.558649672269055,
+   "deff_unequal_weighting": 1.8817435771537785,
+   "deff_clustering_residual": 0.8283007797622366,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 0.9390120218366634,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 1.88x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 409.97025269299604,
+   "n_effective_design_uncapped": 409.97025269299604,
+   "n_effective_kish": 339.5786799849298,
+   "population_total": 11715341.838863,
+   "population_with_outcome": 602726.2751740001,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "age 15-49": {
+   "n_obs": 4746,
+   "prop_weighted": 0.06281613346456143,
+   "prop_unweighted": 0.09102402022756005,
+   "se": 0.005818861406067591,
+   "df": 25,
+   "ci95_wald": [
+    0.05083196406563696,
+    0.07480030286348589
+   ],
+   "ci95_logit": [
+    0.05184612114278602,
+    0.07592140883359877
+   ],
+   "se_srs_naive": 0.003521957696783979,
+   "se_srs_naive_at_unweighted_p": 0.0041753255490581745,
+   "se_ratio_vs_conventional_binomial": 1.3936305894471266,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 2.7296549740598905,
+   "deff_unequal_weighting": 2.1661318882733203,
+   "deff_clustering_residual": 1.2601517889272056,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 1.079875867066822,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.17x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 1738.6812784405292,
+   "n_effective_design_uncapped": 1738.6812784405292,
+   "n_effective_kish": 2191.0023234010737,
+   "population_total": 138823917.329737,
+   "population_with_outcome": 8720381.719058001,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "age 50-69": {
+   "n_obs": 2981,
+   "prop_weighted": 0.06332007327822049,
+   "prop_unweighted": 0.10734652801073465,
+   "se": 0.007705244715116822,
+   "df": 25,
+   "ci95_wald": [
+    0.0474508247290388,
+    0.07918932182740218
+   ],
+   "ci95_logit": [
+    0.04918640308170206,
+    0.08116833950921207
+   ],
+   "se_srs_naive": 0.0044605182748415,
+   "se_srs_naive_at_unweighted_p": 0.005669626666101322,
+   "se_ratio_vs_conventional_binomial": 1.3590391694018324,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 2.984023414078506,
+   "deff_unequal_weighting": 2.83889350801462,
+   "deff_clustering_residual": 1.0511219972338386,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 1.3560580769327764,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.84x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 998.9867994787703,
+   "n_effective_design_uncapped": 998.9867994787703,
+   "n_effective_kish": 1050.0569998783653,
+   "population_total": 77910507.931169,
+   "population_with_outcome": 4933299.0713450005,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "age 70+": {
+   "n_obs": 1422,
+   "prop_weighted": 0.1275645088810595,
+   "prop_unweighted": 0.17721518987341772,
+   "se": 0.01218801405007559,
+   "df": 25,
+   "ci95_wald": [
+    0.10246282406342996,
+    0.15266619369868903
+   ],
+   "ci95_logit": [
+    0.10449815242661473,
+    0.15484202479669582
+   ],
+   "se_srs_naive": 0.008846710075084266,
+   "se_srs_naive_at_unweighted_p": 0.010126137183331973,
+   "se_ratio_vs_conventional_binomial": 1.2036192902993206,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 1.8980266360750084,
+   "deff_unequal_weighting": 1.7738293824251257,
+   "deff_clustering_residual": 1.0700164598018351,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 0.87967572572234,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 1.77x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 749.1991803342657,
+   "n_effective_design_uncapped": 749.1991803342657,
+   "n_effective_kish": 801.6554546277076,
+   "population_total": 32952540.832578998,
+   "population_with_outcome": 4203574.687690999,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  }
+ },
+ "severity": {
+  "Normal": {
+   "n_obs": 12156,
+   "prop_weighted": 0.9336839471577751,
+   "prop_unweighted": 0.9039980256663376,
+   "se": 0.004513135265067069,
+   "df": 25,
+   "ci95_wald": [
+    0.924388971085579,
+    0.9429789232299712
+   ],
+   "ci95_logit": [
+    0.9237616212221426,
+    0.9423954239114455
+   ],
+   "se_srs_naive": 0.002256908409544583,
+   "se_srs_naive_at_unweighted_p": 0.0026719509268178145,
+   "se_ratio_vs_conventional_binomial": 1.6890786502737272,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 3.998792148472971,
+   "deff_unequal_weighting": 2.4169573109123044,
+   "deff_clustering_residual": 1.6544736352681328,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 1.1903601601667895,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.42x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 3039.917942382187,
+   "n_effective_design_uncapped": 3039.917942382187,
+   "n_effective_kish": 5029.4640890498795,
+   "population_total": 292851456.30047905,
+   "population_with_outcome": 273430703.649534,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "Mild": {
+   "n_obs": 12156,
+   "prop_weighted": 0.0482428557208711,
+   "prop_unweighted": 0.06910167818361303,
+   "se": 0.0036773018217465124,
+   "df": 25,
+   "ci95_wald": [
+    0.04066931084887422,
+    0.05581640059286798
+   ],
+   "ci95_logit": [
+    0.041209353393307356,
+    0.05640619373082731
+   ],
+   "se_srs_naive": 0.0019434985947569324,
+   "se_srs_naive_at_unweighted_p": 0.002300382607199265,
+   "se_ratio_vs_conventional_binomial": 1.598560956876499,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 3.5800582411803297,
+   "deff_unequal_weighting": 2.4169573109123044,
+   "deff_clustering_residual": 1.481225268239844,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 1.1903601601667895,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.42x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 3395.475487011133,
+   "n_effective_design_uncapped": 3395.475487011133,
+   "n_effective_kish": 5029.4640890498795,
+   "population_total": 292851456.30047905,
+   "population_with_outcome": 14127990.553950999,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "Moderate": {
+   "n_obs": 12156,
+   "prop_weighted": 0.01690675944739668,
+   "prop_unweighted": 0.024761434682461336,
+   "se": 0.0016521586248068305,
+   "df": 25,
+   "ci95_wald": [
+    0.013504075064343141,
+    0.02030944383045022
+   ],
+   "ci95_logit": [
+    0.013820117765911352,
+    0.020668336241052316
+   ],
+   "se_srs_naive": 0.00116931681793102,
+   "se_srs_naive_at_unweighted_p": 0.0014094445344181325,
+   "se_ratio_vs_conventional_binomial": 1.172205492633237,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 1.9963610668882747,
+   "deff_unequal_weighting": 2.4169573109123044,
+   "deff_clustering_residual": 0.8259811035449065,
+   "deff_below_1": false,
+   "deff_below_1_note": null,
+   "weight_cv": 1.1903601601667895,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.42x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 6089.078875369745,
+   "n_effective_design_uncapped": 6089.078875369745,
+   "n_effective_kish": 5029.4640890498795,
+   "population_total": 292851456.30047905,
+   "population_with_outcome": 4951169.125492,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  },
+  "Severe": {
+   "n_obs": 12156,
+   "prop_weighted": 0.0011664376739568265,
+   "prop_unweighted": 0.0021388614675880223,
+   "se": 0.00018692709757128328,
+   "df": 25,
+   "ci95_wald": [
+    0.0007814541099544913,
+    0.0015514212379591618
+   ],
+   "ci95_logit": [
+    0.0008384892915539639,
+    0.0016224443417181844
+   ],
+   "se_srs_naive": 0.0003095864803856561,
+   "se_srs_naive_at_unweighted_p": 0.0004190164154706831,
+   "se_ratio_vs_conventional_binomial": 0.4461092469642441,
+   "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+   "design_effect": 0.36456968396395634,
+   "deff_unequal_weighting": 2.4169573109123044,
+   "deff_clustering_residual": 0.15083828014585243,
+   "deff_below_1": true,
+   "deff_below_1_note": "the design SE came out BELOW the naive binomial SE for this domain, so the design 'penalty' is a gain here. Small domains whose outcome varies little within PSUs do this; it is not an arithmetic error, and it is why n_effective_design is capped at n_obs.",
+   "weight_cv": 1.1903601601667895,
+   "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.42x - read deff_unequal_weighting, not a remembered number from another row.",
+   "n_effective_design": 12156.0,
+   "n_effective_design_uncapped": 33343.419748532404,
+   "n_effective_kish": 5029.4640890498795,
+   "population_total": 292851456.30047905,
+   "population_with_outcome": 341592.971502,
+   "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+   "singleton_strata": [],
+   "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+  }
+ },
+ "model_oof": {
+  "rung": "L6_identity_free_demo",
+  "features": [
+   "LBXRBCSI",
+   "LBXMCVSI",
+   "LBXRDW",
+   "RIDAGEYR",
+   "RIAGENDR",
+   "PREGNANT"
+  ],
+  "n_folds": 5,
+  "weights_used_in_fit": false,
+  "split": "5-fold out-of-fold over all rows; dp.split3 is deliberately not used here",
+  "shared_cluster_optimism": {
+   "mechanism": "row-wise folds put all 49 stratum-by-PSU cells in every training fold, so a row is predicted by a model that saw its cluster-mates",
+   "magnitude_source": "ablation.json cluster_holdout, which holds PSUs out instead of rows",
+   "available": true,
+   "accuracy_points_mean": 0.001726,
+   "accuracy_points_worst_case": 0.005856,
+   "relative_to_ci_half_width": "0.32x to 1.08x of the design-based 95% half-width for this estimate (0.005399)",
+   "exceeds_ci_half_width": true,
+   "direction": "the accuracy below is optimistic by this much",
+   "why_not_fixed": "a PSU-held-out estimate cannot carry a design-based interval on the full design, which is the point of this block, so the optimism is disclosed rather than removed. Read exceeds_ci_half_width before treating it as small: this key used to end 'the optimism is smaller than the interval', and the worst rung's optimism is about 1.1x this interval's half-width, so that clause was false in the same dict as the number that refutes it"
+  },
+  "metrics": {
+   "accuracy": {
+    "n_obs": 12156,
+    "prop_weighted": 0.9733212133927629,
+    "prop_unweighted": 0.9629812438302073,
+    "se": 0.0026216927089763534,
+    "df": 25,
+    "ci95_wald": [
+     0.9679217361851539,
+     0.9787206906003719
+    ],
+    "ci95_logit": [
+     0.9673561269958753,
+     0.9782208271813636
+    ],
+    "se_srs_naive": 0.0014615570945193574,
+    "se_srs_naive_at_unweighted_p": 0.0017124759448195362,
+    "se_ratio_vs_conventional_binomial": 1.5309369552940681,
+    "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+    "design_effect": 3.2175996187994147,
+    "deff_unequal_weighting": 2.4169573109123044,
+    "deff_clustering_residual": 1.3312604257726421,
+    "deff_below_1": false,
+    "deff_below_1_note": null,
+    "weight_cv": 1.1903601601667895,
+    "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.42x - read deff_unequal_weighting, not a remembered number from another row.",
+    "n_effective_design": 3777.971606217363,
+    "n_effective_design_uncapped": 3777.971606217363,
+    "n_effective_kish": 5029.4640890498795,
+    "population_total": 292851456.30047905,
+    "population_with_outcome": 285038534.79021996,
+    "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+    "singleton_strata": [],
+    "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped.",
+    "unweighted_inside_ci": false
+   },
+   "sensitivity_recall": {
+    "n_obs": 1167,
+    "prop_weighted": 0.8638061365138545,
+    "prop_unweighted": 0.8406169665809768,
+    "se": 0.01683026505167621,
+    "df": 25,
+    "ci95_wald": [
+     0.8291435567868709,
+     0.8984687162408381
+    ],
+    "ci95_logit": [
+     0.825293575507249,
+     0.8949099853472093
+    ],
+    "se_srs_naive": 0.010040410851788816,
+    "se_srs_naive_at_unweighted_p": 0.01071481536356148,
+    "se_ratio_vs_conventional_binomial": 1.5707470899509763,
+    "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+    "design_effect": 2.809822864584633,
+    "deff_unequal_weighting": 2.4260285791113536,
+    "deff_clustering_residual": 1.158198583799809,
+    "deff_below_1": false,
+    "deff_below_1_note": null,
+    "weight_cv": 1.1941643852968291,
+    "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.43x - read deff_unequal_weighting, not a remembered number from another row.",
+    "n_effective_design": 415.32867239035505,
+    "n_effective_design_uncapped": 415.32867239035505,
+    "n_effective_kish": 481.0330801739641,
+    "population_total": 19420752.650945,
+    "population_with_outcome": 16775765.315604,
+    "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+    "singleton_strata": [],
+    "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped.",
+    "unweighted_inside_ci": true
+   },
+   "specificity": {
+    "n_obs": 10989,
+    "prop_weighted": 0.9810996566737366,
+    "prop_unweighted": 0.975975975975976,
+    "se": 0.0023953045668309654,
+    "df": 25,
+    "ci95_wald": [
+     0.9761664345727621,
+     0.986032878774711
+    ],
+    "ci95_logit": [
+     0.9754803073197188,
+     0.9854503888033747
+    ],
+    "se_srs_naive": 0.0012990094838496004,
+    "se_srs_naive_at_unweighted_p": 0.001460707818283859,
+    "se_ratio_vs_conventional_binomial": 1.6398245678216028,
+    "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+    "design_effect": 3.40014032904899,
+    "deff_unequal_weighting": 2.3910762590786736,
+    "deff_clustering_residual": 1.4220125000777382,
+    "deff_below_1": false,
+    "deff_below_1_note": null,
+    "weight_cv": 1.1794389594543133,
+    "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.39x - read deff_unequal_weighting, not a remembered number from another row.",
+    "n_effective_design": 3231.9254314640575,
+    "n_effective_design_uncapped": 3231.9254314640575,
+    "n_effective_kish": 4595.838362861027,
+    "population_total": 273430703.649534,
+    "population_with_outcome": 268262769.474616,
+    "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+    "singleton_strata": [],
+    "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped.",
+    "unweighted_inside_ci": true
+   },
+   "precision_ppv": {
+    "n_obs": 1245,
+    "prop_weighted": 0.7644912072756851,
+    "prop_unweighted": 0.7879518072289157,
+    "se": 0.026283955123280724,
+    "df": 25,
+    "ci95_wald": [
+     0.7103583883804508,
+     0.8186240261709193
+    ],
+    "ci95_logit": [
+     0.7061583646538857,
+     0.8142893559546331
+    ],
+    "se_srs_naive": 0.012025555160855884,
+    "se_srs_naive_at_unweighted_p": 0.011584637268965097,
+    "se_ratio_vs_conventional_binomial": 2.2688630220382184,
+    "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+    "design_effect": 4.777175150036731,
+    "deff_unequal_weighting": 2.414794526408809,
+    "deff_clustering_residual": 1.9782946738500211,
+    "deff_below_1": false,
+    "deff_below_1_note": null,
+    "weight_cv": 1.1894513552091186,
+    "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.41x - read deff_unequal_weighting, not a remembered number from another row.",
+    "n_effective_design": 260.61426698797663,
+    "n_effective_design_uncapped": 260.61426698797663,
+    "n_effective_kish": 515.5718163116416,
+    "population_total": 21943699.490522,
+    "population_with_outcome": 16775765.315604,
+    "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+    "singleton_strata": [],
+    "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped.",
+    "unweighted_inside_ci": true
+   },
+   "pr_auc": {
+    "prop_weighted": 0.8964554742859769,
+    "se": 0.015306338655497008,
+    "df": 25,
+    "ci95": [
+     0.8649314797234828,
+     0.927979468848471
+    ],
+    "prop_unweighted": 0.8971905768689552,
+    "replicates": 1000,
+    "variance_estimator": "Rao-Wu rescaled bootstrap",
+    "unweighted_inside_ci": true
+   }
+  },
+  "unweighted_inside_ci": "4 of 5",
+  "majority_baseline": {
+   "unweighted": 0.9039980256663376,
+   "weighted": 0.9336839471577754
+  },
+  "lift_over_baseline": {
+   "unweighted": 0.058983218163869755,
+   "weighted": 0.039637266234987534
+  }
+ },
+ "fit_weight_sensitivity": {
+  "weights_used_in_fit": true,
+  "metrics_population_scale": {
+   "accuracy": {
+    "n_obs": 12156,
+    "prop_weighted": 0.969411866794509,
+    "prop_unweighted": 0.9561533399144455,
+    "se": 0.0027327949585124445,
+    "df": 25,
+    "ci95_wald": [
+     0.9637835702206827,
+     0.9750401633683352
+    ],
+    "ci95_logit": [
+     0.9632533334740495,
+     0.974565518083334
+    ],
+    "se_srs_naive": 0.0015618355596143682,
+    "se_srs_naive_at_unweighted_p": 0.0018571059707996982,
+    "se_ratio_vs_conventional_binomial": 1.471534205092056,
+    "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+    "design_effect": 3.061564987120765,
+    "deff_unequal_weighting": 2.4169573109123044,
+    "deff_clustering_residual": 1.266702135489992,
+    "deff_below_1": false,
+    "deff_below_1_note": null,
+    "weight_cv": 1.1903601601667895,
+    "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.42x - read deff_unequal_weighting, not a remembered number from another row.",
+    "n_effective_design": 3970.518362712286,
+    "n_effective_design_uncapped": 3970.518362712286,
+    "n_effective_kish": 5029.4640890498795,
+    "population_total": 292851456.30047905,
+    "population_with_outcome": 283893676.94573796,
+    "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+    "singleton_strata": [],
+    "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+   },
+   "sensitivity_recall": {
+    "n_obs": 1167,
+    "prop_weighted": 0.8705713383587278,
+    "prop_unweighted": 0.8577549271636675,
+    "se": 0.015291340855237706,
+    "df": 25,
+    "ci95_wald": [
+     0.8390782323440742,
+     0.9020644443733814
+    ],
+    "ci95_logit": [
+     0.835692436533257,
+     0.8989415649309818
+    ],
+    "se_srs_naive": 0.009826118212803086,
+    "se_srs_naive_at_unweighted_p": 0.010225034892456077,
+    "se_ratio_vs_conventional_binomial": 1.4954805549386923,
+    "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+    "design_effect": 2.4217380707839835,
+    "deff_unequal_weighting": 2.4260285791113536,
+    "deff_clustering_residual": 0.99823146834942,
+    "deff_below_1": false,
+    "deff_below_1_note": null,
+    "weight_cv": 1.1941643852968291,
+    "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.43x - read deff_unequal_weighting, not a remembered number from another row.",
+    "n_effective_design": 481.8853095959341,
+    "n_effective_design_uncapped": 481.8853095959341,
+    "n_effective_kish": 481.0330801739641,
+    "population_total": 19420752.650945,
+    "population_with_outcome": 16907150.627267,
+    "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+    "singleton_strata": [],
+    "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+   },
+   "specificity": {
+    "n_obs": 10989,
+    "prop_weighted": 0.9764321371190167,
+    "prop_unweighted": 0.9666029666029666,
+    "se": 0.002572034974224116,
+    "df": 25,
+    "ci95_wald": [
+     0.9711349319305722,
+     0.9817293423074611
+    ],
+    "ci95_logit": [
+     0.9705117671590343,
+     0.9811869122641032
+    ],
+    "se_srs_naive": 0.0014471116742224802,
+    "se_srs_naive_at_unweighted_p": 0.001713953047592125,
+    "se_ratio_vs_conventional_binomial": 1.5006449434758329,
+    "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+    "design_effect": 3.159000141437772,
+    "deff_unequal_weighting": 2.3910762590786736,
+    "deff_clustering_residual": 1.3211624386480227,
+    "deff_below_1": false,
+    "deff_below_1_note": null,
+    "weight_cv": 1.1794389594543133,
+    "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.39x - read deff_unequal_weighting, not a remembered number from another row.",
+    "n_effective_design": 3478.6323228838223,
+    "n_effective_design_uncapped": 3478.6323228838223,
+    "n_effective_kish": 4595.838362861027,
+    "population_total": 273430703.649534,
+    "population_with_outcome": 266986526.31847098,
+    "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+    "singleton_strata": [],
+    "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+   },
+   "precision_ppv": {
+    "n_obs": 1368,
+    "prop_weighted": 0.7240337961694294,
+    "prop_unweighted": 0.7317251461988304,
+    "se": 0.023690395729969695,
+    "df": 25,
+    "ci95_wald": [
+     0.6752425128335747,
+     0.7728250795052841
+    ],
+    "ci95_logit": [
+     0.6726884601297731,
+     0.7700776045236774
+    ],
+    "se_srs_naive": 0.012085491585048444,
+    "se_srs_naive_at_unweighted_p": 0.011979009926331724,
+    "se_ratio_vs_conventional_binomial": 1.977658911350806,
+    "se_ratio_note": "design_effect and its square root are the inflation of the POPULATION proportion's variance, both SEs taken at the weighted p. se_ratio_vs_conventional_binomial is the different, smaller question a reader actually asks: how much wider the design interval is than the binomial interval a conventional paper puts around its UNWEIGHTED p-hat. Quoting sqrt(design_effect) for that overstates it, because weighting moves the proportion and sqrt(p(1-p)) is not flat between the two values.",
+    "design_effect": 3.8425187031315735,
+    "deff_unequal_weighting": 2.4075467754112605,
+    "deff_clustering_residual": 1.5960307572737353,
+    "deff_below_1": false,
+    "deff_below_1_note": null,
+    "weight_cv": 1.186400765092159,
+    "deff_decomposition_note": "design_effect = deff_unequal_weighting x deff_clustering_residual. The first is the Kish factor 1 + CV^2(w) and comes from deliberate oversampling; the second is what the clustering costs. For THIS estimate, attributing the whole design effect to clustering overstates it by 2.41x - read deff_unequal_weighting, not a remembered number from another row.",
+    "n_effective_design": 356.01648441817815,
+    "n_effective_design_uncapped": 356.01648441817815,
+    "n_effective_kish": 568.2132592278779,
+    "population_total": 23351327.958329998,
+    "population_with_outcome": 16907150.627267,
+    "population_note": "complete-case: these totals are what the 12,156 analysed rows represent, not the whole NHANES frame. See complete_case_population_excluded in the design block.",
+    "singleton_strata": [],
+    "singleton_strata_note": "None: every stratum has at least 2 PSUs, so no variance contribution was dropped."
+   },
+   "pr_auc": {
+    "prop_weighted": 0.8950588167221443,
+    "se": 0.01444224191565603,
+    "df": 25,
+    "ci95": [
+     0.8653144627086611,
+     0.9248031707356275
+    ],
+    "prop_unweighted": 0.8915930652233306,
+    "replicates": 1000,
+    "variance_estimator": "Rao-Wu rescaled bootstrap"
+   }
+  },
+  "paired_contrasts_weighted_minus_unweighted_fit": {
+   "accuracy": {
+    "delta": -0.003909346598253927,
+    "se": 0.001042371413053746,
+    "df": 25,
+    "ci95": [
+     -0.0060561507097260485,
+     -0.0017625424867818047
+    ],
+    "t": -3.750435352789511,
+    "p_value": 0.0009377397880401669,
+    "degenerate": null,
+    "p_holm": 0.0028132193641205007,
+    "significant_holm_05": true
+   },
+   "sensitivity_recall": {
+    "delta": 0.006765201844873503,
+    "se": 0.0047697074526399175,
+    "df": 25,
+    "ci95": [
+     -0.0030581945391931313,
+     0.016588598228940137
+    ],
+    "t": 1.41836829869495,
+    "p_value": 0.1684295341280655,
+    "degenerate": null,
+    "p_holm": 0.336859068256131,
+    "significant_holm_05": false
+   },
+   "pr_auc": {
+    "delta": -0.0013966575638326706,
+    "se": 0.0026906171501407438,
+    "df": 25,
+    "ci95": [
+     -0.00693808731524674,
+     0.004144772187581399
+    ],
+    "t": -0.519084464974741,
+    "p_value": 0.6082669780251886,
+    "degenerate": null,
+    "p_holm": 0.6082669780251886,
+    "significant_holm_05": false
+   }
+  },
+  "significance": {
+   "family": [
+    "accuracy",
+    "sensitivity_recall",
+    "pr_auc"
+   ],
+   "correction": "Holm step-down over the three contrasts above",
+   "note": "p_holm is the value every verdict in this block reads. p_value is kept beside it so a reader can see the size of the correction rather than take it on trust."
+  },
+  "n_predictions_changed": 187,
+  "pct_predictions_changed": 1.538,
+  "metrics_that_move_at_05": [
+   "accuracy"
+  ],
+  "verdict": "Fitting with survey weights changes 1.538% of predictions and moves 1 of 3 population-scale metrics detectably after Holm correction across the three (accuracy -0.0039 (Holm p 0.003)). It does not improve them, so weighting the fit is not a free upgrade: the unweighted fit is reported because it is what the manuscript trained AND because weighting the fit does not help on the population scale."
+ }
+}

@@ -1,0 +1,1449 @@
+{
+ "primary_cycle": "2017-2020",
+ "primary": {
+  "cycle": "2017-2020",
+  "n": 12156,
+  "identities": [
+   {
+    "identity": "MCV = HCT/RBC*10",
+    "mae": 0.0814090519,
+    "rmse": 0.1657869645,
+    "max_abs": 13.6740740741,
+    "median_rounding_bound": 0.2482852313,
+    "rows_within_rounding": 12079,
+    "rows_exceeding": 77,
+    "pct_exceeding": 0.6334,
+    "worst_row_excess": 13.486042524,
+    "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+    "pearson_r": 0.9996861351
+   },
+   {
+    "identity": "MCH = HGB/RBC*10",
+    "mae": 0.0650061235,
+    "rmse": 0.0795977523,
+    "max_abs": 0.3347826087,
+    "median_rounding_bound": 0.187354846,
+    "rows_within_rounding": 12054,
+    "rows_exceeding": 102,
+    "pct_exceeding": 0.8391,
+    "worst_row_excess": 0.0700213992,
+    "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+    "pearson_r": 0.9995218634
+   },
+   {
+    "identity": "MCHC = HGB/HCT*100",
+    "mae": 0.0748252639,
+    "rmse": 0.0915368722,
+    "max_abs": 0.3799086758,
+    "median_rounding_bound": 0.2144058337,
+    "rows_within_rounding": 12044,
+    "rows_exceeding": 112,
+    "pct_exceeding": 0.9214,
+    "worst_row_excess": 0.178744188,
+    "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+    "pearson_r": 0.9954353318
+   }
+  ],
+  "routes": {
+   "to_hgb": {
+    "MCH*RBC/10": {
+     "mae": 0.0304257321,
+     "rmse": 0.0371423608,
+     "max_abs": 0.112,
+     "bias": -0.0043948832,
+     "pearson_r": 0.9997074326,
+     "label_agreement_who": 0.9938302073,
+     "disagreements": 75,
+     "needs": [
+      "MCH",
+      "RBC"
+     ],
+     "needs_columns": [
+      "LBXMCHSI",
+      "LBXRBCSI"
+     ]
+    },
+    "MCHC*HCT/100": {
+     "mae": 0.0302329961,
+     "rmse": 0.0368508408,
+     "max_abs": 0.1664,
+     "bias": -0.0046680405,
+     "pearson_r": 0.9997126256,
+     "label_agreement_who": 0.99325436,
+     "disagreements": 82,
+     "needs": [
+      "HCT",
+      "MCHC"
+     ],
+     "needs_columns": [
+      "LBXHCT",
+      "LBXMC"
+     ]
+    },
+    "MCHC*MCV*RBC/1000": {
+     "mae": 0.030223575,
+     "rmse": 0.0412156177,
+     "max_abs": 1.882768,
+     "bias": -0.0021586467,
+     "pearson_r": 0.99963662,
+     "label_agreement_who": 0.9938302073,
+     "disagreements": 75,
+     "needs": [
+      "MCHC",
+      "MCV",
+      "RBC"
+     ],
+     "needs_columns": [
+      "LBXMC",
+      "LBXMCVSI",
+      "LBXRBCSI"
+     ]
+    },
+    "MCH*HCT/MCV": {
+     "mae": 0.0315176626,
+     "rmse": 0.0458792566,
+     "max_abs": 2.5824858757,
+     "bias": -0.006831401,
+     "pearson_r": 0.9995573622,
+     "label_agreement_who": 0.9944060546,
+     "disagreements": 68,
+     "needs": [
+      "HCT",
+      "MCH",
+      "MCV"
+     ],
+     "needs_columns": [
+      "LBXHCT",
+      "LBXMCHSI",
+      "LBXMCVSI"
+     ]
+    }
+   },
+   "cross_checked_against": "dataprep.HGB_ROUTES",
+   "to_hct": {
+    "MCV*RBC/10": {
+     "mae": 0.0381798207,
+     "rmse": 0.0878672039,
+     "max_abs": 7.384,
+     "bias": 0.0072511106,
+     "pearson_r": 0.9997827612,
+     "needs": [
+      "MCV",
+      "RBC"
+     ],
+     "needs_columns": [
+      "LBXMCVSI",
+      "LBXRBCSI"
+     ]
+    }
+   }
+  },
+  "subset_search": {
+   "n_subsets": 31,
+   "rows": [
+    {
+     "features": [
+      "RBC",
+      "HCT",
+      "MCV",
+      "MCH",
+      "MCHC"
+     ],
+     "k": 5,
+     "mae": 0.0286051639,
+     "max_abs": 0.1058824692,
+     "exponents": [
+      0.485,
+      0.5144,
+      0.0068,
+      0.4788,
+      0.521
+     ],
+     "intercept": -3.5164,
+     "label_agreement_who": 0.9947351102
+    },
+    {
+     "features": [
+      "RBC",
+      "HCT",
+      "MCH",
+      "MCHC"
+     ],
+     "k": 4,
+     "mae": 0.0286073519,
+     "max_abs": 0.1060424336,
+     "exponents": [
+      0.4805,
+      0.519,
+      0.4811,
+      0.5188
+     ],
+     "intercept": -3.496,
+     "label_agreement_who": 0.9947351102
+    },
+    {
+     "features": [
+      "HCT",
+      "MCV",
+      "MCH",
+      "MCHC"
+     ],
+     "k": 4,
+     "mae": 0.0297367035,
+     "max_abs": 0.1727195084,
+     "exponents": [
+      0.9994,
+      -0.08,
+      0.0811,
+      0.9185
+     ],
+     "intercept": -4.2323,
+     "label_agreement_who": 0.9939947351
+    },
+    {
+     "features": [
+      "RBC",
+      "MCV",
+      "MCH",
+      "MCHC"
+     ],
+     "k": 4,
+     "mae": 0.0298259155,
+     "max_abs": 0.2152808153,
+     "exponents": [
+      0.9994,
+      0.0988,
+      0.9007,
+      0.0994
+     ],
+     "intercept": -2.7569,
+     "label_agreement_who": 0.9944060546
+    },
+    {
+     "features": [
+      "RBC",
+      "HCT",
+      "MCV",
+      "MCHC"
+     ],
+     "k": 4,
+     "mae": 0.0298605845,
+     "max_abs": 0.1625629353,
+     "exponents": [
+      0.0528,
+      0.9467,
+      0.0532,
+      0.9982
+     ],
+     "intercept": -4.72,
+     "label_agreement_who": 0.9942415268
+    },
+    {
+     "features": [
+      "HCT",
+      "MCH",
+      "MCHC"
+     ],
+     "k": 3,
+     "mae": 0.0299611536,
+     "max_abs": 0.171417652,
+     "exponents": [
+      0.9994,
+      0.0009,
+      0.9976
+     ],
+     "intercept": -4.597,
+     "label_agreement_who": 0.994076999
+    },
+    {
+     "features": [
+      "HCT",
+      "MCV",
+      "MCHC"
+     ],
+     "k": 3,
+     "mae": 0.0299641062,
+     "max_abs": 0.1713460906,
+     "exponents": [
+      0.9994,
+      0.0007,
+      0.9986
+     ],
+     "intercept": -4.601,
+     "label_agreement_who": 0.9941592629
+    },
+    {
+     "features": [
+      "RBC",
+      "HCT",
+      "MCHC"
+     ],
+     "k": 3,
+     "mae": 0.0299657581,
+     "max_abs": 0.1714072034,
+     "exponents": [
+      -0.0006,
+      1.0,
+      0.9987
+     ],
+     "intercept": -4.5997,
+     "label_agreement_who": 0.9941592629
+    },
+    {
+     "features": [
+      "HCT",
+      "MCHC"
+     ],
+     "k": 2,
+     "mae": 0.0299694366,
+     "max_abs": 0.1711633987,
+     "exponents": [
+      0.9996,
+      0.9992
+     ],
+     "intercept": -4.6006,
+     "label_agreement_who": 0.994076999
+    },
+    {
+     "features": [
+      "RBC",
+      "HCT",
+      "MCV",
+      "MCH"
+     ],
+     "k": 4,
+     "mae": 0.0301414266,
+     "max_abs": 0.1110277915,
+     "exponents": [
+      0.956,
+      0.0436,
+      -0.0422,
+      0.9991
+     ],
+     "intercept": -2.2045,
+     "label_agreement_who": 0.9945705824
+    },
+    {
+     "features": [
+      "RBC",
+      "HCT",
+      "MCH"
+     ],
+     "k": 3,
+     "mae": 0.030200488,
+     "max_abs": 0.1110956428,
+     "exponents": [
+      0.9977,
+      0.0019,
+      0.9986
+     ],
+     "intercept": -2.3008,
+     "label_agreement_who": 0.9946528463
+    },
+    {
+     "features": [
+      "RBC",
+      "MCV",
+      "MCH"
+     ],
+     "k": 3,
+     "mae": 0.0302050875,
+     "max_abs": 0.1112752743,
+     "exponents": [
+      0.9995,
+      0.0008,
+      0.9994
+     ],
+     "intercept": -2.3032,
+     "label_agreement_who": 0.9945705824
+    },
+    {
+     "features": [
+      "RBC",
+      "MCH",
+      "MCHC"
+     ],
+     "k": 3,
+     "mae": 0.0302063235,
+     "max_abs": 0.1116267704,
+     "exponents": [
+      0.9994,
+      0.9997,
+      0.0018
+     ],
+     "intercept": -2.3065,
+     "label_agreement_who": 0.9946528463
+    },
+    {
+     "features": [
+      "RBC",
+      "MCH"
+     ],
+     "k": 2,
+     "mae": 0.0302069126,
+     "max_abs": 0.1114175593,
+     "exponents": [
+      0.9995,
+      1.0
+     ],
+     "intercept": -2.3016,
+     "label_agreement_who": 0.9945705824
+    },
+    {
+     "features": [
+      "RBC",
+      "MCV",
+      "MCHC"
+     ],
+     "k": 3,
+     "mae": 0.0304571964,
+     "max_abs": 1.84948229,
+     "exponents": [
+      0.9988,
+      0.9953,
+      0.9906
+     ],
+     "intercept": -6.8518,
+     "label_agreement_who": 0.9945705824
+    },
+    {
+     "features": [
+      "HCT",
+      "MCV",
+      "MCH"
+     ],
+     "k": 3,
+     "mae": 0.0313953878,
+     "max_abs": 2.5268307671,
+     "exponents": [
+      0.9994,
+      -0.9857,
+      0.993
+     ],
+     "intercept": -0.0372,
+     "label_agreement_who": 0.9951464297
+    },
+    {
+     "features": [
+      "HCT",
+      "MCH"
+     ],
+     "k": 2,
+     "mae": 0.2395071133,
+     "max_abs": 1.3094663714,
+     "exponents": [
+      0.992,
+      0.1949
+     ],
+     "intercept": -1.7179,
+     "label_agreement_who": 0.9747449819
+    },
+    {
+     "features": [
+      "RBC",
+      "HCT",
+      "MCV"
+     ],
+     "k": 3,
+     "mae": 0.2780586478,
+     "max_abs": 1.7723526231,
+     "exponents": [
+      0.5697,
+      0.4571,
+      0.6897
+     ],
+     "intercept": -3.0378,
+     "label_agreement_who": 0.9706317868
+    },
+    {
+     "features": [
+      "RBC",
+      "MCV"
+     ],
+     "k": 2,
+     "mae": 0.2781544275,
+     "max_abs": 1.7784482523,
+     "exponents": [
+      1.0264,
+      1.1441
+     ],
+     "intercept": -4.0775,
+     "label_agreement_who": 0.9703849951
+    },
+    {
+     "features": [
+      "HCT",
+      "MCV"
+     ],
+     "k": 2,
+     "mae": 0.2782677015,
+     "max_abs": 1.7643388744,
+     "exponents": [
+      1.0266,
+      0.1234
+     ],
+     "intercept": -1.7399,
+     "label_agreement_who": 0.9707963146
+    },
+    {
+     "features": [
+      "RBC",
+      "HCT"
+     ],
+     "k": 2,
+     "mae": 0.2782763257,
+     "max_abs": 1.7645769162,
+     "exponents": [
+      -0.1226,
+      1.1496
+     ],
+     "intercept": -1.4557,
+     "label_agreement_who": 0.9706317868
+    },
+    {
+     "features": [
+      "HCT"
+     ],
+     "k": 1,
+     "mae": 0.2867110938,
+     "max_abs": 2.2280238909,
+     "exponents": [
+      1.0649
+     ],
+     "intercept": -1.3316,
+     "label_agreement_who": 0.9660250082
+    },
+    {
+     "features": [
+      "RBC",
+      "MCHC"
+     ],
+     "k": 2,
+     "mae": 0.7182952202,
+     "max_abs": 4.693339845,
+     "exponents": [
+      0.7421,
+      2.0011
+     ],
+     "intercept": -5.5674,
+     "label_agreement_who": 0.9245640013
+    },
+    {
+     "features": [
+      "RBC"
+     ],
+     "k": 1,
+     "mae": 0.8805031581,
+     "max_abs": 11.136739971,
+     "exponents": [
+      0.7164
+     ],
+     "intercept": 1.5031,
+     "label_agreement_who": 0.9086048042
+    },
+    {
+     "features": [
+      "MCV",
+      "MCH"
+     ],
+     "k": 2,
+     "mae": 1.0140381218,
+     "max_abs": 6.4974854323,
+     "exponents": [
+      -0.8501,
+      1.3537
+     ],
+     "intercept": 1.8438,
+     "label_agreement_who": 0.9016123725
+    },
+    {
+     "features": [
+      "MCH",
+      "MCHC"
+     ],
+     "k": 2,
+     "mae": 1.0140483531,
+     "max_abs": 6.4631169984,
+     "exponents": [
+      0.4975,
+      0.8637
+     ],
+     "intercept": -2.0984,
+     "label_agreement_who": 0.9019414281
+    },
+    {
+     "features": [
+      "MCV",
+      "MCH",
+      "MCHC"
+     ],
+     "k": 3,
+     "mae": 1.0140490429,
+     "max_abs": 6.4622304522,
+     "exponents": [
+      0.0645,
+      0.4329,
+      0.9274
+     ],
+     "intercept": -2.3923,
+     "label_agreement_who": 0.9019414281
+    },
+    {
+     "features": [
+      "MCV",
+      "MCHC"
+     ],
+     "k": 2,
+     "mae": 1.0142414948,
+     "max_abs": 6.4523980788,
+     "exponents": [
+      0.4955,
+      1.3556
+     ],
+     "intercept": -4.361,
+     "label_agreement_who": 0.9019414281
+    },
+    {
+     "features": [
+      "MCH"
+     ],
+     "k": 1,
+     "mae": 1.0273176418,
+     "max_abs": 7.3283279233,
+     "exponents": [
+      0.6624
+     ],
+     "intercept": 0.3809,
+     "label_agreement_who": 0.9026818032
+    },
+    {
+     "features": [
+      "MCV"
+     ],
+     "k": 1,
+     "mae": 1.068933004,
+     "max_abs": 7.66593428,
+     "exponents": [
+      0.6821
+     ],
+     "intercept": -0.4301,
+     "label_agreement_who": 0.9039980257
+    },
+    {
+     "features": [
+      "MCHC"
+     ],
+     "k": 1,
+     "mae": 1.0965676941,
+     "max_abs": 6.0311367833,
+     "exponents": [
+      1.8796
+     ],
+     "intercept": -3.9928,
+     "label_agreement_who": 0.8920697598
+    }
+   ],
+   "exact_threshold_mae": 0.05,
+   "exact_threshold_note": "half the 0.1 g/dL grid HGB is published on, not an estimate of the error floor (pure 1-decimal rounding gives MAE ~0.025)",
+   "n_exact": 16,
+   "worst_exact_mae": 0.0313953878,
+   "best_non_exact_mae": 0.2395071133,
+   "gap_at_threshold": 0.2081117255,
+   "gap_note": "any cutoff inside this gap gives the same n_exact, so the split does not depend on the 0.05 choice",
+   "fit_note": "log-linear coefficients are fitted by least squares on all n rows and scored on the same rows; the named routes in `routes` are closed forms with no fitted parameter and carry no such caveat",
+   "minimal_exact": [
+    {
+     "features": [
+      "HCT",
+      "MCHC"
+     ],
+     "k": 2,
+     "mae": 0.0299694366,
+     "max_abs": 0.1711633987,
+     "exponents": [
+      0.9996,
+      0.9992
+     ],
+     "intercept": -4.6006,
+     "label_agreement_who": 0.994076999
+    },
+    {
+     "features": [
+      "RBC",
+      "MCH"
+     ],
+     "k": 2,
+     "mae": 0.0302069126,
+     "max_abs": 0.1114175593,
+     "exponents": [
+      0.9995,
+      1.0
+     ],
+     "intercept": -2.3016,
+     "label_agreement_who": 0.9945705824
+    }
+   ],
+   "smallest_exact": {
+    "features": [
+     "HCT",
+     "MCHC"
+    ],
+    "k": 2,
+    "mae": 0.0299694366,
+    "max_abs": 0.1711633987,
+    "exponents": [
+     0.9996,
+     0.9992
+    ],
+    "intercept": -4.6006,
+    "label_agreement_who": 0.994076999
+   }
+  },
+  "ranks": {
+   "variables": [
+    "RBC",
+    "HGB",
+    "HCT",
+    "MCV",
+    "MCH",
+    "MCHC"
+   ],
+   "cumulative_variance_cutoff": 0.999,
+   "standardisation": "each column centred and divided by its own SD (correlation-matrix PCA), in levels and in logs",
+   "levels": {
+    "singular_values": [
+     196.854795,
+     159.117391,
+     93.586335,
+     9.029585,
+     4.538308,
+     2.305221
+    ],
+    "variance_ratio": [
+     0.5313125226,
+     0.3471309663,
+     0.1200833883,
+     0.001117876,
+     0.0002823878,
+     7.2859e-05
+    ],
+    "k": 4,
+    "k_999": 4,
+    "k_9999": 5
+   },
+   "logs": {
+    "singular_values": [
+     199.250053,
+     157.49854,
+     91.723197,
+     3.376311,
+     1.958671,
+     1.116104
+    ],
+    "variance_ratio": [
+     0.5443208228,
+     0.3401035167,
+     0.1153496876,
+     0.0001562943,
+     5.25994e-05,
+     1.70792e-05
+    ],
+    "k": 3,
+    "k_999": 3,
+    "k_9999": 4,
+    "trailing3_variance_pct": 0.0225972896
+   },
+   "k_note": "`k` is the count at cumulative_variance_cutoff, so it equals k_999 while that cutoff is 0.999; k_9999 is there to show the count moves with the cutoff and the gap between levels and logs does not",
+   "rounding_null": {
+    "n_draws": 25,
+    "seed": 42,
+    "n_rows": 12156,
+    "variance_ratio": [
+     0.5434937844,
+     0.3402693051,
+     0.1161646262,
+     4.5209e-05,
+     2.10343e-05,
+     6.0409e-06
+    ],
+    "trailing3_variance_pct": 0.007228426,
+    "trailing3_variance_pct_sd_across_draws": 4.82408e-05,
+    "naive_derived_from_rounded_inputs": {
+     "variance_ratio": [
+      0.5438833184,
+      0.3401958902,
+      0.1158952479,
+      2.14279e-05,
+      3.4611e-06,
+      6.544e-07
+     ],
+     "trailing3_variance_pct": 0.002554345,
+     "why_not_used": "the derived indices inherit their inputs' rounding error, so this understates the null and overstates the anomaly"
+    },
+    "naive_understates_null_by": 2.83
+   },
+   "clean_rows": {
+    "n_excluded": 279,
+    "pct_excluded": 2.295,
+    "variance_ratio": [
+     0.5423970119,
+     0.3402164549,
+     0.1172995521,
+     5.34563e-05,
+     2.62015e-05,
+     7.3233e-06
+    ],
+    "trailing3_variance_pct": 0.0086981052,
+    "row_matched_null_trailing3_variance_pct": 0.0073141792,
+    "random_exclusion_control": {
+     "n_excluded": 279,
+     "trailing3_variance_pct": 0.0228458139,
+     "what_it_is": "the same number of rows dropped at random instead of by residual; the distance from this to the clean figure is what the exclusion actually bought"
+    }
+   },
+   "trailing_ratio_observed_to_null": 3.126,
+   "trailing_ratio_clean_to_null": 1.189,
+   "trailing_ratio_random_to_null": 3.161,
+   "ratio_note": "the clean ratio uses a null rebuilt on the surviving rows, not the full-cohort null, so numerator and denominator describe the same rows",
+   "n_identities": 3,
+   "degrees_of_freedom": 3,
+   "levels_minus_logs": 1,
+   "note": "degrees_of_freedom is arithmetic: 6 published variables minus 3 exact identities. The spectra are the check, not the claim: at 0.999 cumulative variance the standardised log block needs 3 components and a levels test at the same cutoff needs 1 more, because in levels the identities are products and a linear rank test cannot see them. That gap of 1 is a property of the rank test, not the cost of the identities"
+  }
+ },
+ "replication": {
+  "2011-2012": {
+   "n": 7952,
+   "is_primary": false,
+   "identities": [
+    {
+     "identity": "MCV = HCT/RBC*10",
+     "mae": 0.1220945145,
+     "rmse": 0.2157497001,
+     "max_abs": 4.2648351648,
+     "median_rounding_bound": 0.2559737275,
+     "rows_within_rounding": 7494,
+     "rows_exceeding": 458,
+     "pct_exceeding": 5.7596,
+     "worst_row_excess": 4.0117195991,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9994432436
+    },
+    {
+     "identity": "MCH = HGB/RBC*10",
+     "mae": 0.0878894123,
+     "rmse": 0.1244794318,
+     "max_abs": 1.5911949686,
+     "median_rounding_bound": 0.1929953834,
+     "rows_within_rounding": 7430,
+     "rows_exceeding": 522,
+     "pct_exceeding": 6.5644,
+     "worst_row_excess": 1.4001140514,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9987898221
+    },
+    {
+     "identity": "MCHC = HGB/HCT*100",
+     "mae": 0.0947073793,
+     "rmse": 0.1282962018,
+     "max_abs": 1.7184331797,
+     "median_rounding_bound": 0.2193067034,
+     "rows_within_rounding": 7528,
+     "rows_exceeding": 424,
+     "pct_exceeding": 5.332,
+     "worst_row_excess": 1.5094257682,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9930272063
+    }
+   ],
+   "routes": {
+    "to_hgb": {
+     "MCH*RBC/10": {
+      "mae": 0.0397994341,
+      "rmse": 0.0567057398,
+      "max_abs": 0.759,
+      "bias": -0.0047176434,
+      "pearson_r": 0.9992750997,
+      "label_agreement_who": 0.9925804829,
+      "disagreements": 59,
+      "needs": [
+       "MCH",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMCHSI",
+       "LBXRBCSI"
+      ]
+     },
+     "MCHC*HCT/100": {
+      "mae": 0.037413833,
+      "rmse": 0.0510433305,
+      "max_abs": 0.7624,
+      "bias": -0.0046482897,
+      "pearson_r": 0.999414538,
+      "label_agreement_who": 0.9942152918,
+      "disagreements": 46,
+      "needs": [
+       "HCT",
+       "MCHC"
+      ],
+      "needs_columns": [
+       "LBXHCT",
+       "LBXMC"
+      ]
+     },
+     "MCHC*MCV*RBC/1000": {
+      "mae": 0.0402774546,
+      "rmse": 0.0577349476,
+      "max_abs": 0.755503,
+      "bias": -0.0050902654,
+      "pearson_r": 0.9992506127,
+      "label_agreement_who": 0.9935865191,
+      "disagreements": 51,
+      "needs": [
+       "MCHC",
+       "MCV",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMC",
+       "LBXMCVSI",
+       "LBXRBCSI"
+      ]
+     },
+     "MCH*HCT/MCV": {
+      "mae": 0.0390090636,
+      "rmse": 0.0537267831,
+      "max_abs": 0.7615384615,
+      "bias": -0.00426136,
+      "pearson_r": 0.9993488029,
+      "label_agreement_who": 0.9942152918,
+      "disagreements": 46,
+      "needs": [
+       "HCT",
+       "MCH",
+       "MCV"
+      ],
+      "needs_columns": [
+       "LBXHCT",
+       "LBXMCHSI",
+       "LBXMCVSI"
+      ]
+     }
+    },
+    "cross_checked_against": "dataprep.HGB_ROUTES",
+    "to_hct": {
+     "MCV*RBC/10": {
+      "mae": 0.0554351232,
+      "rmse": 0.0988916837,
+      "max_abs": 1.9405,
+      "bias": -0.0013746102,
+      "pearson_r": 0.9997226437,
+      "needs": [
+       "MCV",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMCVSI",
+       "LBXRBCSI"
+      ]
+     }
+    }
+   },
+   "log_components_at_cutoff": 3,
+   "levels_components_at_cutoff": 4,
+   "degrees_of_freedom": 3,
+   "cumulative_variance_cutoff": 0.999,
+   "smallest_exact": {
+    "features": [
+     "HCT",
+     "MCHC"
+    ],
+    "k": 2,
+    "mae": 0.0369939696,
+    "max_abs": 0.7608961819,
+    "exponents": [
+     0.9979,
+     0.9969
+    ],
+    "intercept": -4.586,
+    "label_agreement_who": 0.9944668008
+   }
+  },
+  "2013-2014": {
+   "n": 8544,
+   "is_primary": false,
+   "identities": [
+    {
+     "identity": "MCV = HCT/RBC*10",
+     "mae": 0.099705184,
+     "rmse": 0.1456839214,
+     "max_abs": 2.3902654867,
+     "median_rounding_bound": 0.2513883894,
+     "rows_within_rounding": 8249,
+     "rows_exceeding": 295,
+     "pct_exceeding": 3.4527,
+     "worst_row_excess": 2.1249001488,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9997463761
+    },
+    {
+     "identity": "MCH = HGB/RBC*10",
+     "mae": 0.0776650492,
+     "rmse": 0.0982027961,
+     "max_abs": 0.9688073394,
+     "median_rounding_bound": 0.1895426517,
+     "rows_within_rounding": 8184,
+     "rows_exceeding": 360,
+     "pct_exceeding": 4.2135,
+     "worst_row_excess": 0.7667788907,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9992733659
+    },
+    {
+     "identity": "MCHC = HGB/HCT*100",
+     "mae": 0.088420058,
+     "rmse": 0.1110409309,
+     "max_abs": 0.971291866,
+     "median_rounding_bound": 0.2163439859,
+     "rows_within_rounding": 8205,
+     "rows_exceeding": 339,
+     "pct_exceeding": 3.9677,
+     "worst_row_excess": 0.7610391246,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9943622819
+    }
+   ],
+   "routes": {
+    "to_hgb": {
+     "MCH*RBC/10": {
+      "mae": 0.0358733848,
+      "rmse": 0.0451016005,
+      "max_abs": 0.4224,
+      "bias": -0.0051051498,
+      "pearson_r": 0.9995470145,
+      "label_agreement_who": 0.9939138577,
+      "disagreements": 52,
+      "needs": [
+       "MCH",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMCHSI",
+       "LBXRBCSI"
+      ]
+     },
+     "MCHC*HCT/100": {
+      "mae": 0.0354284644,
+      "rmse": 0.0442994058,
+      "max_abs": 0.406,
+      "bias": -0.0045673221,
+      "pearson_r": 0.9995621363,
+      "label_agreement_who": 0.9939138577,
+      "disagreements": 52,
+      "needs": [
+       "HCT",
+       "MCHC"
+      ],
+      "needs_columns": [
+       "LBXHCT",
+       "LBXMC"
+      ]
+     },
+     "MCHC*MCV*RBC/1000": {
+      "mae": 0.0362744445,
+      "rmse": 0.0466395153,
+      "max_abs": 0.430684,
+      "bias": -0.0052354679,
+      "pearson_r": 0.9995154302,
+      "label_agreement_who": 0.9939138577,
+      "disagreements": 52,
+      "needs": [
+       "MCHC",
+       "MCV",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMC",
+       "LBXMCVSI",
+       "LBXRBCSI"
+      ]
+     },
+     "MCH*HCT/MCV": {
+      "mae": 0.0367172849,
+      "rmse": 0.0470107316,
+      "max_abs": 0.3977011494,
+      "bias": -0.0044234768,
+      "pearson_r": 0.999506146,
+      "label_agreement_who": 0.9940308989,
+      "disagreements": 51,
+      "needs": [
+       "HCT",
+       "MCH",
+       "MCV"
+      ],
+      "needs_columns": [
+       "LBXHCT",
+       "LBXMCHSI",
+       "LBXMCVSI"
+      ]
+     }
+    },
+    "cross_checked_against": "dataprep.HGB_ROUTES",
+    "to_hct": {
+     "MCV*RBC/10": {
+      "mae": 0.046061786,
+      "rmse": 0.0680573912,
+      "max_abs": 1.1832,
+      "bias": -0.0020006671,
+      "pearson_r": 0.999862735,
+      "needs": [
+       "MCV",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMCVSI",
+       "LBXRBCSI"
+      ]
+     }
+    }
+   },
+   "log_components_at_cutoff": 3,
+   "levels_components_at_cutoff": 4,
+   "degrees_of_freedom": 3,
+   "cumulative_variance_cutoff": 0.999,
+   "smallest_exact": {
+    "features": [
+     "HCT",
+     "MCHC"
+    ],
+    "k": 2,
+    "mae": 0.035131873,
+    "max_abs": 0.4019678157,
+    "exponents": [
+     0.9985,
+     0.9999
+    ],
+    "intercept": -4.5988,
+    "label_agreement_who": 0.9943820225
+   }
+  },
+  "2015-2016": {
+   "n": 8117,
+   "is_primary": false,
+   "identities": [
+    {
+     "identity": "MCV = HCT/RBC*10",
+     "mae": 0.0793456194,
+     "rmse": 0.0988909323,
+     "max_abs": 0.5880597015,
+     "median_rounding_bound": 0.2471161109,
+     "rows_within_rounding": 8055,
+     "rows_exceeding": 62,
+     "pct_exceeding": 0.7638,
+     "worst_row_excess": 0.3607164736,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9998883083
+    },
+    {
+     "identity": "MCH = HGB/RBC*10",
+     "mae": 0.0651218568,
+     "rmse": 0.0798468195,
+     "max_abs": 0.6868131868,
+     "median_rounding_bound": 0.1864473752,
+     "rows_within_rounding": 8042,
+     "rows_exceeding": 75,
+     "pct_exceeding": 0.924,
+     "worst_row_excess": 0.4974580365,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9994956417
+    },
+    {
+     "identity": "MCHC = HGB/HCT*100",
+     "mae": 0.0746317462,
+     "rmse": 0.09160723,
+     "max_abs": 0.8531914894,
+     "median_rounding_bound": 0.2136945588,
+     "rows_within_rounding": 8048,
+     "rows_exceeding": 69,
+     "pct_exceeding": 0.8501,
+     "worst_row_excess": 0.6270654142,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9954459153
+    }
+   ],
+   "routes": {
+    "to_hgb": {
+     "MCH*RBC/10": {
+      "mae": 0.0306319083,
+      "rmse": 0.0374321711,
+      "max_abs": 0.3125,
+      "bias": -0.0048111864,
+      "pearson_r": 0.9996891319,
+      "label_agreement_who": 0.9932240976,
+      "disagreements": 55,
+      "needs": [
+       "MCH",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMCHSI",
+       "LBXRBCSI"
+      ]
+     },
+     "MCHC*HCT/100": {
+      "mae": 0.0302479857,
+      "rmse": 0.0369265047,
+      "max_abs": 0.3208,
+      "bias": -0.0051824935,
+      "pearson_r": 0.9996985186,
+      "label_agreement_who": 0.9937168905,
+      "disagreements": 51,
+      "needs": [
+       "HCT",
+       "MCHC"
+      ],
+      "needs_columns": [
+       "LBXHCT",
+       "LBXMC"
+      ]
+     },
+     "MCHC*MCV*RBC/1000": {
+      "mae": 0.0300496151,
+      "rmse": 0.0366442839,
+      "max_abs": 0.2999875,
+      "bias": -0.0021672145,
+      "pearson_r": 0.9996983226,
+      "label_agreement_who": 0.9935936923,
+      "disagreements": 52,
+      "needs": [
+       "MCHC",
+       "MCV",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMC",
+       "LBXMCVSI",
+       "LBXRBCSI"
+      ]
+     },
+     "MCH*HCT/MCV": {
+      "mae": 0.0315349388,
+      "rmse": 0.0387887579,
+      "max_abs": 0.3333333333,
+      "bias": -0.0078234642,
+      "pearson_r": 0.9996743623,
+      "label_agreement_who": 0.9939632869,
+      "disagreements": 49,
+      "needs": [
+       "HCT",
+       "MCH",
+       "MCV"
+      ],
+      "needs_columns": [
+       "LBXHCT",
+       "LBXMCHSI",
+       "LBXMCVSI"
+      ]
+     }
+    },
+    "cross_checked_against": "dataprep.HGB_ROUTES",
+    "to_hct": {
+     "MCV*RBC/10": {
+      "mae": 0.0373037822,
+      "rmse": 0.0463465575,
+      "max_abs": 0.3152,
+      "bias": 0.0090421092,
+      "pearson_r": 0.999940806,
+      "needs": [
+       "MCV",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMCVSI",
+       "LBXRBCSI"
+      ]
+     }
+    }
+   },
+   "log_components_at_cutoff": 3,
+   "levels_components_at_cutoff": 4,
+   "degrees_of_freedom": 3,
+   "cumulative_variance_cutoff": 0.999,
+   "smallest_exact": {
+    "features": [
+     "HCT",
+     "MCHC"
+    ],
+    "k": 2,
+    "mae": 0.0299458768,
+    "max_abs": 0.3262973904,
+    "exponents": [
+     0.9993,
+     0.9995
+    ],
+    "intercept": -4.6004,
+    "label_agreement_who": 0.9947024763
+   }
+  },
+  "2017-2020": {
+   "n": 12156,
+   "is_primary": true,
+   "identities": [
+    {
+     "identity": "MCV = HCT/RBC*10",
+     "mae": 0.0814090519,
+     "rmse": 0.1657869645,
+     "max_abs": 13.6740740741,
+     "median_rounding_bound": 0.2482852313,
+     "rows_within_rounding": 12079,
+     "rows_exceeding": 77,
+     "pct_exceeding": 0.6334,
+     "worst_row_excess": 13.486042524,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9996861351
+    },
+    {
+     "identity": "MCH = HGB/RBC*10",
+     "mae": 0.0650061235,
+     "rmse": 0.0795977523,
+     "max_abs": 0.3347826087,
+     "median_rounding_bound": 0.187354846,
+     "rows_within_rounding": 12054,
+     "rows_exceeding": 102,
+     "pct_exceeding": 0.8391,
+     "worst_row_excess": 0.0700213992,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9995218634
+    },
+    {
+     "identity": "MCHC = HGB/HCT*100",
+     "mae": 0.0748252639,
+     "rmse": 0.0915368722,
+     "max_abs": 0.3799086758,
+     "median_rounding_bound": 0.2144058337,
+     "rows_within_rounding": 12044,
+     "rows_exceeding": 112,
+     "pct_exceeding": 0.9214,
+     "worst_row_excess": 0.178744188,
+     "worst_row_excess_note": "by how much the worst row misses its own bound. Positive is a genuine violation; with no violations it is negative and is the tightest margin, not an excess",
+     "pearson_r": 0.9954353318
+    }
+   ],
+   "routes": {
+    "to_hgb": {
+     "MCH*RBC/10": {
+      "mae": 0.0304257321,
+      "rmse": 0.0371423608,
+      "max_abs": 0.112,
+      "bias": -0.0043948832,
+      "pearson_r": 0.9997074326,
+      "label_agreement_who": 0.9938302073,
+      "disagreements": 75,
+      "needs": [
+       "MCH",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMCHSI",
+       "LBXRBCSI"
+      ]
+     },
+     "MCHC*HCT/100": {
+      "mae": 0.0302329961,
+      "rmse": 0.0368508408,
+      "max_abs": 0.1664,
+      "bias": -0.0046680405,
+      "pearson_r": 0.9997126256,
+      "label_agreement_who": 0.99325436,
+      "disagreements": 82,
+      "needs": [
+       "HCT",
+       "MCHC"
+      ],
+      "needs_columns": [
+       "LBXHCT",
+       "LBXMC"
+      ]
+     },
+     "MCHC*MCV*RBC/1000": {
+      "mae": 0.030223575,
+      "rmse": 0.0412156177,
+      "max_abs": 1.882768,
+      "bias": -0.0021586467,
+      "pearson_r": 0.99963662,
+      "label_agreement_who": 0.9938302073,
+      "disagreements": 75,
+      "needs": [
+       "MCHC",
+       "MCV",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMC",
+       "LBXMCVSI",
+       "LBXRBCSI"
+      ]
+     },
+     "MCH*HCT/MCV": {
+      "mae": 0.0315176626,
+      "rmse": 0.0458792566,
+      "max_abs": 2.5824858757,
+      "bias": -0.006831401,
+      "pearson_r": 0.9995573622,
+      "label_agreement_who": 0.9944060546,
+      "disagreements": 68,
+      "needs": [
+       "HCT",
+       "MCH",
+       "MCV"
+      ],
+      "needs_columns": [
+       "LBXHCT",
+       "LBXMCHSI",
+       "LBXMCVSI"
+      ]
+     }
+    },
+    "cross_checked_against": "dataprep.HGB_ROUTES",
+    "to_hct": {
+     "MCV*RBC/10": {
+      "mae": 0.0381798207,
+      "rmse": 0.0878672039,
+      "max_abs": 7.384,
+      "bias": 0.0072511106,
+      "pearson_r": 0.9997827612,
+      "needs": [
+       "MCV",
+       "RBC"
+      ],
+      "needs_columns": [
+       "LBXMCVSI",
+       "LBXRBCSI"
+      ]
+     }
+    }
+   },
+   "log_components_at_cutoff": 3,
+   "levels_components_at_cutoff": 4,
+   "degrees_of_freedom": 3,
+   "cumulative_variance_cutoff": 0.999,
+   "smallest_exact": {
+    "features": [
+     "HCT",
+     "MCHC"
+    ],
+    "k": 2,
+    "mae": 0.0299694366,
+    "max_abs": 0.1711633987,
+    "exponents": [
+     0.9996,
+     0.9992
+    ],
+    "intercept": -4.6006,
+    "label_agreement_who": 0.994076999
+   }
+  }
+ },
+ "replication_note": "all four cycles, including the primary one (2017-2020), so the primary row is the same audit re-listed rather than a fifth dataset"
+}
