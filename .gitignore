@@ -19,6 +19,12 @@ figures/fig1_flowchart_clean.*
 figures/fig1_flowchart_final.*
 figures/fig1_workflow.*
 
+# Representative result figures displayed in the README.
+!figures/fig2_ladder.png
+!figures/fig3_decomposition.png
+!figures/fig9_contrasts.png
+!figures/fig10_out_of_cycle.png
+
 # results/ IS tracked on purpose - the JSON files are the paper's evidence
 # and are small enough to commit. The exception is the run log, which is just
 # the stdout of one machine's run; run_manifest.json is the part worth keeping.

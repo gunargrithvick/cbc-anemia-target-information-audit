@@ -104,6 +104,13 @@ structure, file size, and record count before accepting a file.
 | Figures | Matplotlib |
 | Quality checks | pytest, coverage, and pyflakes |
 
+## Tested Environment
+
+The latest full pipeline run was completed with Python 3.14.7 on Windows 11.
+The package versions used for that run are pinned in `requirements.txt` and are
+recorded in `results/run_manifest.json`. Reproduction on a different Python or
+operating-system version may produce implementation-level differences.
+
 ## Repository Structure
 
 ```text
@@ -163,24 +170,48 @@ python src/figures.py
 python src/anemia_app.py
 ```
 
-## Main Results
+## Results at a Glance
 
-The current JSON results report:
+The values below are taken from the current JSON result files. The confidence
+intervals and *p*-values for paired accuracy contrasts use the Rao--Wu design-
+based procedure; the L1--L4 comparison also reflects the physiological
+differences between those feature rungs.
 
-- Four analyzer-based HGB reconstruction routes with mean absolute errors from
-  0.0302 to 0.0315 g/dL and WHO-label agreement from 99.325% to 99.441%.
-- Random Forest accuracy of 0.9502 for the MCH-containing submitted rung and
-  0.9354 for the identity-reduced CBC rung, a difference of 1.48 percentage
-  points on the primary test block.
-- A positive L1--L4 accuracy difference in all three earlier NHANES cycles,
-  with the magnitude varying from 0.23 to 1.77 percentage points.
-- Survey-weighted prevalence, design-based confidence intervals, and paired
-  uncertainty estimates based on the primary NHANES design.
+| Analysis | Main result | 95% confidence interval | *p*-value |
+| --- | --- | --- | --- |
+| Primary cohort | 13,772 merged records; 12,156 complete cases; 1,616 excluded | Not applicable | Not applicable |
+| HGB reconstruction | MAE 0.0302--0.0315 g/dL; WHO-label agreement 99.325%--99.441% | Not applicable | Not applicable |
+| HGB present (L0) versus submitted rung (L1) | Accuracy 0.9548 versus 0.9502; difference -0.0045 | [-0.0113, 0.0023] | 0.184 (Holm: 0.184) |
+| Submitted rung (L1) versus identity-reduced rung (L4) | Accuracy 0.9502 versus 0.9354; difference -0.0148 | [-0.0237, -0.0059] | 0.0021 (Holm: 0.0043) |
+| Out-of-cycle replication | L1--L4 difference positive in all three earlier cycles; magnitude 0.23--1.77 percentage points | Not applicable | Not applicable |
+| Survey-weighted prevalence | 6.63% with design-based SE 0.45 percentage points | [5.76%, 7.62%] | Not applicable |
 
 The 1.48-point difference is not interpreted as a pure leakage effect. L1 and
 L4 differ in both target-information recoverability and physiological feature
 content. The results support an audit of recoverability and model behavior, not
 a universal estimate of accuracy inflation.
+
+## Selected Result Figures
+
+The generated figures are reproducible from the JSON result files. The four
+figures below provide a compact visual summary of the feature ladder, the
+label/feature decomposition, the paired contrasts, and the out-of-cycle replay.
+
+### Feature Ladder
+
+![Feature-ladder results](figures/fig2_ladder.png)
+
+### Label and Feature Decomposition
+
+![Label and feature decomposition](figures/fig3_decomposition.png)
+
+### Paired Contrasts
+
+![Paired contrasts](figures/fig9_contrasts.png)
+
+### Out-of-Cycle Replication
+
+![Out-of-cycle replication](figures/fig10_out_of_cycle.png)
 
 ## Tests and Quality Checks
 
