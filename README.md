@@ -225,9 +225,13 @@ python quality_check.py
 The test suite checks analyzer identities, label construction, feature-rung
 definitions, split and survey-design properties, download-file integrity,
 result contracts, application input guards, static names, and dependency
-consistency. The latest automated source coverage is approximately 24%; this
-is a software-quality measure and does not replace reproduction of the full
-research pipeline.
+consistency. The repository currently contains 111 test-function definitions
+across 9 test files, which expand to 339 collected test cases through
+parameterization. The full suite runs all 339 cases. The faster command with
+the `not slow` marker runs 103 cases and skips tests that require the NHANES
+files or committed result artefacts. The latest automated source coverage is
+24.1% (displayed as 24%); this is a software-quality measure and does not
+replace reproduction of the full research pipeline.
 
 ## Known Limitations
 
