@@ -1,8 +1,8 @@
 """
-Step 4 - the comparator benchmark the manuscript never reported.
+Step 4 - the comparator benchmark for interpreting model performance.
 
-The submitted paper gives one number for one model with no baseline, so a reader
-cannot tell whether 99% is skill or arithmetic. This script puts nine model entries
+The benchmark places model-family comparisons and baselines on the same cohort,
+folds, and rows so that performance differences can be interpreted. This script puts nine model entries
 - two of them trivial baselines - on the same cohort, the same folds and the same
 rows, at three rungs of the leakage ladder.
 

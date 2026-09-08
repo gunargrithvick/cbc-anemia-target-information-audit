@@ -1,5 +1,5 @@
 """
-Step 7 - every figure the paper needs, regenerated from results/*.json.
+Step 7 - reproducible paper figures regenerated from results/*.json.
 
 Nothing here invents a number. The panels read ablation.json, benchmark.json
 and weighted.json, and only refit a model when a figure genuinely needs

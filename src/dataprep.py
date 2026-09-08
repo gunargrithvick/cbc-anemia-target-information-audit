@@ -1119,14 +1119,14 @@ def describe(df, att):
     print(f"  Moderate and Severe are merged because Severe has "
           f"{int((df.Severity4 == 3).sum())} members in the whole cohort")
 
-    print("\nBASELINES the manuscript never reported")
+    print("\nBASELINES used for interpretation")
     print(f"  binary no-information rate       "
           f"{max(a_who.mean(), 1-a_who.mean())*100:.2f}%")
     print(f"  severity no-information rate     {counts3.max()/n*100:.2f}%")
     print(f"  PR-AUC no-skill reference        {a_who.mean():.4f}  "
           f"(prevalence, not the majority rate)")
 
-    print("\nSURVEY DESIGN (ignored by all 20 reviewed papers)")
+    print("\nSURVEY DESIGN USED IN THIS PROJECT")
     print(f"  strata ({STRATUM})                {df[STRATUM].nunique()}")
     _per_h = (df.groupby(STRATUM, observed=True)[PSU].nunique()
                 .value_counts().sort_index())

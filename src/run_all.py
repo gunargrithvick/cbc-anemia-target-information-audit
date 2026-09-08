@@ -18,12 +18,12 @@ Stages
   download      eight NHANES XPT files, four cycles  (skipped if present
                 and structurally valid)
   dataprep      cohort audit and the shared 60/20/20 split, as a self-check
-  identity_audit    the analyser identities and the rank deficiency
+  identity_audit    audit the analyser identities and the rank deficiency
   ablation      the leakage ladder, the 2x2 decomposition, out-of-cycle replay
   benchmark     seven estimators + two trivial baselines, CIs, significance tests
   weighted      survey-design prevalence and weighted model metrics
   figures       the ten paper figures + results/importance.json
-  app_models    trains and saves the deployable L6 screening models
+  app_models    trains and saves the L6 screening-demonstration models
 
 Usage
   python src/run_all.py                  everything, in order
@@ -88,7 +88,7 @@ STAGES = [
     {
         "name": "identity_audit",
         "script": "identity_audit.py",
-        "what": "prove the analyser identities and the rank deficiency",
+        "what": "audit the analyser identities and the rank deficiency",
         "outputs": [RESULTS / "identity_audit.json"],
     },
     {
@@ -123,7 +123,7 @@ STAGES = [
         "name": "app_models",
         "script": "anemia_app.py",
         "call": "train_models",
-        "what": "train and save the deployable L6 screening models",
+        "what": "train and save the L6 screening-demonstration models",
         "outputs": [MODELS / "anemia_binary.pkl", MODELS / "anemia_severity.pkl",
                     MODELS / "model_info.json"],
     },

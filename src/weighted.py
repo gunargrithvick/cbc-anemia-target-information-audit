@@ -1,9 +1,9 @@
 """
-Step 5 - the survey design that all 20 reviewed papers ignore.
+Step 5 - survey-design-aware prevalence and model metrics.
 
 NHANES is not a simple random sample. It oversamples some groups on purpose,
-and it selects people in clusters within strata. Three consequences that every
-paper in the corpus gets wrong by omission:
+and it selects people in clusters within strata. Three consequences that a
+simple row-wise analysis can miss are:
 
   1. PREVALENCE. Unweighted 9.60% is a property of the sample, not of the
      United States. The population figure is lower, because the groups NHANES

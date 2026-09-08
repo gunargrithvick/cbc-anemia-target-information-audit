@@ -1,7 +1,11 @@
 """
 Fetch the four NHANES cycles this project uses.
 
-Public domain, no registration, no licence restrictions.
+The files are official NCHS public-use files. Public-use availability does not
+remove the NCHS data-use conditions: use them for statistical analysis or
+reporting only, do not attempt to identify participants, and do not link them
+with individually identifiable data. See the NCHS Data User Agreement:
+https://www.cdc.gov/nchs/policy/data-user-agreement.html
 Run:  python download_data.py            fetch whatever is missing or damaged
       python download_data.py --force    fetch all eight again, regardless
 

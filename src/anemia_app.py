@@ -1,5 +1,5 @@
 """
-Interactive anemia screening tool - the deployable end of the study.
+Interactive anemia screening demonstration for the research study.
 
 This is the rewritten version of the submitted manuscript's application. Eight
 things changed, and each one corresponds to a defect the audit found:

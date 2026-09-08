@@ -800,7 +800,7 @@ def main():
         star = " <- primary" if cycle == PRIMARY else ""
         print(f"   {cycle:<12}{res['n']:>8,}   {mch['mae']:>14.4f}"
               f"{mchc['mae']:>16.4f}{mch['label_agreement_who']*100:>10.2f}%{star}")
-    print("   the leak is a property of the analyser, not of one survey cycle")
+    print("   the recoverability pattern is observed across cycles; its magnitude varies")
 
     with open(OUT_PATH, "w", encoding="utf-8") as fh:
         # allow_nan=False: the default writes bare NaN and Infinity tokens, which

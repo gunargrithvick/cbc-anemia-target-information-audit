@@ -102,7 +102,7 @@ structure, file size, and record count before accepting a file.
 | Machine learning | scikit-learn and XGBoost |
 | Statistical analysis | SciPy and statsmodels |
 | Figures | Matplotlib |
-| Quality checks | pytest, coverage, and pyflakes |
+| Quality checks | pytest, coverage, Pyflakes, and dependency checks |
 
 ## Tested Environment
 
@@ -222,10 +222,11 @@ python -m pytest tests -q --cov=src --cov-report=term-missing
 python quality_check.py
 ```
 
-The test suite checks analyzer identities, label construction, feature-rung
+The pytest suite checks analyzer identities, label construction, feature-rung
 definitions, split and survey-design properties, download-file integrity,
-result contracts, application input guards, static names, and dependency
-consistency. The repository currently contains 111 test-function definitions
+result contracts, and application input guards. The `quality_check.py` command
+also runs Pyflakes static-name checks and `pip check` dependency checks. The
+repository currently contains 111 test-function definitions
 across 9 test files, which expand to 339 collected test cases through
 parameterization. The full suite runs all 339 cases. The faster command with
 the `not slow` marker runs 103 cases and skips tests that require the NHANES
@@ -261,6 +262,9 @@ Guna Rithvick
 
 ## License
 
-The code is released under the [MIT License](LICENSE). NHANES data are obtained
-from the CDC/NCHS public-use files linked above; users should consult the
-official NHANES documentation and analytic guidance when reusing the data.
+The code is released under the [MIT License](LICENSE). The MIT License applies
+to the code in this repository; it does not relicense the NHANES files. NHANES
+data are obtained from the CDC/NCHS public-use files linked above and remain
+subject to the [NCHS Data User Agreement](https://www.cdc.gov/nchs/policy/data-user-agreement.html).
+Users must consult the official NHANES documentation and analytic guidance and
+use the data only for permitted statistical analysis or reporting.

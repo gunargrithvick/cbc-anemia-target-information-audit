@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-05T16:26:48",
+ "generated": "2026-09-08T21:58:47",
  "complete_run": true,
  "seed": 42,
  "python": "3.14.7",
@@ -79,7 +79,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 2.58,
+   "seconds": 2.6,
    "missing": []
   },
   {
@@ -87,7 +87,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 3.05,
+   "seconds": 2.73,
    "missing": []
   },
   {
@@ -95,7 +95,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 186.18,
+   "seconds": 174.49,
    "missing": []
   },
   {
@@ -103,7 +103,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 484.49,
+   "seconds": 454.52,
    "missing": []
   },
   {
@@ -111,7 +111,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 50.81,
+   "seconds": 34.17,
    "missing": []
   },
   {
@@ -119,7 +119,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 46.27,
+   "seconds": 33.1,
    "missing": []
   },
   {
@@ -127,51 +127,51 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 22.94,
+   "seconds": 20.26,
    "missing": []
   }
  ],
- "total_seconds": 796.32,
+ "total_seconds": 721.87,
  "sources": {
   "src/ablation.py": {
    "bytes": 95447,
    "sha256": "6a9f9ec73f912b419765a69f96faabdec5d1fc2faea3eeaa00001842ecd9edda"
   },
   "src/anemia_app.py": {
-   "bytes": 31900,
-   "sha256": "9f2833cc5e1f901544b29f9fdc6894d3290bdddf979fb225ba4a94c407ca59be"
+   "bytes": 31897,
+   "sha256": "fa35698b862b67684b704a9cf00d4de90dcabe061bbd5132c68944bc8aa5636b"
   },
   "src/benchmark.py": {
-   "bytes": 53165,
-   "sha256": "acaa5a5323dce82aba13ae2c4f12188b6d27953cdbca852b8e98ead049838649"
+   "bytes": 53186,
+   "sha256": "0728ae48f370d4cf459ebfbeda7cbd625f3c9afd41fa0a4ff6900895df84b3a1"
   },
   "src/dataprep.py": {
-   "bytes": 62721,
-   "sha256": "9a9b074c173fbbb71cdeee4dc31b97da5b35fef675c72a71027e90c2e00ce1b7"
+   "bytes": 62698,
+   "sha256": "41a8c711b1fe5a94b24feec24b0278d19f20c3a3a0bf87af557d1a170f326622"
   },
   "src/download_data.py": {
-   "bytes": 17706,
-   "sha256": "d8a6ae2e034690539597976bafdefd64c88da1846e6f154191eea8928a21fc1d"
+   "bytes": 18007,
+   "sha256": "22bcccb876deb2a0ac856c0f90a3e679fda317ff9d3800b7f7e69d9f5e2847f6"
   },
   "src/figures.py": {
-   "bytes": 55508,
-   "sha256": "4b58d56c6e3cd282a07e84b7666f10e128e97c0d136b9779c5ee92f4f40e4361"
+   "bytes": 55504,
+   "sha256": "e3ec2105357bef264f123abb59b9c3760a2b66ffe55994284f2632913b263b30"
   },
   "src/identity_audit.py": {
-   "bytes": 41319,
-   "sha256": "f8bdd1a66c4ae84239dd54f0514b2aebd024691c326ab4027b26edd7eae98b2c"
+   "bytes": 41330,
+   "sha256": "45e1891db64e44d6af32750321684cd36df297b003591fd3c390e043ffae7fa4"
   },
   "src/paths.py": {
    "bytes": 2224,
    "sha256": "dbcf44d80c86164941cf3450d33466adb858b048883a840cca7e2ea3f34effba"
   },
   "src/run_all.py": {
-   "bytes": 30283,
-   "sha256": "35e840c237a0f6e201a6f017cc8048fa233389b800e9b7a12c726adffffa9636"
+   "bytes": 30291,
+   "sha256": "71856f265b7502346f49b36030244fb2f0fc79efb0bbab7293c5d6716c7246ff"
   },
   "src/weighted.py": {
-   "bytes": 49848,
-   "sha256": "bba0bc9d0511d870e37dc2fc4fd885fc01ca5eeba4ff740ec37665c439842470"
+   "bytes": 49832,
+   "sha256": "79c9952147d47ee4504ef1fbb609bf6864bfc91be86f68af70af2ec731ea52dc"
   },
   "requirements.txt": {
    "bytes": 527,
