@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-11T17:10:48",
+ "generated": "2026-10-11T17:31:20",
  "complete_run": true,
  "seed": 42,
  "python": "3.14.7",
  "platform": "Windows-11-10.0.26300-SP0",
  "libraries": {
   "numpy": {
-   "installed": "2.4.6",
+   "installed": "2.5.2",
    "pinned": "2.5.2",
-   "matches_pin": false
+   "matches_pin": true
   },
   "pandas": {
-   "installed": "2.3.3",
+   "installed": "3.0.5",
    "pinned": "3.0.5",
-   "matches_pin": false
+   "matches_pin": true
   },
   "scikit-learn": {
    "installed": "1.9.0",
@@ -21,9 +21,9 @@
    "matches_pin": true
   },
   "scipy": {
-   "installed": "1.18.1",
+   "installed": "1.18.0",
    "pinned": "1.18.0",
-   "matches_pin": false
+   "matches_pin": true
   },
   "xgboost": {
    "installed": "3.4.1",
@@ -31,14 +31,14 @@
    "matches_pin": true
   },
   "joblib": {
-   "installed": "1.6.0",
+   "installed": "1.5.3",
    "pinned": "1.5.3",
-   "matches_pin": false
+   "matches_pin": true
   },
   "matplotlib": {
-   "installed": "3.11.0",
+   "installed": "3.11.1",
    "pinned": "3.11.1",
-   "matches_pin": false
+   "matches_pin": true
   },
   "statsmodels": {
    "installed": "0.15.0",
@@ -79,7 +79,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 3.93,
+   "seconds": 44.29,
    "missing": []
   },
   {
@@ -87,7 +87,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 3.9,
+   "seconds": 3.03,
    "missing": []
   },
   {
@@ -95,7 +95,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 216.56,
+   "seconds": 219.38,
    "missing": []
   },
   {
@@ -103,7 +103,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 543.89,
+   "seconds": 569.39,
    "missing": []
   },
   {
@@ -111,7 +111,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 58.13,
+   "seconds": 42.94,
    "missing": []
   },
   {
@@ -119,7 +119,7 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 38.18,
+   "seconds": 36.7,
    "missing": []
   },
   {
@@ -127,11 +127,11 @@
    "status": "ok",
    "ok": true,
    "returncode": 0,
-   "seconds": 22.67,
+   "seconds": 13.23,
    "missing": []
   }
  ],
- "total_seconds": 887.26,
+ "total_seconds": 928.96,
  "sources": {
   "src/ablation.py": {
    "bytes": 93690,
@@ -242,102 +242,102 @@
   },
   "figures/fig10_out_of_cycle.png": {
    "bytes": 147972,
-   "sha256": "c78dd317e55153cd28350ee92669f62416f1e5ba7102244f1afb5e4168df8f07",
+   "sha256": "1ff6b88fb72d78c67215ae0f7dfcbc90fddc4eb82d346f22eb61e4d1aec7027c",
    "written_by_this_run": true
   },
   "figures/fig1_flowchart.png": {
    "bytes": 359136,
-   "sha256": "78330330b842dae039219f2f405b99814e278d7f61f7250d3b63e32768307ff9",
+   "sha256": "1e3254e24f3c3ce3e5c1aa6f9417e8ade4ccbfb6b12281f9a23725f3fbe08923",
    "written_by_this_run": true
   },
   "figures/fig2_ladder.png": {
    "bytes": 286593,
-   "sha256": "f6aeb0613563b17b62cd36b321940b5a40ad1e12622bddc7423f58992667b87f",
+   "sha256": "2fbd39a5bab2c17e01a6193d9d80f44b25c6de9e155679cfb292e3b42167be09",
    "written_by_this_run": true
   },
   "figures/fig3_decomposition.png": {
    "bytes": 192307,
-   "sha256": "ee80a9a780df02523fcc7f010c2eb849c300de607963780db2d3a1e75223989e",
+   "sha256": "b5103a2ae22fd0ca83bc4af14505f7afc6838ffbbe7341f9fe9146f579f5a37d",
    "written_by_this_run": true
   },
   "figures/fig4_pr_curves.png": {
    "bytes": 214502,
-   "sha256": "647ff120ecaa4e32712c638736fcfc10185959ecf14c3645c4a5a8ff63199eb5",
+   "sha256": "57c7dffcb799813013afb7360c654bc1fedf15619f06cf28b0470d9c9c1c3d30",
    "written_by_this_run": true
   },
   "figures/fig5_calibration.png": {
    "bytes": 222358,
-   "sha256": "a534bf8a2ea1111ee899bc58f0b01d1345937326b6f155a29a24d2cb49748812",
+   "sha256": "42c2d1071ebf7774d7b974194597db3e506fc8d5e4c4ce98d5e9b6bc6940eaae",
    "written_by_this_run": true
   },
   "figures/fig6_confusion.png": {
    "bytes": 277216,
-   "sha256": "e1523960fdecceecc827e2767455d4bcb3c8d541a3d435991a631c1b65b47d38",
+   "sha256": "0dba38da3af15d0907513066e47afe2d9a27b90ff71558a0586325946ac1ade6",
    "written_by_this_run": true
   },
   "figures/fig7_importance.png": {
    "bytes": 101930,
-   "sha256": "3d8fe800b4c3d12e7e5495fdeab8a929023f4a15a932f396ed0fb1553438109c",
+   "sha256": "234d1978aa99972fb5b18e8d5177dd75d2c0d424dd5ad356124ab98b4ccaec12",
    "written_by_this_run": true
   },
   "figures/fig8_prevalence.png": {
    "bytes": 183254,
-   "sha256": "ffee8978954a8798d0d0d7f7cf815d20a8a1b6b5967104c8bfeac74ab2ce6cf6",
+   "sha256": "b93735c5c50392f8610c7cf583a58fc7ea655662205ff4cf956518c64422e3ee",
    "written_by_this_run": true
   },
   "figures/fig9_contrasts.png": {
    "bytes": 175224,
-   "sha256": "fe8ba027c9b816fa32fc6a0ff394eab3412e64ab00187fbf4c0441d7a608234f",
+   "sha256": "04c4990a4b3a48d6561ce0d329891259fb16577bb1edcfe17ad616873f999b69",
    "written_by_this_run": true
   },
   "figures/fig10_out_of_cycle.pdf": {
    "bytes": 21808,
-   "sha256": "20536d99f669a2702ceddcf68a487e2c4b5add51e36e1927281e223f8fc3af7a",
+   "sha256": "a154cc882bddb70ebbe35c3a2852acad0394f96fe1c9eaa92549262fce1cd44a",
    "written_by_this_run": true
   },
   "figures/fig1_flowchart.pdf": {
    "bytes": 40769,
-   "sha256": "d8a8685500b90db2575d6f0a2e07b2ae6d2b234c9d0c37190b7469bdf212969d",
+   "sha256": "c9236153e91261008ef96d73d1c9d661f4ae8bb66ca3ee60c41ea94f5d92d024",
    "written_by_this_run": true
   },
   "figures/fig2_ladder.pdf": {
    "bytes": 32080,
-   "sha256": "2454ede1048f27965dcabf524874e92ba3530191a92424cd5d7f74423488e32c",
+   "sha256": "cdb8c6758e8ded0523e8e7937b567a6d1c7065a975ff21370933d39658c1430b",
    "written_by_this_run": true
   },
   "figures/fig3_decomposition.pdf": {
    "bytes": 26104,
-   "sha256": "8c33c87a33984b3397c09a0b747763cacf14afd641edd1ec8c5e9b2330adc9ea",
+   "sha256": "00985d5ee8e3021c8fbc49683fb8130845a0754532d22238decc38feb57e59ec",
    "written_by_this_run": true
   },
   "figures/fig4_pr_curves.pdf": {
    "bytes": 27290,
-   "sha256": "26c8c7ad37e048fc33d12495e7f22127bf08f77defe3043d73f097bd9b4aa1ff",
+   "sha256": "a8c00755b7d48f68e374cee27d8177debfec8ce299e04953cb29f7005f41eb4e",
    "written_by_this_run": true
   },
   "figures/fig5_calibration.pdf": {
    "bytes": 24903,
-   "sha256": "ca8b95b41684df2c4c3a9f2f9180c50391c5ca1109fd2c80507cc2187a3c3a21",
+   "sha256": "c41e5ef3a90da0c89fdb49ff7134cab50ec4fc1ac9aeb04114c3568a5054a876",
    "written_by_this_run": true
   },
   "figures/fig6_confusion.pdf": {
    "bytes": 26723,
-   "sha256": "d7265f256c228b7283e69090c0bff0426e4a66cbfd7d74ade7df73242bc1b739",
+   "sha256": "370fa777da3d1fbd4beb1752d33e0b51cd4e76218fc10899fcffaace6097ef57",
    "written_by_this_run": true
   },
   "figures/fig7_importance.pdf": {
    "bytes": 19985,
-   "sha256": "ac56cd0454cabed144a80bc5c4aa1f1e991b92f483b09d59d653569b3cacaf0f",
+   "sha256": "062f24ddc25b48b9a481426ea4d78caa22c505cf6f84aac6e01adf370e4cf4e1",
    "written_by_this_run": true
   },
   "figures/fig8_prevalence.pdf": {
    "bytes": 28778,
-   "sha256": "4b682bec1d26598765c9515a26a1e69a9611a022ddd317c153623f7bf9b7836e",
+   "sha256": "9df6f6222e4af35001ae1965f94703413a472baa65468f3f723bdd69606156ed",
    "written_by_this_run": true
   },
   "figures/fig9_contrasts.pdf": {
    "bytes": 26163,
-   "sha256": "24224963a194d1321a50ef7aca5aea8cc51b076e277ba7623d3ebb445b6b6934",
+   "sha256": "c7e5f464b8a8ed1b1d00f9977662c5361e27854f9b8167f9dae782d202fa3667",
    "written_by_this_run": true
   },
   "models/anemia_binary.pkl": {
